@@ -6,6 +6,8 @@ use App\Models\Course;
 use App\Models\CourseCategory;
 use App\Models\Enrollment;
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\LessonProgress;
 
 class CourseController extends Controller
 {
@@ -136,17 +138,17 @@ class CourseController extends Controller
             ->with('success', 'Successfully enrolled in course.');
     }
 
-     public function myCourses()
-   {
-     $enrollments = Enrollment::with('course')
+    public function myCourses()
+{
+    $enrollments = Enrollment::with('course')
         ->where('student_id', auth()->id())
         ->latest()
         ->get();
 
-     return view('student.my-courses', compact('enrollments'));
-   }
+    return view('student.my-courses', compact('enrollments'));
+}
 
-   public function teacherCourses()
+public function teacherCourses()
 {
     $courses = Course::withCount(['lessons', 'enrollments'])
         ->where('teacher_id', auth()->id())
@@ -164,5 +166,20 @@ public function teacherCourseStudents(Course $course)
         ->get();
 
     return view('teacher.course-students', compact('course', 'enrollments'));
+}
+
+public function studentProgress(Course $course, User $student)
+{
+    $progress = LessonProgress::with('lesson')
+        ->where('student_id', $student->id)
+        ->whereHas('lesson', function ($query) use ($course) {
+            $query->where('course_id', $course->id);
+        })
+        ->get();
+
+    return view(
+        'teacher.student-progress',
+        compact('course', 'student', 'progress')
+    );
 }
 }

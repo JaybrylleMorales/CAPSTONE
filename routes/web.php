@@ -64,6 +64,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/teacher-courses/{course}/students', [CourseController::class, 'teacherCourseStudents'])
     ->name('teacher.course.students');
 
+    Route::get('/teacher/my-courses', [CourseController::class, 'teacherCourses'])
+    ->name('teacher.my-courses');
+
+     Route::get('/teacher/course/{course}/student/{student}/progress', [CourseController::class, 'studentProgress']) 
+    ->name('teacher.student.progress');
+
+
     });
 
    Route::middleware('role:student')->group(function () {
