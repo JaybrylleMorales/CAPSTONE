@@ -182,4 +182,41 @@ public function studentProgress(Course $course, User $student)
         compact('course', 'student', 'progress')
     );
 }
+
+public function submitForApproval(Course $course)
+{
+    if ($course->teacher_id !== auth()->id()) {
+        abort(403, 'Unauthorized');
+    }
+
+    $course->update([
+        'status' => 'pending',
+    ]);
+
+    return redirect()
+        ->route('teacher.my-courses')
+        ->with('success', 'Course submitted for approval.');
+}
+
+public function approve(Course $course)
+{
+    $course->update([
+        'status' => 'published',
+    ]);
+
+    return redirect()
+        ->route('courses.index')
+        ->with('success', 'Course approved and published successfully.');
+}
+
+public function reject(Course $course)
+{
+    $course->update([
+        'status' => 'rejected',
+    ]);
+
+    return redirect()
+        ->route('courses.index')
+        ->with('success', 'Course rejected successfully.');
+}
 }

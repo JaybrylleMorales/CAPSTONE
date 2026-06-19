@@ -19,6 +19,21 @@
     @endif
 
     <div class="rounded-xl border bg-white p-6 shadow-sm dark:bg-neutral-900 dark:border-neutral-700">
+
+        <p class="text-sm text-gray-500 mb-3">
+            Type: {{ ucfirst($lesson->lesson_type) }}
+        </p>
+
+        @if($lesson->video_url)
+            <div class="mb-6">
+                <a href="{{ $lesson->video_url }}"
+                   target="_blank"
+                   class="text-blue-600 underline">
+                    Open Lesson Video
+                </a>
+            </div>
+        @endif
+
         <div class="prose dark:prose-invert max-w-none">
             {{ $lesson->content ?? 'No lesson content available.' }}
         </div>
@@ -39,6 +54,7 @@
                 </form>
             @endif
         </div>
+
     </div>
 
     <a href="{{ route('student.learn.course', $lesson->course) }}"

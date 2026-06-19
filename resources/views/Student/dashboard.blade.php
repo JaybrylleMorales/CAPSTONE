@@ -16,7 +16,10 @@
            class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded">
             Browse Courses
         </a>
-
+        <a href="{{ route('student.learning-paths') }}"
+           class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded">
+            Learning Paths
+        </a>
         <a href="{{ route('student.my-courses') }}"
            class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">
             My Courses
@@ -94,9 +97,25 @@
                 </p>
             </div>
         @empty
-            <p class="text-sm text-gray-500">
-                You are not enrolled in any courses yet.
-            </p>
+            <p class="text-sm text-gray-500 mt-2">
+    Status: {{ ucfirst($enrollment->status) }}
+</p>
+
+@if($enrollment->status === 'completed')
+
+    <a href="{{ route('student.certificates') }}"
+       class="mt-3 inline-block px-3 py-2 bg-green-600 hover:bg-green-700 text-white rounded text-sm">
+        View Certificate
+    </a>
+
+@else
+
+    <a href="{{ route('student.learn.course', $enrollment->course) }}"
+       class="mt-3 inline-block px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded text-sm">
+        Continue Learning
+    </a>
+
+@endif
         @endforelse
     </div>
 

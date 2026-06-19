@@ -1,0 +1,109 @@
+<x-layouts::app :title="'Add Lesson'">
+
+<div class="max-w-3xl space-y-6">
+
+    <div>
+        <h1 class="text-3xl font-bold">
+            Add Lesson
+        </h1>
+
+        <p class="text-zinc-500">
+            {{ $course->title }}
+        </p>
+    </div>
+
+    <form action="{{ route('teacher.lessons.store', $course) }}"
+      method="POST"
+      class="space-y-4 border rounded-xl p-6">
+
+        @csrf
+
+        <div>
+            <label class="block text-sm font-medium mb-1">
+                Lesson Title
+            </label>
+
+            <input type="text"
+                   name="title"
+                   class="w-full rounded-lg border p-2 text-black">
+        </div>
+
+        <div>
+            <label class="block text-sm font-medium mb-1">
+                Lesson Content
+            </label>
+
+            <textarea name="content"
+                      rows="5"
+                      class="w-full rounded-lg border p-2 text-black"></textarea>
+        </div>
+
+        <div>
+            <label class="block text-sm font-medium mb-1">
+                Lesson Type
+            </label>
+
+            <select name="lesson_type"
+                    class="w-full rounded-lg border p-2 text-black">
+                <option value="video">Video</option>
+                <option value="document">Document</option>
+                <option value="text">Text</option>
+                <option value="quiz">Quiz</option>
+            </select>
+        </div>
+
+        <div>
+            <label class="block text-sm font-medium mb-1">
+                Video URL
+            </label>
+
+            <input type="text"
+                   name="video_url"
+                   class="w-full rounded-lg border p-2 text-black">
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-4">
+            <div>
+                <label class="block text-sm font-medium mb-1">
+                    Lesson Order
+                </label>
+
+                <input type="number"
+                       name="lesson_order"
+                       value="1"
+                       class="w-full rounded-lg border p-2 text-black">
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium mb-1">
+                    Duration Minutes
+                </label>
+
+                <input type="number"
+                       name="duration_minutes"
+                       class="w-full rounded-lg border p-2 text-black">
+            </div>
+        </div>
+
+        <div class="flex gap-4">
+            <label>
+                <input type="checkbox" name="is_preview">
+                Preview Lesson
+            </label>
+
+            <label>
+                <input type="checkbox" name="is_published" checked>
+                Published
+            </label>
+        </div>
+
+        <button type="submit"
+                class="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg">
+            Save Lesson
+        </button>
+
+    </form>
+
+</div>
+
+</x-layouts::app>

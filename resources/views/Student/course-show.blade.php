@@ -23,7 +23,6 @@
         </p>
 
         <div class="mt-5 grid gap-4 md:grid-cols-3 text-sm">
-
             <div class="rounded bg-neutral-100 p-3 dark:bg-neutral-800">
                 Level: {{ ucfirst($course->difficulty_level) }}
             </div>
@@ -35,17 +34,18 @@
             <div class="rounded bg-neutral-100 p-3 dark:bg-neutral-800">
                 Price: ₱{{ number_format($course->price, 2) }}
             </div>
-
         </div>
 
         @if($isEnrolled)
-
             <div class="mt-6 rounded-lg bg-green-100 p-4 text-green-700">
                 ✓ You are already enrolled in this course.
             </div>
 
+            <a href="{{ route('student.learn.course', $course) }}"
+               class="mt-4 inline-block rounded bg-blue-600 px-5 py-2 text-white hover:bg-blue-700">
+                Continue Learning
+            </a>
         @else
-
             <form action="{{ route('student.enroll', $course) }}"
                   method="POST"
                   class="mt-6">
@@ -55,7 +55,6 @@
                     Enroll Now
                 </button>
             </form>
-
         @endif
 
     </div>
@@ -67,11 +66,8 @@
         </h2>
 
         @forelse($course->lessons as $lesson)
-
             <div class="rounded bg-neutral-100 p-3 mb-2 dark:bg-neutral-800">
-
                 <div class="flex justify-between items-center">
-
                     <span>
                         {{ $lesson->lesson_order }}.
                         {{ $lesson->title }}
@@ -82,17 +78,12 @@
                             Preview
                         </span>
                     @endif
-
                 </div>
-
             </div>
-
         @empty
-
             <p class="text-sm text-gray-500">
                 No lessons added yet.
             </p>
-
         @endforelse
 
     </div>

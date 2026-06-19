@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Quiz;
 use App\Models\Course;
 use App\Models\Lesson;
+use App\Models\QuizResult;
 use Illuminate\Http\Request;
 
 class QuizController extends Controller
@@ -94,4 +95,50 @@ class QuizController extends Controller
             ->route('quizzes.index')
             ->with('success', 'Quiz deleted successfully.');
     }
+
+    public function take(Quiz $quiz)
+{
+    $quiz->load(['course', 'questions']);
+
+    return view('student.take-quiz', compact('quiz'));
+}
+
+public function submit(Request $request, Quiz $quiz)
+{
+    $quiz->load('questions');
+
+    $score = 0;
+    $totalItems = $quiz->questions->count();
+
+    foreach ($quiz->questions as $question) {
+        $answer = $request->input('question_' . $question->id);
+
+        if ($answer === $question->correct_answer) {
+            $score++;
+        }
+    }
+
+    $percentage = $totalItems > 0
+        ? round(($score / $totalItems) * 100, 2)
+        : 0;
+
+    $remarks = $percentage >= $quiz->passing_score
+        ? 'passed'
+        : 'failed';
+
+    QuizResult::create([
+        'student_id' => auth()->id(),
+        'quiz_id' => $quiz->id,
+        'score' => $score,
+        'total_items' => $totalItems,
+        'percentage' => $percentage,
+        'remarks' => $remarks,
+        'attempt_number' => 1,
+        'completed_at' => now(),
+    ]);
+
+    return redirect()
+        ->route('student.dashboard')
+        ->with('success', 'Quiz submitted. Your score is ' . $percentage . '%.');
+}
 }

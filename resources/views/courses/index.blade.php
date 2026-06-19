@@ -25,6 +25,7 @@
             <tr class="bg-gray-100 dark:bg-neutral-800">
                 <th class="p-3 text-left">Title</th>
                 <th class="p-3 text-left">Category</th>
+                <th class="p-3 text-left">Teacher</th>
                 <th class="p-3 text-left">Price</th>
                 <th class="p-3 text-left">Status</th>
                 <th class="p-3 text-left">Actions</th>
@@ -46,32 +47,59 @@
                 </td>
 
                 <td class="p-3">
+                    {{ $course->teacher->name ?? 'No Teacher' }}
+                </td>
+
+                <td class="p-3">
                     PHP {{ number_format($course->price, 2) }}
                 </td>
 
                 <td class="p-3">
-                    {{ ucfirst($course->status) }}
+                    <span class="px-2 py-1 rounded text-sm bg-gray-200 text-black">
+                        {{ ucfirst($course->status) }}
+                    </span>
                 </td>
 
-                <td class="p-3 flex gap-2">
+                <td class="p-3 flex flex-wrap gap-2">
 
-                    <a href="{{ route('courses.edit',$course) }}"
-                       class="text-blue-600">
+                    @if($course->status === 'pending')
+                        <form action="{{ route('courses.approve', $course) }}"
+                              method="POST">
+                            @csrf
+
+                            <button type="submit"
+                                    class="px-3 py-1 bg-green-600 text-white rounded text-sm">
+                                Approve
+                            </button>
+                        </form>
+
+                        <form action="{{ route('courses.reject', $course) }}"
+                              method="POST">
+                            @csrf
+
+                            <button type="submit"
+                                    onclick="return confirm('Reject this course?')"
+                                    class="px-3 py-1 bg-red-600 text-white rounded text-sm">
+                                Reject
+                            </button>
+                        </form>
+                    @endif
+
+                    <a href="{{ route('courses.edit', $course) }}"
+                       class="px-3 py-1 bg-blue-600 text-white rounded text-sm">
                         Edit
                     </a>
 
-                    <form action="{{ route('courses.destroy',$course) }}"
+                    <form action="{{ route('courses.destroy', $course) }}"
                           method="POST">
-
                         @csrf
                         @method('DELETE')
 
                         <button
                             onclick="return confirm('Delete this course?')"
-                            class="text-red-600">
+                            class="px-3 py-1 bg-red-700 text-white rounded text-sm">
                             Delete
                         </button>
-
                     </form>
 
                 </td>
@@ -81,7 +109,7 @@
         @empty
 
             <tr>
-                <td colspan="5" class="p-4 text-center">
+                <td colspan="6" class="p-4 text-center">
                     No courses found.
                 </td>
             </tr>
