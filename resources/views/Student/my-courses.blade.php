@@ -20,6 +20,11 @@
 
     @forelse($enrollments as $enrollment)
 
+        @php
+            $progress = $enrollment->progress_percentage;
+            $isCompleted = $progress >= 100;
+        @endphp
+
         <div class="rounded-xl border bg-white p-6 shadow-sm dark:bg-neutral-900 dark:border-neutral-700">
 
             <div class="flex justify-between items-start">
@@ -37,19 +42,25 @@
                     </p>
                 </div>
 
-                <span class="text-sm px-3 py-1 rounded bg-blue-600 text-white">
-                    {{ number_format($enrollment->progress_percentage, 0) }}%
+                <span class="text-sm px-3 py-1 rounded-full font-semibold
+                    {{ $isCompleted
+                        ? 'bg-green-500/15 text-green-400'
+                        : 'bg-purple-500/15 text-purple-300' }}">
+                    {{ number_format($progress, 0) }}%
                 </span>
 
             </div>
 
             <div class="mt-4">
 
-                <div class="w-full bg-gray-700 rounded-full h-3">
+                <div class="w-full bg-neutral-200 dark:bg-neutral-800 rounded-full h-3">
 
                     <div
-                        class="bg-green-500 h-3 rounded-full"
-                        style="width: {{ $enrollment->progress_percentage }}%">
+                        class="h-3 rounded-full transition-all
+                            {{ $isCompleted
+                                ? 'bg-green-500'
+                                : 'bg-gradient-to-r from-purple-500 to-indigo-500' }}"
+                        style="width: {{ $progress }}%">
                     </div>
 
                 </div>
@@ -65,12 +76,17 @@
 
             <div class="mt-5">
 
-                <a href="{{ route('student.learn.course', $enrollment->course) }}"
-                   class="inline-block bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">
-
-                    Continue Learning
-
-                </a>
+                @if($isCompleted)
+                    <a href="{{ route('student.learn.course', $enrollment->course) }}"
+                       class="inline-block rounded-lg bg-green-600 px-4 py-2 text-white transition hover:bg-green-700">
+                        Review Course
+                    </a>
+                @else
+                    <a href="{{ route('student.learn.course', $enrollment->course) }}"
+                       class="inline-block rounded-lg bg-gradient-to-r from-purple-500 to-indigo-600 px-4 py-2 text-white transition hover:opacity-90">
+                        Continue Learning
+                    </a>
+                @endif
 
             </div>
 
@@ -89,10 +105,8 @@
             </p>
 
             <a href="{{ route('student.marketplace') }}"
-               class="inline-block mt-4 bg-green-600 text-white px-5 py-2 rounded">
-
+               class="inline-block mt-4 rounded-lg bg-gradient-to-r from-purple-500 to-indigo-600 px-5 py-2 text-white transition hover:opacity-90">
                 Browse Courses
-
             </a>
 
         </div>

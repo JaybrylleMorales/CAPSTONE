@@ -4,9 +4,18 @@
     $isEnrolled = \App\Models\Enrollment::where('student_id', auth()->id())
         ->where('course_id', $course->id)
         ->exists();
+
+    $pendingTransaction = \App\Models\Transaction::where('student_id', auth()->id())
+        ->where('course_id', $course->id)
+        ->where('status', 'pending')
+        ->latest()
+        ->first();
 @endphp
 
 <div class="space-y-6">
+
+    {{-- Back button --}}
+    <x-back-button :href="route('student.marketplace')" label="Back to Marketplace" />
 
     <div class="rounded-xl border bg-white p-6 shadow-sm dark:bg-neutral-900 dark:border-neutral-700">
 
@@ -37,24 +46,55 @@
         </div>
 
         @if($isEnrolled)
-            <div class="mt-6 rounded-lg bg-green-100 p-4 text-green-700">
+
+            <div class="mt-6 rounded-lg bg-green-100 p-4 text-green-700 dark:bg-green-500/10 dark:text-green-400">
                 ✓ You are already enrolled in this course.
             </div>
 
             <a href="{{ route('student.learn.course', $course) }}"
-               class="mt-4 inline-block rounded bg-blue-600 px-5 py-2 text-white hover:bg-blue-700">
+               class="mt-4 inline-block rounded-lg bg-gradient-to-r from-purple-500 to-indigo-600 px-5 py-2 text-white transition hover:opacity-90">
                 Continue Learning
             </a>
+
+        @elseif($pendingTransaction)
+
+            <div class="mt-6 rounded-lg bg-yellow-100 p-4 text-yellow-700 dark:bg-yellow-500/10 dark:text-yellow-400">
+                ⏳ You already have a pending payment for this course.
+            </div>
+
+            <a href="{{ route('student.transactions.show', $pendingTransaction) }}"
+               class="mt-4 inline-block rounded-lg bg-yellow-600 px-5 py-2 text-white transition hover:bg-yellow-700">
+                View Pending Transaction
+            </a>
+
+        @elseif($course->price > 0)
+
+            <div class="mt-6 rounded-lg border border-orange-500 bg-orange-50 p-4 text-orange-700 dark:bg-orange-950/30 dark:text-orange-400">
+                This is a paid course. Please purchase the course and upload your proof of payment for admin verification.
+            </div>
+
+            <form action="{{ route('student.transactions.store', $course) }}"
+                  method="POST"
+                  class="mt-4">
+                @csrf
+
+                <button class="rounded-lg bg-gradient-to-r from-purple-500 to-indigo-600 px-5 py-2 text-white transition hover:opacity-90">
+                    Purchase Course
+                </button>
+            </form>
+
         @else
+
             <form action="{{ route('student.enroll', $course) }}"
                   method="POST"
                   class="mt-6">
                 @csrf
 
-                <button class="rounded bg-green-600 px-5 py-2 text-white hover:bg-green-700">
-                    Enroll Now
+                <button class="rounded-lg bg-green-600 px-5 py-2 text-white transition hover:bg-green-700">
+                    Enroll for Free
                 </button>
             </form>
+
         @endif
 
     </div>
@@ -74,7 +114,7 @@
                     </span>
 
                     @if($lesson->is_preview)
-                        <span class="text-xs bg-blue-600 text-white px-2 py-1 rounded">
+                        <span class="text-xs bg-purple-600 text-white px-2 py-1 rounded">
                             Preview
                         </span>
                     @endif

@@ -1,6 +1,6 @@
-<?php # [BlazeFolded]:{flux::link}:{C:\Users\admin\pathwise\vendor\livewire\flux\src/../stubs/resources/views/flux/link.blade.php}:{1776985208} ?>
-<?php # [BlazeFolded]:{flux::button}:{C:\Users\admin\pathwise\vendor\livewire\flux\src/../stubs/resources/views/flux/button/index.blade.php}:{1776985208} ?>
-<?php # [BlazeFolded]:{flux::link}:{C:\Users\admin\pathwise\vendor\livewire\flux\src/../stubs/resources/views/flux/link.blade.php}:{1776985208} ?>
+<?php # [BlazeFolded]:{flux::link}:{C:\Users\admin\pathwise\resources\views/flux/link.blade.php}:{1782477713} ?>
+<?php # [BlazeFolded]:{flux::button}:{C:\Users\admin\pathwise\resources\views/flux/button/index.blade.php}:{1782477713} ?>
+<?php # [BlazeFolded]:{flux::link}:{C:\Users\admin\pathwise\resources\views/flux/link.blade.php}:{1782477713} ?>
 <?php if (isset($component)) { $__componentOriginal08b8a564843783787e0bee3357e24f38 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal08b8a564843783787e0bee3357e24f38 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'f4ac99e09542ff494432bc959d4fee61::auth','data' => ['title' => __('Log in')]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
@@ -88,16 +88,16 @@
             <?php echo csrf_field(); ?>
 
             <!-- Email Address -->
-            <?php $__blaze->ensureRequired('C:\Users\admin\pathwise\vendor\livewire\flux\src/../stubs/resources/views/flux/input/index.blade.php', $__blaze->compiledPath.'/ec309398d2d815de0331e6422a92434b.php'); ?>
+            <?php $__blaze->ensureRequired('C:\Users\admin\pathwise\resources\views/flux/input/index.blade.php', $__blaze->compiledPath.'/eab1ddd53e3966be4b00cb632a4e25e9.php'); ?>
 <?php $__blaze->pushData(['name' => 'email','label' => __('Email address'),'value' => old('email'),'type' => 'email','required' => true,'autofocus' => true,'autocomplete' => 'email','placeholder' => 'email@example.com']); ?>
-<?php _ec309398d2d815de0331e6422a92434b($__blaze, ['name' => 'email','label' => __('Email address'),'value' => old('email'),'type' => 'email','required' => true,'autofocus' => true,'autocomplete' => 'email','placeholder' => 'email@example.com'], [], ['label', 'value', 'required', 'autofocus'], [], $__this ?? (isset($this) ? $this : null)); ?>
+<?php _eab1ddd53e3966be4b00cb632a4e25e9($__blaze, ['name' => 'email','label' => __('Email address'),'value' => old('email'),'type' => 'email','required' => true,'autofocus' => true,'autocomplete' => 'email','placeholder' => 'email@example.com'], [], ['label', 'value', 'required', 'autofocus'], [], $__this ?? (isset($this) ? $this : null)); ?>
 <?php $__blaze->popData(); ?>
 
             <!-- Password -->
             <div class="relative">
-                <?php $__blaze->ensureRequired('C:\Users\admin\pathwise\vendor\livewire\flux\src/../stubs/resources/views/flux/input/index.blade.php', $__blaze->compiledPath.'/ec309398d2d815de0331e6422a92434b.php'); ?>
+                <?php $__blaze->ensureRequired('C:\Users\admin\pathwise\resources\views/flux/input/index.blade.php', $__blaze->compiledPath.'/eab1ddd53e3966be4b00cb632a4e25e9.php'); ?>
 <?php $__blaze->pushData(['name' => 'password','label' => __('Password'),'type' => 'password','required' => true,'autocomplete' => 'current-password','placeholder' => __('Password'),'viewable' => true]); ?>
-<?php _ec309398d2d815de0331e6422a92434b($__blaze, ['name' => 'password','label' => __('Password'),'type' => 'password','required' => true,'autocomplete' => 'current-password','placeholder' => __('Password'),'viewable' => true], [], ['label', 'required', 'placeholder', 'viewable'], [], $__this ?? (isset($this) ? $this : null)); ?>
+<?php _eab1ddd53e3966be4b00cb632a4e25e9($__blaze, ['name' => 'password','label' => __('Password'),'type' => 'password','required' => true,'autocomplete' => 'current-password','placeholder' => __('Password'),'viewable' => true], [], ['label', 'required', 'placeholder', 'viewable'], [], $__this ?? (isset($this) ? $this : null)); ?>
 <?php $__blaze->popData(); ?>
 
                 <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(Route::has('password.request')): ?>
@@ -109,9 +109,9 @@
             </div>
 
             <!-- Remember Me -->
-            <?php $__blaze->ensureRequired('C:\Users\admin\pathwise\vendor\livewire\flux\src/../stubs/resources/views/flux/checkbox/index.blade.php', $__blaze->compiledPath.'/be3fa4dc1bb74d50b593a3d7a046aeab.php'); ?>
+            <?php $__blaze->ensureRequired('C:\Users\admin\pathwise\resources\views/flux/checkbox/index.blade.php', $__blaze->compiledPath.'/951682b29a5d1fc3342f1d75c509b89e.php'); ?>
 <?php $__blaze->pushData(['name' => 'remember','label' => __('Remember me'),'checked' => old('remember')]); ?>
-<?php _be3fa4dc1bb74d50b593a3d7a046aeab($__blaze, ['name' => 'remember','label' => __('Remember me'),'checked' => old('remember')], [], ['label', 'checked'], [], $__this ?? (isset($this) ? $this : null)); ?>
+<?php _951682b29a5d1fc3342f1d75c509b89e($__blaze, ['name' => 'remember','label' => __('Remember me'),'checked' => old('remember')], [], ['label', 'checked'], [], $__this ?? (isset($this) ? $this : null)); ?>
 <?php $__blaze->popData(); ?>
 
             <div class="flex items-center justify-end">

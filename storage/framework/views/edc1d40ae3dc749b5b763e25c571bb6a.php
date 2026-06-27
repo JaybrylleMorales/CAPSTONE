@@ -1,41 +1,107 @@
-<?php # [BlazeFolded]:{flux::heading}:{C:\Users\admin\pathwise\vendor\livewire\flux\src/../stubs/resources/views/flux/heading.blade.php}:{1776985208} ?>
-<?php # [BlazeFolded]:{flux::text}:{C:\Users\admin\pathwise\vendor\livewire\flux\src/../stubs/resources/views/flux/text.blade.php}:{1776985208} ?>
-<?php # [BlazeFolded]:{flux::menu.separator}:{C:\Users\admin\pathwise\vendor\livewire\flux\src/../stubs/resources/views/flux/menu/separator.blade.php}:{1776985208} ?>
-<?php # [BlazeFolded]:{flux::menu.item}:{C:\Users\admin\pathwise\vendor\livewire\flux\src/../stubs/resources/views/flux/menu/item.blade.php}:{1776985208} ?>
-<?php # [BlazeFolded]:{flux::menu.item}:{C:\Users\admin\pathwise\vendor\livewire\flux\src/../stubs/resources/views/flux/menu/item.blade.php}:{1776985208} ?>
-<?php # [BlazeFolded]:{flux::menu.radio.group}:{C:\Users\admin\pathwise\vendor\livewire\flux\src/../stubs/resources/views/flux/menu/radio/group.blade.php}:{1776985208} ?>
-<?php # [BlazeFolded]:{flux::menu}:{C:\Users\admin\pathwise\vendor\livewire\flux\src/../stubs/resources/views/flux/menu/index.blade.php}:{1776985208} ?>
-<?php # [BlazeFolded]:{flux::dropdown}:{C:\Users\admin\pathwise\vendor\livewire\flux\src/../stubs/resources/views/flux/dropdown.blade.php}:{1776985208} ?>
-<?php ob_start(); ?><ui-dropdown position="bottom start"  data-flux-dropdown>
-    <?php ob_start(); ?>
-    <?php $__blaze->ensureRequired('C:\Users\admin\pathwise\vendor\livewire\flux\src/../stubs/resources/views/flux/sidebar/profile.blade.php', $__blaze->compiledPath.'/ca28b82bedd8a0fd48463d682dd88136.php'); ?>
-<?php $__blaze->pushData(['name' => auth()->user()->name,'initials' => auth()->user()->initials(),'icon:trailing' => 'chevrons-up-down','dataTest' => 'sidebar-menu-button']); ?>
-<?php _ca28b82bedd8a0fd48463d682dd88136($__blaze, ['name' => auth()->user()->name,'initials' => auth()->user()->initials(),'icon:trailing' => 'chevrons-up-down','dataTest' => 'sidebar-menu-button'], [], ['name', 'initials'], ['dataTest' => 'data-test'], $__this ?? (isset($this) ? $this : null)); ?>
-<?php $__blaze->popData(); ?>
+<?php # [BlazeFolded]:{flux::menu.separator}:{C:\Users\admin\pathwise\resources\views/flux/menu/separator.blade.php}:{1782477713} ?>
+<?php # [BlazeFolded]:{flux::menu.item}:{C:\Users\admin\pathwise\resources\views/flux/menu/item.blade.php}:{1782477713} ?>
+<?php # [BlazeFolded]:{flux::menu.separator}:{C:\Users\admin\pathwise\resources\views/flux/menu/separator.blade.php}:{1782477713} ?>
+<?php # [BlazeFolded]:{flux::menu.item}:{C:\Users\admin\pathwise\resources\views/flux/menu/item.blade.php}:{1782477713} ?>
+<?php # [BlazeFolded]:{flux::menu}:{C:\Users\admin\pathwise\resources\views/flux/menu/index.blade.php}:{1782477713} ?>
+<?php # [BlazeFolded]:{flux::dropdown}:{C:\Users\admin\pathwise\resources\views/flux/dropdown.blade.php}:{1782477713} ?>
+<?php $attributes ??= new \Illuminate\View\ComponentAttributeBag;
 
-    <?php ob_start(); ?><ui-menu
+$__newAttributes = [];
+$__propNames = \Illuminate\View\ComponentAttributeBag::extractPropNames(([
+    'name' => auth()->user()->name,
+]));
+
+foreach ($attributes->all() as $__key => $__value) {
+    if (in_array($__key, $__propNames)) {
+        $$__key = $$__key ?? $__value;
+    } else {
+        $__newAttributes[$__key] = $__value;
+    }
+}
+
+$attributes = new \Illuminate\View\ComponentAttributeBag($__newAttributes);
+
+unset($__propNames);
+unset($__newAttributes);
+
+foreach (array_filter(([
+    'name' => auth()->user()->name,
+]), 'is_string', ARRAY_FILTER_USE_KEY) as $__key => $__value) {
+    $$__key = $$__key ?? $__value;
+}
+
+$__defined_vars = get_defined_vars();
+
+foreach ($attributes->all() as $__key => $__value) {
+    if (array_key_exists($__key, $__defined_vars)) unset($$__key);
+}
+
+unset($__defined_vars, $__key, $__value); ?>
+
+<div <?php echo e($attributes->merge(['class' => 'px-3 pb-4'])); ?>>
+    <?php ob_start(); ?><ui-dropdown position="top start"  data-flux-dropdown>
+    <?php ob_start(); ?>
+
+        <button
+            type="button"
+            class="flex w-full items-center gap-3 rounded-2xl border border-zinc-800 bg-zinc-900 px-4 py-4 text-left transition hover:border-purple-700/50 hover:bg-purple-950/30"
+        >
+            <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-purple-600 to-indigo-600 text-sm font-bold text-white">
+                <?php echo e(auth()->user()->initials()); ?>
+
+            </div>
+
+            <div class="min-w-0 flex-1">
+                <p class="truncate text-sm font-semibold text-white">
+                    <?php echo e($name); ?>
+
+                </p>
+
+                <p class="truncate text-[11px] text-zinc-500">
+                    <?php echo e(auth()->user()->email); ?>
+
+                </p>
+            </div>
+
+            <svg
+                class="h-4 w-4 text-zinc-500"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+            >
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                />
+            </svg>
+        </button>
+
+        <?php ob_start(); ?><ui-menu
     class="[:where(&amp;)]:min-w-48 p-[.3125rem] rounded-lg shadow-xs border border-zinc-200 dark:border-zinc-600 bg-white dark:bg-zinc-700 focus:outline-hidden"
     popover="manual"
     data-flux-menu
 >
     <?php ob_start(); ?>
-        <div class="flex items-center gap-2 px-1 py-1.5 text-start text-sm">
-            <?php $blaze_memoized_key = \Livewire\Blaze\Memoizer\Memo::key("flux::avatar", ['name' => auth()->user()->name, 'initials' => auth()->user()->initials()]); ?><?php if ($blaze_memoized_key !== null && \Livewire\Blaze\Memoizer\Memo::has($blaze_memoized_key)) : ?><?php echo \Livewire\Blaze\Memoizer\Memo::get($blaze_memoized_key); ?><?php else : ?><?php ob_start(); ?><?php $__blaze->ensureRequired('C:\Users\admin\pathwise\vendor\livewire\flux\src/../stubs/resources/views/flux/avatar/index.blade.php', $__blaze->compiledPath.'/73484f6410569c9b3454f27212965908.php'); ?>
-<?php $__blaze->pushData(['name' => auth()->user()->name,'initials' => auth()->user()->initials()]); ?>
-<?php _73484f6410569c9b3454f27212965908($__blaze, ['name' => auth()->user()->name,'initials' => auth()->user()->initials()], [], ['name', 'initials'], [], $__this ?? (isset($this) ? $this : null)); ?>
-<?php $__blaze->popData(); ?><?php $blaze_memoized_html = ob_get_clean(); ?><?php if ($blaze_memoized_key !== null) { \Livewire\Blaze\Memoizer\Memo::put($blaze_memoized_key, $blaze_memoized_html); } ?><?php echo $blaze_memoized_html; ?><?php endif; ?>
-            <div class="grid flex-1 text-start text-sm leading-tight">
-                <?php ob_start(); ?><div class="font-medium [:where(&amp;)]:text-zinc-800 [:where(&amp;)]:dark:text-white text-sm [&amp;:has(+[data-flux-subheading])]:mb-2 [[data-flux-subheading]+&amp;]:mt-2 truncate" data-flux-heading><?php ob_start(); ?><?php echo e(auth()->user()->name); ?><?php echo trim(ob_get_clean()); ?></div>
-<?php echo ltrim(ob_get_clean()); ?>
-                <?php ob_start(); ?><p class="[:where(&amp;)]:font-normal [:where(&amp;)]:text-sm [:where(&amp;)]:text-zinc-500 [:where(&amp;)]:dark:text-white/70 truncate" data-flux-text ><?php ob_start(); ?><?php echo e(auth()->user()->email); ?><?php echo trim(ob_get_clean()); ?></p><?php echo ltrim(ob_get_clean()); ?>
+
+            <div class="px-3 py-2">
+                <p class="text-sm font-semibold text-white">
+                    <?php echo e(auth()->user()->name); ?>
+
+                </p>
+
+                <p class="text-xs text-zinc-500">
+                    <?php echo e(auth()->user()->email); ?>
+
+                </p>
             </div>
-        </div>
-        <?php ob_start(); ?><div class="-mx-[.3125rem] my-[.3125rem] h-px"  data-flux-menu-separator>
+
+            <?php ob_start(); ?><div class="-mx-[.3125rem] my-[.3125rem] h-px"  data-flux-menu-separator>
     <div data-orientation="horizontal" role="none" class="border-0 [print-color-adjust:exact] bg-zinc-800/15 dark:bg-white/20 h-px w-full dark:bg-zinc-600!" data-flux-separator></div>
 </div>
 <?php echo ltrim(ob_get_clean()); ?>
-        <?php ob_start(); ?><ui-menu-radio-group  data-flux-menu-radio-group>
-    <?php ob_start(); ?>
+
             <?php ob_start(); ?><a href="<?php echo e(route('profile.edit')); ?>" data-flux-menu-item="data-flux-menu-item" data-flux-menu-item-has-icon="data-flux-menu-item-has-icon" class="flex items-center px-2 py-1.5 w-full focus:outline-hidden rounded-md text-start text-sm font-medium [&amp;[disabled]]:opacity-50 text-zinc-800 data-active:bg-zinc-50 dark:text-white dark:data-active:bg-zinc-600 **:data-flux-menu-item-icon:text-zinc-400 dark:**:data-flux-menu-item-icon:text-white/60 [&amp;[data-active]_[data-flux-menu-item-icon]]:text-current" wire:navigate="">
         <svg class="shrink-0 [:where(&amp;)]:size-5 me-2" data-flux-menu-item-icon="data-flux-menu-item-icon" data-flux-icon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
   <path d="M13.024 9.25c.47 0 .827-.433.637-.863a4 4 0 0 0-4.094-2.364c-.468.05-.665.576-.43.984l1.08 1.868a.75.75 0 0 0 .649.375h2.158ZM7.84 7.758c-.236-.408-.79-.5-1.068-.12A3.982 3.982 0 0 0 6 10c0 .884.287 1.7.772 2.363.278.38.832.287 1.068-.12l1.078-1.868a.75.75 0 0 0 0-.75L7.839 7.758ZM9.138 12.993c-.235.408-.039.934.43.984a4 4 0 0 0 4.094-2.364c.19-.43-.168-.863-.638-.863h-2.158a.75.75 0 0 0-.65.375l-1.078 1.868Z"/>
@@ -44,15 +110,25 @@
 
             
     <?php ob_start(); ?>
-                <?php echo e(__('Settings')); ?>
-
+                Settings
             <?php echo trim(ob_get_clean()); ?>
 
     </a>
 <?php echo ltrim(ob_get_clean()); ?>
-            <form method="POST" action="<?php echo e(route('logout')); ?>" class="w-full">
+
+            <?php ob_start(); ?><div class="-mx-[.3125rem] my-[.3125rem] h-px"  data-flux-menu-separator>
+    <div data-orientation="horizontal" role="none" class="border-0 [print-color-adjust:exact] bg-zinc-800/15 dark:bg-white/20 h-px w-full dark:bg-zinc-600!" data-flux-separator></div>
+</div>
+<?php echo ltrim(ob_get_clean()); ?>
+
+            <form
+                method="POST"
+                action="<?php echo e(route('logout')); ?>"
+                class="w-full"
+            >
                 <?php echo csrf_field(); ?>
-                <?php ob_start(); ?><button type="submit" class="flex items-center px-2 py-1.5 w-full focus:outline-hidden rounded-md text-start text-sm font-medium [&amp;[disabled]]:opacity-50 text-zinc-800 data-active:bg-zinc-50 dark:text-white dark:data-active:bg-zinc-600 **:data-flux-menu-item-icon:text-zinc-400 dark:**:data-flux-menu-item-icon:text-white/60 [&amp;[data-active]_[data-flux-menu-item-icon]]:text-current w-full cursor-pointer" data-flux-menu-item="data-flux-menu-item" data-flux-menu-item-has-icon="data-flux-menu-item-has-icon" data-test="logout-button">
+
+                <?php ob_start(); ?><button type="submit" class="flex items-center px-2 py-1.5 w-full focus:outline-hidden rounded-md text-start text-sm font-medium [&amp;[disabled]]:opacity-50 text-zinc-800 data-active:bg-zinc-50 dark:text-white dark:data-active:bg-zinc-600 **:data-flux-menu-item-icon:text-zinc-400 dark:**:data-flux-menu-item-icon:text-white/60 [&amp;[data-active]_[data-flux-menu-item-icon]]:text-current w-full cursor-pointer text-red-400" data-flux-menu-item="data-flux-menu-item" data-flux-menu-item-has-icon="data-flux-menu-item-has-icon">
         <svg class="shrink-0 [:where(&amp;)]:size-5 me-2" data-flux-menu-item-icon="data-flux-menu-item-icon" data-flux-icon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
   <path fill-rule="evenodd" d="M3 4.25A2.25 2.25 0 0 1 5.25 2h5.5A2.25 2.25 0 0 1 13 4.25v2a.75.75 0 0 1-1.5 0v-2a.75.75 0 0 0-.75-.75h-5.5a.75.75 0 0 0-.75.75v11.5c0 .414.336.75.75.75h5.5a.75.75 0 0 0 .75-.75v-2a.75.75 0 0 1 1.5 0v2A2.25 2.25 0 0 1 10.75 18h-5.5A2.25 2.25 0 0 1 3 15.75V4.25Z" clip-rule="evenodd"/>
   <path fill-rule="evenodd" d="M6 10a.75.75 0 0 1 .75-.75h9.546l-1.048-.943a.75.75 0 1 1 1.004-1.114l2.5 2.25a.75.75 0 0 1 0 1.114l-2.5 2.25a.75.75 0 1 1-1.004-1.114l1.048-.943H6.75A.75.75 0 0 1 6 10Z" clip-rule="evenodd"/>
@@ -60,23 +136,20 @@
 
             
     <?php ob_start(); ?>
-                    <?php echo e(__('Log out')); ?>
-
+                    Log out
                 <?php echo trim(ob_get_clean()); ?>
 
     </button>
 <?php echo ltrim(ob_get_clean()); ?>
             </form>
-        <?php echo trim(ob_get_clean()); ?>
 
-</ui-menu-radio-group>
-<?php echo ltrim(ob_get_clean()); ?>
-    <?php echo trim(ob_get_clean()); ?>
+        <?php echo trim(ob_get_clean()); ?>
 
 </ui-menu>
 <?php echo ltrim(ob_get_clean()); ?>
-<?php echo trim(ob_get_clean()); ?>
+
+    <?php echo trim(ob_get_clean()); ?>
 
 </ui-dropdown>
 <?php echo ltrim(ob_get_clean()); ?>
-<?php /**PATH C:\Users\admin\pathwise\resources\views/components/desktop-user-menu.blade.php ENDPATH**/ ?>
+</div><?php /**PATH C:\Users\admin\pathwise\resources\views/components/desktop-user-menu.blade.php ENDPATH**/ ?>

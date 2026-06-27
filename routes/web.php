@@ -18,6 +18,7 @@ use App\Http\Controllers\CertificateManagementController;
 use App\Http\Controllers\UserManagementController;
 use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\LearningPathController;
+use App\Http\Controllers\TransactionController;
 
 Route::view('/', 'welcome')->name('home');
 
@@ -76,6 +77,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
         Route::resource('admin/learning-paths', LearningPathController::class)
             ->names('learning-paths');
+        
+        Route::get('/admin/transactions', [TransactionController::class, 'adminIndex'])
+            ->name('admin.transactions.index');
+
+        Route::post('/admin/transactions/{transaction}/approve', [TransactionController::class, 'approve'])
+            ->name('admin.transactions.approve');
+
+        Route::post('/admin/transactions/{transaction}/reject', [TransactionController::class, 'reject'])
+            ->name('admin.transactions.reject');
     });
 
     Route::middleware('role:teacher')->group(function () {
@@ -114,6 +124,21 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
         Route::post('/teacher/courses/{course}/submit', [CourseController::class, 'submitForApproval'])
             ->name('teacher.courses.submit');
+
+        Route::get('/teacher/quiz-results', [QuizResultController::class, 'index'])
+            ->name('teacher.quiz-results.index');
+
+        Route::get('/teacher/student-progress', [StudentProgressController::class, 'index'])
+            ->name('teacher.student-progress.index');
+
+        Route::get('/teacher/lessons', [LessonController::class, 'teacherAllLessons'])
+            ->name('teacher.lessons.index');
+
+        Route::get('/teacher/quiz-results/create', [QuizResultController::class, 'create'])
+            ->name('teacher.quiz-results.create');
+
+        Route::post('/teacher/quiz-results', [QuizResultController::class, 'store'])
+            ->name('teacher.quiz-results.store');
     });
 
     Route::middleware('role:student')->group(function () {
@@ -156,11 +181,29 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('/quiz/{quiz}/submit', [QuizController::class, 'submit'])
             ->name('student.quiz.submit');
 
-        Route::get('/learning-paths', [LearningPathController::class, 'studentIndex'])
+        Route::get('/student/learning-paths', [LearningPathController::class, 'studentIndex'])
             ->name('student.learning-paths');
 
-        Route::get('/learning-paths/{learningPath}', [LearningPathController::class, 'studentShow'])
+        Route::get('/student/learning-paths/{learningPath}', [LearningPathController::class, 'studentShow'])
             ->name('student.learning-paths.show');
+        
+         Route::get('/recommended-courses', [AIRecommendationController::class, 'studentRecommendations'])
+             ->name('student.recommendations');
+
+        Route::post('/student/learning-paths/generate', [LearningPathController::class, 'generateForStudent'])
+             ->name('student.learning-paths.generate');
+
+         Route::get('/transactions', [TransactionController::class, 'studentIndex'])
+            ->name('student.transactions');
+
+        Route::post('/marketplace/{course}/purchase', [TransactionController::class, 'store'])
+            ->name('student.transactions.store');
+
+        Route::get('/transactions/{transaction}', [TransactionController::class, 'studentShow'])
+            ->name('student.transactions.show');
+
+        Route::post('/transactions/{transaction}/upload-proof', [TransactionController::class, 'uploadProof'])
+            ->name('student.transactions.upload-proof');
     });
 });
 

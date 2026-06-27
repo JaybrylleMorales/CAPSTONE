@@ -1,101 +1,224 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark">
-    <head>
-        @include('partials.head')
-    </head>
-    <body class="min-h-screen bg-white dark:bg-zinc-800">
-        <flux:sidebar sticky collapsible="mobile" class="border-e border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900">
-            <flux:sidebar.header>
-                <x-app-logo :sidebar="true" href="{{ route('dashboard') }}" wire:navigate />
-                <flux:sidebar.collapse class="lg:hidden" />
-            </flux:sidebar.header>
+<head>
+    @include('partials.head')
 
-            <flux:sidebar.nav>
-                <flux:sidebar.group :heading="__('Platform')" class="grid">
-                    <flux:sidebar.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
-                        {{ __('Dashboard') }}
+    <style>
+        html.dark [data-flux-sidebar] [data-flux-sidebar-item],
+        html.dark ui-sidebar [data-flux-sidebar-item] {
+            border-radius: 12px !important;
+            transition: all 180ms ease !important;
+        }
+
+        html.dark [data-flux-sidebar] [data-flux-sidebar-item]:hover,
+        html.dark ui-sidebar [data-flux-sidebar-item]:hover {
+            background-color: rgb(168 85 247 / 0.10) !important;
+            color: rgb(216 180 254) !important;
+        }
+
+        html.dark [data-flux-sidebar] [data-flux-sidebar-item][data-current],
+        html.dark ui-sidebar [data-flux-sidebar-item][data-current] {
+            background-image: linear-gradient(90deg, rgb(168 85 247 / 0.35), rgb(99 102 241 / 0.18)) !important;
+            color: #ffffff !important;
+            box-shadow: inset 4px 0 0 rgb(168 85 247), 0 0 18px rgb(168 85 247 / 0.15) !important;
+        }
+
+        html.dark [data-flux-sidebar] [data-flux-sidebar-item][data-current] svg,
+        html.dark ui-sidebar [data-flux-sidebar-item][data-current] svg {
+            color: rgb(216 180 254) !important;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen bg-white dark:bg-neutral-950">
+    <div class="pointer-events-none fixed inset-0 z-0 hidden overflow-hidden dark:block">
+        <div class="absolute -top-40 left-1/4 h-96 w-96 rounded-full bg-purple-600/10 blur-3xl"></div>
+        <div class="absolute bottom-0 right-1/4 h-96 w-96 rounded-full bg-indigo-600/10 blur-3xl"></div>
+    </div>
+
+    <flux:sidebar sticky collapsible="mobile"
+        class="relative z-10 w-[290px] border-e border-zinc-200 bg-zinc-50 dark:border-neutral-800 dark:bg-neutral-950/90 dark:backdrop-blur">
+<flux:sidebar.header>
+
+    <a
+        href="{{ route('dashboard') }}"
+        class="flex items-center gap-4 px-5 py-6 transition hover:opacity-95"
+    >
+
+        <div
+            class="flex h-14 w-14 items-center justify-center rounded-2xl
+                   bg-gradient-to-br from-purple-600/20 to-indigo-600/20
+                   ring-1 ring-purple-500/20"
+        >
+            <img
+                src="{{ asset('images/pathwise-icon.png') }}"
+                alt="PATHWISE"
+                class="h-11 w-11 shrink-0
+                       drop-shadow-[0_0_18px_rgba(168,85,247,0.55)]"
+            >
+        </div>
+
+        <div class="min-w-0">
+            <div
+                class="text-xl font-black tracking-[0.18em]
+                       text-white"
+            >
+                PATHWISE
+            </div>
+
+            <div
+                class="mt-0.5 text-[10px]
+                       font-semibold uppercase
+                       tracking-[0.35em]
+                       text-purple-400"
+            >
+                AI LEARNING PLATFORM
+            </div>
+        </div>
+
+    </a>
+
+    <flux:sidebar.collapse class="lg:hidden" />
+
+</flux:sidebar.header>
+
+<div class="mx-4 border-b border-zinc-800/80"></div>
+        <flux:sidebar.nav> 
+            <flux:sidebar.group :heading="__('Main')" class="mt-2 grid gap-1 px-2">
+
+                <flux:sidebar.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
+                    {{ __('Dashboard') }}
+                </flux:sidebar.item>
+
+                @if(auth()->user()->hasRole('admin'))
+
+                    <flux:sidebar.item icon="users" :href="route('users.index')" :current="request()->routeIs('users.*')" wire:navigate>
+                        {{ __('Users') }}
                     </flux:sidebar.item>
-                </flux:sidebar.group>
-            </flux:sidebar.nav>
 
-            <flux:spacer />
+                    <flux:sidebar.item icon="book-open" :href="route('courses.index')" :current="request()->routeIs('courses.*')" wire:navigate>
+                        {{ __('Courses') }}
+                    </flux:sidebar.item>
 
-            <flux:sidebar.nav>
-                <flux:sidebar.item icon="folder-git-2" href="https://github.com/laravel/livewire-starter-kit" target="_blank">
-                    {{ __('Repository') }}
-                </flux:sidebar.item>
+                    <flux:sidebar.item icon="folder" :href="route('course-categories.index')" :current="request()->routeIs('course-categories.*')" wire:navigate>
+                        {{ __('Categories') }}
+                    </flux:sidebar.item>
 
-                <flux:sidebar.item icon="book-open-text" href="https://laravel.com/docs/starter-kits#livewire" target="_blank">
-                    {{ __('Documentation') }}
-                </flux:sidebar.item>
-            </flux:sidebar.nav>
+                    <flux:sidebar.item icon="document" :href="route('lessons.index')" :current="request()->routeIs('lessons.*')" wire:navigate>
+                        {{ __('Lessons') }}
+                    </flux:sidebar.item>
 
-            <x-desktop-user-menu class="hidden lg:block" :name="auth()->user()->name" />
-        </flux:sidebar>
+                    <flux:sidebar.item icon="clipboard" :href="route('quizzes.index')" :current="request()->routeIs('quizzes.*')" wire:navigate>
+                        {{ __('Quizzes') }}
+                    </flux:sidebar.item>
 
-        <!-- Mobile User Menu -->
-        <flux:header class="lg:hidden">
-            <flux:sidebar.toggle class="lg:hidden" icon="bars-2" inset="left" />
+                    <flux:sidebar.item icon="credit-card" :href="route('admin.transactions.index')" :current="request()->routeIs('admin.transactions.*')" wire:navigate>
+                        {{ __('Transactions') }}
+                    </flux:sidebar.item>
 
-            <flux:spacer />
+                    <flux:sidebar.item icon="academic-cap" :href="route('certificate-management.index')" :current="request()->routeIs('certificate-management.*')" wire:navigate>
+                        {{ __('Certificates') }}
+                    </flux:sidebar.item>
 
-            <flux:dropdown position="top" align="end">
-                <flux:profile
-                    :initials="auth()->user()->initials()"
-                    icon-trailing="chevron-down"
-                />
+                    <flux:sidebar.item icon="sparkles" :href="route('ai-recommendations.index')" :current="request()->routeIs('ai-recommendations.*')" wire:navigate>
+                        {{ __('AI Recommendations') }}
+                    </flux:sidebar.item>
 
-                <flux:menu>
-                    <flux:menu.radio.group>
-                        <div class="p-0 text-sm font-normal">
-                            <div class="flex items-center gap-2 px-1 py-1.5 text-start text-sm">
-                                <flux:avatar
-                                    :name="auth()->user()->name"
-                                    :initials="auth()->user()->initials()"
-                                />
+                    <flux:sidebar.item icon="chart-bar" :href="route('reports.index')" :current="request()->routeIs('reports.*')" wire:navigate>
+                        {{ __('Reports') }}
+                    </flux:sidebar.item>
 
-                                <div class="grid flex-1 text-start text-sm leading-tight">
-                                    <flux:heading class="truncate">{{ auth()->user()->name }}</flux:heading>
-                                    <flux:text class="truncate">{{ auth()->user()->email }}</flux:text>
-                                </div>
+                @elseif(auth()->user()->hasRole('teacher'))
+
+                    @php
+                        $teacherCoursesCount = \App\Models\Course::where('teacher_id', auth()->id())->count();
+                        $teacherStudentsCount = \App\Models\Enrollment::whereHas('course', function ($query) {
+                            $query->where('teacher_id', auth()->id());
+                        })->count();
+                    @endphp
+
+                    <div class="mx-3 mb-5 rounded-2xl border border-zinc-800 bg-zinc-900/80 p-4 shadow-lg shadow-purple-950/20">
+                        <p class="text-[11px] font-semibold uppercase tracking-widest text-zinc-500">
+                            My Stats
+                        </p>
+
+                        <div class="mt-3 space-y-3 text-sm">
+                            <div class="flex items-center justify-between">
+                                <span class="text-zinc-400">📚 Courses</span>
+                                <span class="font-bold text-white">{{ $teacherCoursesCount }}</span>
+                            </div>
+
+                            <div class="flex items-center justify-between">
+                                <span class="text-zinc-400">👥 Students</span>
+                                <span class="font-bold text-white">{{ $teacherStudentsCount }}</span>
                             </div>
                         </div>
-                    </flux:menu.radio.group>
+                    </div>
 
-                    <flux:menu.separator />
+                    <flux:sidebar.item icon="book-open" :href="route('teacher.my-courses')" :current="request()->routeIs('teacher.my-courses')" wire:navigate>
+                        {{ __('My Courses') }}
+                    </flux:sidebar.item>
 
-                    <flux:menu.radio.group>
-                        <flux:menu.item :href="route('profile.edit')" icon="cog" wire:navigate>
-                            {{ __('Settings') }}
-                        </flux:menu.item>
-                    </flux:menu.radio.group>
+                    <flux:sidebar.item icon="document" :href="route('teacher.lessons.index')" :current="request()->routeIs('teacher.lessons.*')" wire:navigate>
+                        {{ __('Lessons') }}
+                    </flux:sidebar.item>
 
-                    <flux:menu.separator />
+                    <flux:sidebar.item icon="clipboard" :href="route('teacher.quiz-results.index')" :current="request()->routeIs('teacher.quiz-results.*')" wire:navigate>
+                        {{ __('Quiz Results') }}
+                    </flux:sidebar.item>
 
-                    <form method="POST" action="{{ route('logout') }}" class="w-full">
-                        @csrf
-                        <flux:menu.item
-                            as="button"
-                            type="submit"
-                            icon="arrow-right-start-on-rectangle"
-                            class="w-full cursor-pointer"
-                            data-test="logout-button"
-                        >
-                            {{ __('Log out') }}
-                        </flux:menu.item>
-                    </form>
-                </flux:menu>
-            </flux:dropdown>
-        </flux:header>
+                    <flux:sidebar.item icon="users" :href="route('teacher.student-progress.index')" :current="request()->routeIs('teacher.student-progress.*')" wire:navigate>
+                        {{ __('Student Progress') }}
+                    </flux:sidebar.item>
 
-        {{ $slot }}
+                @elseif(auth()->user()->hasRole('student'))
 
-        @persist('toast')
-            <flux:toast.group>
-                <flux:toast />
-            </flux:toast.group>
-        @endpersist
+                    <flux:sidebar.item icon="shopping-bag" :href="route('student.marketplace')" :current="request()->routeIs('student.marketplace')" wire:navigate>
+                        {{ __('Marketplace') }}
+                    </flux:sidebar.item>
 
-        @fluxScripts
-    </body>
+                    <flux:sidebar.item icon="book-open" :href="route('student.my-courses')" :current="request()->routeIs('student.my-courses')" wire:navigate>
+                        {{ __('My Courses') }}
+                    </flux:sidebar.item>
+
+                    <flux:sidebar.item icon="map" :href="route('student.learning-paths')" :current="request()->routeIs('student.learning-paths*')" wire:navigate>
+                        {{ __('Learning Paths') }}
+                    </flux:sidebar.item>
+
+                    <flux:sidebar.item icon="sparkles" :href="route('student.recommendations')" :current="request()->routeIs('student.recommendations')" wire:navigate>
+                        {{ __('AI Recommendations') }}
+                    </flux:sidebar.item>
+
+                    <flux:sidebar.item icon="credit-card" :href="route('student.transactions')" :current="request()->routeIs('student.transactions*')" wire:navigate>
+                        {{ __('Transactions') }}
+                    </flux:sidebar.item>
+
+                    <flux:sidebar.item icon="academic-cap" :href="route('student.certificates')" :current="request()->routeIs('student.certificates')" wire:navigate>
+                        {{ __('Certificates') }}
+                    </flux:sidebar.item>
+
+                @endif
+
+            </flux:sidebar.group>
+        </flux:sidebar.nav>
+
+        <flux:spacer />
+
+        <div class="mx-3 mb-3 border-t border-zinc-800"></div>
+
+        <flux:sidebar.nav class="pt-3">
+            <flux:sidebar.group :heading="__('Account')" class="grid gap-1 px-2">
+                <flux:sidebar.item icon="cog" :href="route('profile.edit')" :current="request()->routeIs('profile.edit')" wire:navigate>
+                    {{ __('Settings') }}
+                </flux:sidebar.item>
+            </flux:sidebar.group>
+        </flux:sidebar.nav>
+
+        <x-desktop-user-menu class="hidden lg:block" :name="auth()->user()->name" />
+    </flux:sidebar>
+
+    {{ $slot }}
+
+    @fluxScripts
+</body>
 </html>

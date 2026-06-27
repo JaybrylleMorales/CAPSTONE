@@ -1,4 +1,4 @@
-<?php # [BlazeFolded]:{flux::main}:{C:\Users\admin\pathwise\vendor\livewire\flux\src/../stubs/resources/views/flux/main.blade.php}:{1776985208} ?>
+<?php # [BlazeFolded]:{flux::main}:{C:\Users\admin\pathwise\resources\views/flux/main.blade.php}:{1782477721} ?>
 <?php if (isset($component)) { $__componentOriginal23399719f391f3076fe3bf0929a84741 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal23399719f391f3076fe3bf0929a84741 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'f4ac99e09542ff494432bc959d4fee61::app.sidebar','data' => ['title' => $title ?? null]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>

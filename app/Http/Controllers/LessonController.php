@@ -113,21 +113,36 @@ class LessonController extends Controller
         return view('student.learn-course', compact('course', 'lessons'));
     }
 
-    public function studentLesson(Lesson $lesson)
-    {
-        $progress = LessonProgress::firstOrCreate(
-            [
-                'student_id' => auth()->id(),
-                'lesson_id' => $lesson->id,
-            ],
-            [
-                'status' => 'in_progress',
-                'started_at' => now(),
-            ]
-        );
+   public function studentLesson(Lesson $lesson)
+{
+    $progress = LessonProgress::firstOrCreate(
+        [
+            'student_id' => auth()->id(),
+            'lesson_id' => $lesson->id,
+        ],
+        [
+            'status' => 'in_progress',
+            'started_at' => now(),
+        ]
+    );
 
-        return view('student.lesson-view', compact('lesson', 'progress'));
-    }
+    $previousLesson = Lesson::where('course_id', $lesson->course_id)
+        ->where('lesson_order', '<', $lesson->lesson_order)
+        ->orderByDesc('lesson_order')
+        ->first();
+
+    $nextLesson = Lesson::where('course_id', $lesson->course_id)
+        ->where('lesson_order', '>', $lesson->lesson_order)
+        ->orderBy('lesson_order')
+        ->first();
+
+    return view('student.lesson-view', compact(
+        'lesson',
+        'progress',
+        'previousLesson',
+        'nextLesson'
+    ));
+}
 
     public function markComplete(Lesson $lesson)
     {
@@ -325,5 +340,15 @@ class LessonController extends Controller
         return redirect()
             ->route('teacher.lessons', $course)
             ->with('success', 'Lesson deleted.');
+    }
+
+    public function teacherAllLessons()
+    {
+    $courses = \App\Models\Course::with('lessons')
+        ->where('teacher_id', auth()->id())
+        ->latest()
+        ->get();
+
+    return view('teacher.lessons-index', compact('courses'));
     }
 }

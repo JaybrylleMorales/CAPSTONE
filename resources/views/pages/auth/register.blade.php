@@ -30,6 +30,15 @@
                 placeholder="email@example.com"
             />
 
+            <!-- Role selection: Student or Teacher -->
+            <flux:radio.group name="role" :label="__('I am registering as a')" :value="old('role', 'student')" variant="segmented">
+                <flux:radio value="student" :label="__('Student')" />
+                <flux:radio value="teacher" :label="__('Teacher')" />
+            </flux:radio.group>
+            @error('role')
+                <flux:text variant="danger" size="sm">{{ $message }}</flux:text>
+            @enderror
+
             <!-- Password -->
             <flux:input
                 name="password"

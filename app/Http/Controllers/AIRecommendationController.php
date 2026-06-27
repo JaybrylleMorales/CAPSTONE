@@ -93,4 +93,16 @@ class AIRecommendationController extends Controller
             'Recommendation deleted successfully.'
         );
     }
+    public function studentRecommendations()
+{
+    $recommendations = AIRecommendation::with('course')
+        ->where('student_id', auth()->id())
+        ->latest()
+        ->get();
+
+    return view(
+        'student.recommendations.index',
+        compact('recommendations')
+    );
+}
 }

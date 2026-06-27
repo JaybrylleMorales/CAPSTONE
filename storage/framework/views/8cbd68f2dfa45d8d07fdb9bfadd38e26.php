@@ -1,4 +1,4 @@
-<?php # [BlazeFolded]:{flux::button}:{C:\Users\admin\pathwise\vendor\livewire\flux\src/../stubs/resources/views/flux/button/index.blade.php}:{1776985208} ?>
+<?php # [BlazeFolded]:{flux::button}:{C:\Users\admin\pathwise\resources\views/flux/button/index.blade.php}:{1782477713} ?>
 <?php $attributes ??= new \Illuminate\View\ComponentAttributeBag;
 
 $__newAttributes = [];

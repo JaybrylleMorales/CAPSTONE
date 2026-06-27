@@ -32,6 +32,11 @@
 
     <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__empty_1 = true; $__currentLoopData = $enrollments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $enrollment): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
 
+        <?php
+            $progress = $enrollment->progress_percentage;
+            $isCompleted = $progress >= 100;
+        ?>
+
         <div class="rounded-xl border bg-white p-6 shadow-sm dark:bg-neutral-900 dark:border-neutral-700">
 
             <div class="flex justify-between items-start">
@@ -51,19 +56,25 @@
                     </p>
                 </div>
 
-                <span class="text-sm px-3 py-1 rounded bg-blue-600 text-white">
-                    <?php echo e(number_format($enrollment->progress_percentage, 0)); ?>%
+                <span class="text-sm px-3 py-1 rounded-full font-semibold
+                    <?php echo e($isCompleted
+                        ? 'bg-green-500/15 text-green-400'
+                        : 'bg-purple-500/15 text-purple-300'); ?>">
+                    <?php echo e(number_format($progress, 0)); ?>%
                 </span>
 
             </div>
 
             <div class="mt-4">
 
-                <div class="w-full bg-gray-700 rounded-full h-3">
+                <div class="w-full bg-neutral-200 dark:bg-neutral-800 rounded-full h-3">
 
                     <div
-                        class="bg-green-500 h-3 rounded-full"
-                        style="width: <?php echo e($enrollment->progress_percentage); ?>%">
+                        class="h-3 rounded-full transition-all
+                            <?php echo e($isCompleted
+                                ? 'bg-green-500'
+                                : 'bg-gradient-to-r from-purple-500 to-indigo-500'); ?>"
+                        style="width: <?php echo e($progress); ?>%">
                     </div>
 
                 </div>
@@ -80,12 +91,17 @@
 
             <div class="mt-5">
 
-                <a href="<?php echo e(route('student.learn.course', $enrollment->course)); ?>"
-                   class="inline-block bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">
-
-                    Continue Learning
-
-                </a>
+                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($isCompleted): ?>
+                    <a href="<?php echo e(route('student.learn.course', $enrollment->course)); ?>"
+                       class="inline-block rounded-lg bg-green-600 px-4 py-2 text-white transition hover:bg-green-700">
+                        Review Course
+                    </a>
+                <?php else: ?>
+                    <a href="<?php echo e(route('student.learn.course', $enrollment->course)); ?>"
+                       class="inline-block rounded-lg bg-gradient-to-r from-purple-500 to-indigo-600 px-4 py-2 text-white transition hover:opacity-90">
+                        Continue Learning
+                    </a>
+                <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
 
             </div>
 
@@ -104,10 +120,8 @@
             </p>
 
             <a href="<?php echo e(route('student.marketplace')); ?>"
-               class="inline-block mt-4 bg-green-600 text-white px-5 py-2 rounded">
-
+               class="inline-block mt-4 rounded-lg bg-gradient-to-r from-purple-500 to-indigo-600 px-5 py-2 text-white transition hover:opacity-90">
                 Browse Courses
-
             </a>
 
         </div>

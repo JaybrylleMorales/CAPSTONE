@@ -1,168 +1,207 @@
-<x-layouts::app :title="'Reports & Analytics'">
+<x-layouts::app :title="__('Reports & Analytics')">
+    <div class="space-y-6">
 
-<div class="space-y-6">
-
-    <div>
-        <h1 class="text-2xl font-bold">
-            Reports & Analytics Dashboard
-        </h1>
-
-        <p class="text-gray-500">
-            Overview of PathWise system performance and learning activity.
-        </p>
-    </div>
-
-    <div class="grid gap-4 md:grid-cols-4">
-        <div class="rounded-xl border bg-white p-5 shadow-sm dark:bg-neutral-900 dark:border-neutral-700">
-            <p class="text-sm text-gray-500">Total Students</p>
-            <h2 class="mt-2 text-3xl font-bold">{{ $totalStudents }}</h2>
+        <div>
+            <h1 class="text-3xl font-bold text-white">Reports & Analytics</h1>
+            <p class="mt-1 text-sm text-zinc-400">
+                Overview of PathWise platform performance, learning activity, and completion trends.
+            </p>
         </div>
 
-        <div class="rounded-xl border bg-white p-5 shadow-sm dark:bg-neutral-900 dark:border-neutral-700">
-            <p class="text-sm text-gray-500">Total Teachers</p>
-            <h2 class="mt-2 text-3xl font-bold">{{ $totalTeachers }}</h2>
+        <div class="grid gap-4 md:grid-cols-4">
+            <div class="rounded-2xl border border-zinc-800 bg-zinc-900/70 p-5">
+                <p class="text-sm text-zinc-400">Total Students</p>
+                <h2 class="mt-2 text-3xl font-bold text-white">{{ $totalStudents }}</h2>
+                <p class="mt-1 text-xs text-zinc-500">Registered learners</p>
+            </div>
+
+            <div class="rounded-2xl border border-purple-800/40 bg-purple-950/30 p-5">
+                <p class="text-sm text-purple-300">Total Teachers</p>
+                <h2 class="mt-2 text-3xl font-bold text-purple-400">{{ $totalTeachers }}</h2>
+                <p class="mt-1 text-xs text-zinc-500">Active instructors</p>
+            </div>
+
+            <div class="rounded-2xl border border-blue-800/40 bg-blue-950/30 p-5">
+                <p class="text-sm text-blue-300">Total Courses</p>
+                <h2 class="mt-2 text-3xl font-bold text-blue-400">{{ $totalCourses }}</h2>
+                <p class="mt-1 text-xs text-zinc-500">Learning programs</p>
+            </div>
+
+            <div class="rounded-2xl border border-emerald-800/40 bg-emerald-950/30 p-5">
+                <p class="text-sm text-emerald-300">Completion Rate</p>
+                <h2 class="mt-2 text-3xl font-bold text-emerald-400">{{ $completionRate }}%</h2>
+                <p class="mt-1 text-xs text-zinc-500">Completed enrollments</p>
+            </div>
         </div>
 
-        <div class="rounded-xl border bg-white p-5 shadow-sm dark:bg-neutral-900 dark:border-neutral-700">
-            <p class="text-sm text-gray-500">Total Courses</p>
-            <h2 class="mt-2 text-3xl font-bold">{{ $totalCourses }}</h2>
+        <div class="grid gap-4 md:grid-cols-4">
+            <div class="rounded-2xl border border-zinc-800 bg-zinc-900/70 p-5">
+                <p class="text-sm text-zinc-400">Total Enrollments</p>
+                <h2 class="mt-2 text-3xl font-bold text-white">{{ $totalEnrollments }}</h2>
+            </div>
+
+            <div class="rounded-2xl border border-yellow-800/40 bg-yellow-950/30 p-5">
+                <p class="text-sm text-yellow-300">Active Enrollments</p>
+                <h2 class="mt-2 text-3xl font-bold text-yellow-400">{{ $activeEnrollments }}</h2>
+            </div>
+
+            <div class="rounded-2xl border border-emerald-800/40 bg-emerald-950/30 p-5">
+                <p class="text-sm text-emerald-300">Completed</p>
+                <h2 class="mt-2 text-3xl font-bold text-emerald-400">{{ $completedEnrollments }}</h2>
+            </div>
+
+            <div class="rounded-2xl border border-purple-800/40 bg-purple-950/30 p-5">
+                <p class="text-sm text-purple-300">Certificates Issued</p>
+                <h2 class="mt-2 text-3xl font-bold text-purple-400">{{ $certificatesIssued }}</h2>
+            </div>
         </div>
 
-        <div class="rounded-xl border bg-white p-5 shadow-sm dark:bg-neutral-900 dark:border-neutral-700">
-            <p class="text-sm text-gray-500">Completion Rate</p>
-            <h2 class="mt-2 text-3xl font-bold">{{ $completionRate }}%</h2>
+        <div class="rounded-2xl border border-zinc-800 bg-zinc-900/60 p-5 shadow-lg shadow-purple-950/10">
+            <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+                <div>
+                    <p class="text-sm text-zinc-400">Assessment Activity</p>
+                    <h2 class="mt-2 text-3xl font-bold text-white">{{ $quizAttempts }}</h2>
+                    <p class="mt-1 text-xs text-zinc-500">
+                        Total quiz attempts submitted by students.
+                    </p>
+                </div>
+
+                <div class="w-full md:w-1/2">
+                    <div class="flex justify-between text-sm">
+                        <span class="text-zinc-400">Completion Progress</span>
+                        <span class="font-semibold text-white">{{ $completionRate }}%</span>
+                    </div>
+
+                    <div class="mt-2 h-2 rounded-full bg-zinc-800">
+                        <div class="h-2 rounded-full bg-emerald-500"
+                             style="width: {{ min($completionRate, 100) }}%">
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
 
-    <div class="grid gap-4 md:grid-cols-4">
-        <div class="rounded-xl border bg-white p-5 shadow-sm dark:bg-neutral-900 dark:border-neutral-700">
-            <p class="text-sm text-gray-500">Total Enrollments</p>
-            <h2 class="mt-2 text-3xl font-bold">{{ $totalEnrollments }}</h2>
-        </div>
+        <div class="grid gap-4 lg:grid-cols-2">
 
-        <div class="rounded-xl border bg-white p-5 shadow-sm dark:bg-neutral-900 dark:border-neutral-700">
-            <p class="text-sm text-gray-500">Active Enrollments</p>
-            <h2 class="mt-2 text-3xl font-bold">{{ $activeEnrollments }}</h2>
-        </div>
+            <div class="rounded-2xl border border-zinc-800 bg-zinc-900/60 p-6 shadow-lg shadow-purple-950/10">
+                <div class="mb-4">
+                    <h2 class="text-lg font-bold text-white">Popular Courses</h2>
+                    <p class="text-sm text-zinc-400">Courses ranked by enrollment count.</p>
+                </div>
 
-        <div class="rounded-xl border bg-white p-5 shadow-sm dark:bg-neutral-900 dark:border-neutral-700">
-            <p class="text-sm text-gray-500">Completed Enrollments</p>
-            <h2 class="mt-2 text-3xl font-bold">{{ $completedEnrollments }}</h2>
-        </div>
-
-        <div class="rounded-xl border bg-white p-5 shadow-sm dark:bg-neutral-900 dark:border-neutral-700">
-            <p class="text-sm text-gray-500">Certificates Issued</p>
-            <h2 class="mt-2 text-3xl font-bold">{{ $certificatesIssued }}</h2>
-        </div>
-    </div>
-
-    <div class="rounded-xl border bg-white p-5 shadow-sm dark:bg-neutral-900 dark:border-neutral-700">
-        <p class="text-sm text-gray-500">Quiz Attempts</p>
-        <h2 class="mt-2 text-3xl font-bold">{{ $quizAttempts }}</h2>
-    </div>
-
-    <div class="grid gap-4 lg:grid-cols-2">
-
-        <div class="rounded-xl border bg-white p-6 shadow-sm dark:bg-neutral-900 dark:border-neutral-700">
-            <h2 class="text-lg font-bold mb-4">
-                Popular Courses
-            </h2>
-
-            <table class="w-full">
-                <thead>
-                    <tr class="border-b">
-                        <th class="p-3 text-left">Course</th>
-                        <th class="p-3 text-left">Enrollments</th>
-                    </tr>
-                </thead>
-
-                <tbody>
+                <div class="space-y-3">
                     @forelse($popularCourses as $course)
-                        <tr class="border-b">
-                            <td class="p-3">{{ $course->title }}</td>
-                            <td class="p-3">{{ $course->enrollments_count }}</td>
-                        </tr>
+                        <div class="flex items-center justify-between rounded-xl border border-zinc-800 bg-zinc-950/50 p-4">
+                            <div>
+                                <p class="font-semibold text-white">{{ $course->title }}</p>
+                                <p class="text-xs text-zinc-500">Course enrollment performance</p>
+                            </div>
+
+                            <span class="rounded-full bg-purple-500/15 px-3 py-1 text-xs font-semibold text-purple-400">
+                                {{ $course->enrollments_count }} enrollments
+                            </span>
+                        </div>
                     @empty
-                        <tr>
-                            <td colspan="2" class="p-4 text-center">
-                                No courses found.
-                            </td>
-                        </tr>
+                        <div class="rounded-xl border border-zinc-800 bg-zinc-950/50 p-6 text-center text-zinc-400">
+                            No courses found.
+                        </div>
                     @endforelse
-                </tbody>
-            </table>
-        </div>
+                </div>
+            </div>
 
-        <div class="rounded-xl border bg-white p-6 shadow-sm dark:bg-neutral-900 dark:border-neutral-700">
-            <h2 class="text-lg font-bold mb-4">
-                Recent Quiz Results
-            </h2>
+            <div class="rounded-2xl border border-zinc-800 bg-zinc-900/60 p-6 shadow-lg shadow-purple-950/10">
+                <div class="mb-4">
+                    <h2 class="text-lg font-bold text-white">Recent Quiz Results</h2>
+                    <p class="text-sm text-zinc-400">Latest student assessment submissions.</p>
+                </div>
 
-            <table class="w-full">
-                <thead>
-                    <tr class="border-b">
-                        <th class="p-3 text-left">Student</th>
-                        <th class="p-3 text-left">Quiz</th>
-                        <th class="p-3 text-left">Score</th>
-                        <th class="p-3 text-left">Remarks</th>
-                    </tr>
-                </thead>
-
-                <tbody>
+                <div class="space-y-3">
                     @forelse($recentQuizResults as $result)
-                        <tr class="border-b">
-                            <td class="p-3">{{ $result->student->name ?? 'N/A' }}</td>
-                            <td class="p-3">{{ $result->quiz->title ?? 'N/A' }}</td>
-                            <td class="p-3">{{ $result->percentage }}%</td>
-                            <td class="p-3">{{ ucfirst($result->remarks) }}</td>
-                        </tr>
+                        @php
+                            $isPassed = strtolower($result->remarks) === 'passed';
+                        @endphp
+
+                        <div class="flex items-center justify-between rounded-xl border border-zinc-800 bg-zinc-950/50 p-4">
+                            <div>
+                                <p class="font-semibold text-white">
+                                    {{ $result->student->name ?? 'N/A' }}
+                                </p>
+                                <p class="text-sm text-zinc-400">
+                                    {{ $result->quiz->title ?? 'N/A' }}
+                                </p>
+                            </div>
+
+                            <div class="text-right">
+                                <p class="font-bold text-white">
+                                    {{ number_format($result->percentage, 2) }}%
+                                </p>
+
+                                @if($isPassed)
+                                    <span class="text-xs font-semibold text-emerald-400">Passed</span>
+                                @else
+                                    <span class="text-xs font-semibold text-red-400">Failed</span>
+                                @endif
+                            </div>
+                        </div>
                     @empty
-                        <tr>
-                            <td colspan="4" class="p-4 text-center">
-                                No quiz results found.
-                            </td>
-                        </tr>
+                        <div class="rounded-xl border border-zinc-800 bg-zinc-950/50 p-6 text-center text-zinc-400">
+                            No quiz results found.
+                        </div>
                     @endforelse
-                </tbody>
-            </table>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="rounded-2xl border border-zinc-800 bg-zinc-900/60 p-6 shadow-lg shadow-purple-950/10">
+            <div class="mb-4">
+                <h2 class="text-lg font-bold text-white">Recent Certificates</h2>
+                <p class="text-sm text-zinc-400">
+                    Recently issued course completion certificates.
+                </p>
+            </div>
+
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-sm">
+                    <thead class="bg-zinc-950/70 text-xs uppercase tracking-wider text-zinc-400">
+                        <tr>
+                            <th class="px-6 py-4">Certificate No.</th>
+                            <th class="px-6 py-4">Student</th>
+                            <th class="px-6 py-4">Course</th>
+                            <th class="px-6 py-4">Issued Date</th>
+                        </tr>
+                    </thead>
+
+                    <tbody class="divide-y divide-zinc-800">
+                        @forelse($recentCertificates as $certificate)
+                            <tr class="hover:bg-white/[0.03]">
+                                <td class="px-6 py-4 font-semibold text-white">
+                                    {{ $certificate->certificate_number }}
+                                </td>
+
+                                <td class="px-6 py-4 text-zinc-300">
+                                    {{ $certificate->student->name ?? 'N/A' }}
+                                </td>
+
+                                <td class="px-6 py-4 text-zinc-300">
+                                    {{ $certificate->course->title ?? 'N/A' }}
+                                </td>
+
+                                <td class="px-6 py-4 text-zinc-400">
+                                    {{ $certificate->issued_date }}
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="4" class="px-6 py-16 text-center text-zinc-400">
+                                    No certificates found.
+                                </td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
         </div>
 
     </div>
-
-    <div class="rounded-xl border bg-white p-6 shadow-sm dark:bg-neutral-900 dark:border-neutral-700">
-        <h2 class="text-lg font-bold mb-4">
-            Recent Certificates
-        </h2>
-
-        <table class="w-full">
-            <thead>
-                <tr class="border-b">
-                    <th class="p-3 text-left">Certificate No.</th>
-                    <th class="p-3 text-left">Student</th>
-                    <th class="p-3 text-left">Course</th>
-                    <th class="p-3 text-left">Issued Date</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                @forelse($recentCertificates as $certificate)
-                    <tr class="border-b">
-                        <td class="p-3">{{ $certificate->certificate_number }}</td>
-                        <td class="p-3">{{ $certificate->student->name ?? 'N/A' }}</td>
-                        <td class="p-3">{{ $certificate->course->title ?? 'N/A' }}</td>
-                        <td class="p-3">{{ $certificate->issued_date }}</td>
-                    </tr>
-                @empty
-                    <tr>
-                        <td colspan="4" class="p-4 text-center">
-                            No certificates found.
-                        </td>
-                    </tr>
-                @endforelse
-            </tbody>
-        </table>
-    </div>
-
-</div>
-
 </x-layouts::app>

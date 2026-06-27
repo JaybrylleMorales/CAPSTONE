@@ -1,124 +1,173 @@
 <x-layouts::app :title="__('Courses')">
+    <div class="space-y-6">
 
-<div class="space-y-6">
+        <div class="flex items-center justify-between">
+            <div>
+                <h1 class="text-3xl font-bold text-white">Courses</h1>
+                <p class="mt-1 text-sm text-zinc-400">
+                    Manage course content, pricing, teachers, and publishing status.
+                </p>
+            </div>
 
-    <div class="flex items-center justify-between">
-        <div>
-            <h1 class="text-2xl font-bold">Courses</h1>
-            <p class="text-gray-500">Manage all PathWise courses.</p>
+            <a href="{{ route('courses.create') }}"
+               class="rounded-xl bg-purple-600 px-4 py-2 text-sm font-semibold text-white hover:bg-purple-700">
+                Add Course
+            </a>
         </div>
 
-        <a href="{{ route('courses.create') }}"
-           class="px-4 py-2 bg-blue-600 text-white rounded-lg">
-            Add Course
-        </a>
+        @php
+            $totalCourses = $courses->count();
+            $publishedCourses = $courses->where('status', 'published')->count();
+            $pendingCourses = $courses->where('status', 'pending')->count();
+            $draftCourses = $courses->where('status', 'draft')->count();
+        @endphp
+
+        <div class="grid gap-4 md:grid-cols-4">
+            <div class="rounded-2xl border border-zinc-800 bg-zinc-900/70 p-5">
+                <p class="text-sm text-zinc-400">Total Courses</p>
+                <h2 class="mt-2 text-3xl font-bold text-white">{{ $totalCourses }}</h2>
+            </div>
+
+            <div class="rounded-2xl border border-emerald-800/40 bg-emerald-950/30 p-5">
+                <p class="text-sm text-emerald-300">Published</p>
+                <h2 class="mt-2 text-3xl font-bold text-emerald-400">{{ $publishedCourses }}</h2>
+            </div>
+
+            <div class="rounded-2xl border border-yellow-800/40 bg-yellow-950/30 p-5">
+                <p class="text-sm text-yellow-300">Pending</p>
+                <h2 class="mt-2 text-3xl font-bold text-yellow-400">{{ $pendingCourses }}</h2>
+            </div>
+
+            <div class="rounded-2xl border border-zinc-700 bg-zinc-900/70 p-5">
+                <p class="text-sm text-zinc-400">Drafts</p>
+                <h2 class="mt-2 text-3xl font-bold text-white">{{ $draftCourses }}</h2>
+            </div>
+        </div>
+
+        @if(session('success'))
+            <div class="rounded-xl border border-emerald-700/40 bg-emerald-950/40 px-4 py-3 text-emerald-300">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        <div class="rounded-2xl border border-zinc-800 bg-zinc-900/60 shadow-lg shadow-purple-950/10">
+            <div class="border-b border-zinc-800 px-6 py-4">
+                <h2 class="text-lg font-semibold text-white">Course Directory</h2>
+                <p class="text-sm text-zinc-400">All courses created in PathWise.</p>
+            </div>
+
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-sm">
+                    <thead class="bg-zinc-950/70 text-xs uppercase tracking-wider text-zinc-400">
+                        <tr>
+                            <th class="px-6 py-4">Course</th>
+                            <th class="px-6 py-4">Category</th>
+                            <th class="px-6 py-4">Teacher</th>
+                            <th class="px-6 py-4">Price</th>
+                            <th class="px-6 py-4">Status</th>
+                            <th class="px-6 py-4 text-right">Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody class="divide-y divide-zinc-800">
+                        @forelse($courses as $course)
+                            @php
+                                $status = strtolower($course->status);
+
+                                $statusClass = match ($status) {
+                                    'published' => 'bg-emerald-500/15 text-emerald-400',
+                                    'pending' => 'bg-yellow-500/15 text-yellow-400',
+                                    'rejected' => 'bg-red-500/15 text-red-400',
+                                    'draft' => 'bg-zinc-500/15 text-zinc-300',
+                                    default => 'bg-blue-500/15 text-blue-400',
+                                };
+                            @endphp
+
+                            <tr class="hover:bg-white/[0.03]">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-purple-600/20 text-lg">
+                                            📚
+                                        </div>
+
+                                        <div>
+                                            <p class="font-semibold text-white">{{ $course->title }}</p>
+                                            <p class="text-xs text-zinc-500">Course</p>
+                                        </div>
+                                    </div>
+                                </td>
+
+                                <td class="px-6 py-4 text-zinc-300">
+                                    {{ $course->category->name ?? 'No Category' }}
+                                </td>
+
+                                <td class="px-6 py-4 text-zinc-300">
+                                    {{ $course->teacher->name ?? 'No Teacher' }}
+                                </td>
+
+                                <td class="px-6 py-4 font-semibold text-zinc-200">
+                                    ₱{{ number_format($course->price, 2) }}
+                                </td>
+
+                                <td class="px-6 py-4">
+                                    <span class="rounded-full px-3 py-1 text-xs font-semibold {{ $statusClass }}">
+                                        {{ ucfirst($course->status) }}
+                                    </span>
+                                </td>
+
+                                <td class="px-6 py-4">
+                                    <div class="flex flex-wrap justify-end gap-2">
+                                        @if($course->status === 'pending')
+                                            <form action="{{ route('courses.approve', $course) }}" method="POST">
+                                                @csrf
+                                                <button type="submit"
+                                                    class="rounded-lg bg-emerald-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-emerald-700">
+                                                    Approve
+                                                </button>
+                                            </form>
+
+                                            <form action="{{ route('courses.reject', $course) }}" method="POST">
+                                                @csrf
+                                                <button type="submit"
+                                                    onclick="return confirm('Reject this course?')"
+                                                    class="rounded-lg bg-red-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-red-700">
+                                                    Reject
+                                                </button>
+                                            </form>
+                                        @endif
+
+                                        <a href="{{ route('courses.edit', $course) }}"
+                                           class="rounded-lg bg-blue-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-blue-700">
+                                            Edit
+                                        </a>
+
+                                        <form action="{{ route('courses.destroy', $course) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+
+                                            <button
+                                                onclick="return confirm('Delete this course?')"
+                                                class="rounded-lg bg-red-700 px-3 py-1.5 text-xs font-semibold text-white hover:bg-red-800">
+                                                Delete
+                                            </button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="6" class="px-6 py-16 text-center">
+                                    <h3 class="text-lg font-semibold text-white">No courses found</h3>
+                                    <p class="mt-1 text-sm text-zinc-400">
+                                        Courses will appear here once created.
+                                    </p>
+                                </td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
     </div>
-
-    @if(session('success'))
-        <div class="p-4 bg-green-100 text-green-800 rounded">
-            {{ session('success') }}
-        </div>
-    @endif
-
-    <table class="w-full border">
-        <thead>
-            <tr class="bg-gray-100 dark:bg-neutral-800">
-                <th class="p-3 text-left">Title</th>
-                <th class="p-3 text-left">Category</th>
-                <th class="p-3 text-left">Teacher</th>
-                <th class="p-3 text-left">Price</th>
-                <th class="p-3 text-left">Status</th>
-                <th class="p-3 text-left">Actions</th>
-            </tr>
-        </thead>
-
-        <tbody>
-
-        @forelse($courses as $course)
-
-            <tr class="border-t">
-
-                <td class="p-3">
-                    {{ $course->title }}
-                </td>
-
-                <td class="p-3">
-                    {{ $course->category->name ?? '' }}
-                </td>
-
-                <td class="p-3">
-                    {{ $course->teacher->name ?? 'No Teacher' }}
-                </td>
-
-                <td class="p-3">
-                    PHP {{ number_format($course->price, 2) }}
-                </td>
-
-                <td class="p-3">
-                    <span class="px-2 py-1 rounded text-sm bg-gray-200 text-black">
-                        {{ ucfirst($course->status) }}
-                    </span>
-                </td>
-
-                <td class="p-3 flex flex-wrap gap-2">
-
-                    @if($course->status === 'pending')
-                        <form action="{{ route('courses.approve', $course) }}"
-                              method="POST">
-                            @csrf
-
-                            <button type="submit"
-                                    class="px-3 py-1 bg-green-600 text-white rounded text-sm">
-                                Approve
-                            </button>
-                        </form>
-
-                        <form action="{{ route('courses.reject', $course) }}"
-                              method="POST">
-                            @csrf
-
-                            <button type="submit"
-                                    onclick="return confirm('Reject this course?')"
-                                    class="px-3 py-1 bg-red-600 text-white rounded text-sm">
-                                Reject
-                            </button>
-                        </form>
-                    @endif
-
-                    <a href="{{ route('courses.edit', $course) }}"
-                       class="px-3 py-1 bg-blue-600 text-white rounded text-sm">
-                        Edit
-                    </a>
-
-                    <form action="{{ route('courses.destroy', $course) }}"
-                          method="POST">
-                        @csrf
-                        @method('DELETE')
-
-                        <button
-                            onclick="return confirm('Delete this course?')"
-                            class="px-3 py-1 bg-red-700 text-white rounded text-sm">
-                            Delete
-                        </button>
-                    </form>
-
-                </td>
-
-            </tr>
-
-        @empty
-
-            <tr>
-                <td colspan="6" class="p-4 text-center">
-                    No courses found.
-                </td>
-            </tr>
-
-        @endforelse
-
-        </tbody>
-    </table>
-
-</div>
-
 </x-layouts::app>

@@ -11,84 +11,267 @@
 <?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
 
 
-<h1 class="text-2xl font-bold mb-6">
-    Create Quiz
-</h1>
+<div class="space-y-6">
 
-<form action="<?php echo e(route('quizzes.store')); ?>"
-      method="POST"
-      class="space-y-4">
+    <div>
+        <h1 class="text-2xl font-bold">
+            Create Quiz
+        </h1>
 
-    <?php echo csrf_field(); ?>
+        <p class="text-sm text-gray-500">
+            Create an assessment for a course. Students can take this quiz after completing the lessons.
+        </p>
+    </div>
 
-    <select name="course_id"
-            class="w-full border rounded p-3">
+    <div class="rounded-xl border bg-white p-6 shadow-sm dark:bg-neutral-900 dark:border-neutral-700">
 
-        <option value="">Select Course</option>
+        <form action="<?php echo e(route('quizzes.store')); ?>"
+              method="POST"
+              class="space-y-5">
 
-        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__currentLoopData = $courses; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $course): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
+            <?php echo csrf_field(); ?>
 
-            <option value="<?php echo e($course->id); ?>">
-                <?php echo e($course->title); ?>
+            <div>
+                <label class="block mb-1 text-sm font-medium">
+                    Course
+                </label>
 
-            </option>
+                <select name="course_id"
+                        class="w-full rounded border border-neutral-700 bg-neutral-900 text-white p-3"
+                        required>
+                    <option value="">
+                        Select the course for this quiz
+                    </option>
 
-        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
+                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__currentLoopData = $courses; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $course): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
+                        <option value="<?php echo e($course->id); ?>"
+                                <?php if(old('course_id') == $course->id): echo 'selected'; endif; ?>>
+                            <?php echo e($course->title); ?>
 
-    </select>
+                        </option>
+                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
+                </select>
 
-    <select name="lesson_id"
-            class="w-full border rounded p-3">
+                <p class="mt-1 text-xs text-gray-500">
+                    Example: Entrepreneurship Essentials, Basic Accounting Fundamentals, or Laravel Web Development.
+                </p>
 
-        <option value="">
-            No Lesson (Course Quiz)
-        </option>
+                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php $__errorArgs = ['course_id'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                    <p class="mt-1 text-sm text-red-600">
+                        <?php echo e($message); ?>
 
-        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__currentLoopData = $lessons; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $lesson): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
+                    </p>
+                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+            </div>
 
-            <option value="<?php echo e($lesson->id); ?>">
-                <?php echo e($lesson->title); ?>
+            <div>
+                <label class="block mb-1 text-sm font-medium">
+                    Related Lesson
+                </label>
 
-            </option>
+                <select name="lesson_id"
+                        class="w-full rounded border border-neutral-700 bg-neutral-900 text-white p-3">
+                    <option value="">
+                        No Lesson — this is a final course quiz
+                    </option>
 
-        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
+                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__currentLoopData = $lessons; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $lesson): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
+                        <option value="<?php echo e($lesson->id); ?>"
+                                <?php if(old('lesson_id') == $lesson->id): echo 'selected'; endif; ?>>
+                            <?php echo e($lesson->course->title ?? 'No Course'); ?> — <?php echo e($lesson->title); ?>
 
-    </select>
+                        </option>
+                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
+                </select>
 
-    <input type="text"
-           name="title"
-           placeholder="Quiz Title"
-           class="w-full border rounded p-3">
+                <p class="mt-1 text-xs text-gray-500">
+                    Choose “No Lesson” if this quiz is for the whole course. Select a lesson only if the quiz belongs to one specific lesson.
+                </p>
 
-    <textarea
-        name="description"
-        placeholder="Quiz Description"
-        class="w-full border rounded p-3"></textarea>
+                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php $__errorArgs = ['lesson_id'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                    <p class="mt-1 text-sm text-red-600">
+                        <?php echo e($message); ?>
 
-    <input type="number"
-           name="passing_score"
-           value="75"
-           class="w-full border rounded p-3">
+                    </p>
+                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+            </div>
 
-    <input type="number"
-           name="time_limit_minutes"
-           placeholder="Time Limit (Minutes)"
-           class="w-full border rounded p-3">
+            <div>
+                <label class="block mb-1 text-sm font-medium">
+                    Quiz Title
+                </label>
 
-    <label>
-        <input type="checkbox"
-               name="is_published"
-               checked>
-        Published
-    </label>
+                <input type="text"
+                       name="title"
+                       value="<?php echo e(old('title')); ?>"
+                       placeholder="Example: Entrepreneurship Final Quiz"
+                       class="w-full rounded border border-neutral-700 bg-neutral-900 text-white p-3"
+                       required>
 
-    <br><br>
+                <p class="mt-1 text-xs text-gray-500">
+                    Use a clear title that students can easily understand.
+                </p>
 
-    <button class="bg-blue-600 text-white px-4 py-2 rounded">
-        Save Quiz
-    </button>
+                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php $__errorArgs = ['title'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                    <p class="mt-1 text-sm text-red-600">
+                        <?php echo e($message); ?>
 
-</form>
+                    </p>
+                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+            </div>
+
+            <div>
+                <label class="block mb-1 text-sm font-medium">
+                    Quiz Description
+                </label>
+
+                <textarea name="description"
+                          rows="5"
+                          placeholder="Example: This quiz evaluates the student's understanding of business planning, market research, financial management, business operations, and business growth strategies."
+                          class="w-full rounded border border-neutral-700 bg-neutral-900 text-white p-3"><?php echo e(old('description')); ?></textarea>
+
+                <p class="mt-1 text-xs text-gray-500">
+                    Briefly explain what the quiz covers.
+                </p>
+
+                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php $__errorArgs = ['description'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                    <p class="mt-1 text-sm text-red-600">
+                        <?php echo e($message); ?>
+
+                    </p>
+                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+            </div>
+
+            <div class="grid gap-4 md:grid-cols-2">
+                <div>
+                    <label class="block mb-1 text-sm font-medium">
+                        Passing Score (%)
+                    </label>
+
+                    <input type="number"
+                           name="passing_score"
+                           value="<?php echo e(old('passing_score', 75)); ?>"
+                           min="1"
+                           max="100"
+                           placeholder="Example: 75"
+                           class="w-full rounded border border-neutral-700 bg-neutral-900 text-white p-3"
+                           required>
+
+                    <p class="mt-1 text-xs text-gray-500">
+                        Students must reach this percentage to pass the quiz.
+                    </p>
+
+                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php $__errorArgs = ['passing_score'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                        <p class="mt-1 text-sm text-red-600">
+                            <?php echo e($message); ?>
+
+                        </p>
+                    <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+                </div>
+
+                <div>
+                    <label class="block mb-1 text-sm font-medium">
+                        Time Limit in Minutes
+                    </label>
+
+                    <input type="number"
+                           name="time_limit_minutes"
+                           value="<?php echo e(old('time_limit_minutes', 15)); ?>"
+                           min="1"
+                           placeholder="Example: 15"
+                           class="w-full rounded border border-neutral-700 bg-neutral-900 text-white p-3">
+
+                    <p class="mt-1 text-xs text-gray-500">
+                        Optional. Leave blank if there is no time limit.
+                    </p>
+
+                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php $__errorArgs = ['time_limit_minutes'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                        <p class="mt-1 text-sm text-red-600">
+                            <?php echo e($message); ?>
+
+                        </p>
+                    <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+                </div>
+            </div>
+
+            <div class="space-y-3 rounded-lg border p-4 dark:border-neutral-700">
+                <label class="flex items-start gap-2">
+                    <input type="checkbox"
+                           name="is_published"
+                           class="mt-1"
+                           checked>
+
+                    <span>
+                        <span class="block font-medium">
+                            Published
+                        </span>
+
+                        <span class="text-sm text-gray-500">
+                            Make this quiz available to students after completing the course lessons.
+                        </span>
+                    </span>
+                </label>
+            </div>
+
+            <div class="flex gap-2">
+                <button type="submit"
+                        class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">
+                    Save Quiz
+                </button>
+
+                <a href="<?php echo e(route('quizzes.index')); ?>"
+                   class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded">
+                    Cancel
+                </a>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
 
  <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>

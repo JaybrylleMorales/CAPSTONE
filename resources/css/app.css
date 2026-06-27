@@ -64,3 +64,20 @@ select:focus[data-flux-control] {
 /* \[:where(&)\]:size-4 {
     @apply size-4;
 } */
+
+/* PATHWISE — active sidebar item highlight */
+.dark [data-flux-navlist-item][data-current] {
+    background-image: linear-gradient(90deg, rgb(168 85 247 / 0.22), rgb(99 102 241 / 0.10)) !important;
+    color: #ffffff !important;
+    border-color: rgb(168 85 247 / 0.35) !important;
+    box-shadow: inset 3px 0 0 rgb(168 85 247) !important;
+}
+
+.dark [data-flux-navlist-item][data-current] svg {
+    color: rgb(192 132 252) !important;
+}
+
+.dark [data-flux-navlist-item]:hover:not([data-current]) {
+    background-color: rgb(255 255 255 / 0.06) !important;
+    color: #ffffff !important;
+}

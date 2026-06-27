@@ -1,6 +1,6 @@
-<?php # [BlazeFolded]:{flux::label}:{C:\Users\admin\pathwise\vendor\livewire\flux\src/../stubs/resources/views/flux/label.blade.php}:{1776985208} ?>
-<?php # [BlazeFolded]:{flux::description}:{C:\Users\admin\pathwise\vendor\livewire\flux\src/../stubs/resources/views/flux/description.blade.php}:{1776985208} ?>
-<?php # [BlazeFolded]:{flux::field}:{C:\Users\admin\pathwise\vendor\livewire\flux\src/../stubs/resources/views/flux/field.blade.php}:{1776985208} ?>
+<?php # [BlazeFolded]:{flux::label}:{C:\Users\admin\pathwise\resources\views/flux/label.blade.php}:{1782477713} ?>
+<?php # [BlazeFolded]:{flux::description}:{C:\Users\admin\pathwise\resources\views/flux/description.blade.php}:{1782477713} ?>
+<?php # [BlazeFolded]:{flux::field}:{C:\Users\admin\pathwise\resources\views/flux/field.blade.php}:{1782477713} ?>
 <?php
 if (!function_exists('_0882dccddead23607fdb7c46fe419d54')):
 function _0882dccddead23607fdb7c46fe419d54($__blaze, $__data = [], $__slots = [], $__bound = [], $__keys = [], $__this = null) {
@@ -61,9 +61,9 @@ unset($__defaults);
         <?php endif; ?>
 
         <?php $__getScope = fn($scope = []) => $scope; ?><?php if (isset($scope)) $__scope = $scope; ?><?php $scope = $__getScope(scope: ['name' => $name]); ?>
-            <?php $__blaze->ensureRequired('C:\Users\admin\pathwise\vendor\livewire\flux\src/../stubs/resources/views/flux/error.blade.php', $__blaze->compiledPath.'/339522376ac11990f70ee4aa45edce70.php'); ?>
+            <?php $__blaze->ensureRequired('C:\Users\admin\pathwise\resources\views/flux/error.blade.php', $__blaze->compiledPath.'/92e9f96568574e1b8296f69a9a3b7888.php'); ?>
 <?php $__blaze->pushData(['name' => $scope['name']]); ?>
-<?php _339522376ac11990f70ee4aa45edce70($__blaze, ['name' => $scope['name']], [], ['name'], [], $__this ?? (isset($this) ? $this : null)); ?>
+<?php _92e9f96568574e1b8296f69a9a3b7888($__blaze, ['name' => $scope['name']], [], ['name'], [], $__this ?? (isset($this) ? $this : null)); ?>
 <?php $__blaze->popData(); ?>
         <?php if (isset($__scope)) { $scope = $__scope; unset($__scope); } ?>
     <?php echo trim(ob_get_clean()); ?>

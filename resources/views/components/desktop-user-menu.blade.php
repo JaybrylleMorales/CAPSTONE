@@ -1,39 +1,85 @@
-<flux:dropdown position="bottom" align="start">
-    <flux:sidebar.profile
-        :name="auth()->user()->name"
-        :initials="auth()->user()->initials()"
-        icon:trailing="chevrons-up-down"
-        data-test="sidebar-menu-button"
-    />
+@props([
+    'name' => auth()->user()->name,
+])
 
-    <flux:menu>
-        <div class="flex items-center gap-2 px-1 py-1.5 text-start text-sm">
-            <flux:avatar
-                :name="auth()->user()->name"
-                :initials="auth()->user()->initials()"
-            />
-            <div class="grid flex-1 text-start text-sm leading-tight">
-                <flux:heading class="truncate">{{ auth()->user()->name }}</flux:heading>
-                <flux:text class="truncate">{{ auth()->user()->email }}</flux:text>
+<div {{ $attributes->merge(['class' => 'px-3 pb-4']) }}>
+    <flux:dropdown position="top" align="start">
+
+        <button
+            type="button"
+            class="flex w-full items-center gap-3 rounded-2xl border border-zinc-800 bg-zinc-900 px-4 py-4 text-left transition hover:border-purple-700/50 hover:bg-purple-950/30"
+        >
+            <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-purple-600 to-indigo-600 text-sm font-bold text-white">
+                {{ auth()->user()->initials() }}
             </div>
-        </div>
-        <flux:menu.separator />
-        <flux:menu.radio.group>
-            <flux:menu.item :href="route('profile.edit')" icon="cog" wire:navigate>
-                {{ __('Settings') }}
+
+            <div class="min-w-0 flex-1">
+                <p class="truncate text-sm font-semibold text-white">
+                    {{ $name }}
+                </p>
+
+                <p class="truncate text-[11px] text-zinc-500">
+                    {{ auth()->user()->email }}
+                </p>
+            </div>
+
+            <svg
+                class="h-4 w-4 text-zinc-500"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+            >
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                />
+            </svg>
+        </button>
+
+        <flux:menu>
+
+            <div class="px-3 py-2">
+                <p class="text-sm font-semibold text-white">
+                    {{ auth()->user()->name }}
+                </p>
+
+                <p class="text-xs text-zinc-500">
+                    {{ auth()->user()->email }}
+                </p>
+            </div>
+
+            <flux:menu.separator />
+
+            <flux:menu.item
+                :href="route('profile.edit')"
+                icon="cog"
+                wire:navigate
+            >
+                Settings
             </flux:menu.item>
-            <form method="POST" action="{{ route('logout') }}" class="w-full">
+
+            <flux:menu.separator />
+
+            <form
+                method="POST"
+                action="{{ route('logout') }}"
+                class="w-full"
+            >
                 @csrf
+
                 <flux:menu.item
                     as="button"
                     type="submit"
                     icon="arrow-right-start-on-rectangle"
-                    class="w-full cursor-pointer"
-                    data-test="logout-button"
+                    class="w-full cursor-pointer text-red-400"
                 >
-                    {{ __('Log out') }}
+                    Log out
                 </flux:menu.item>
             </form>
-        </flux:menu.radio.group>
-    </flux:menu>
-</flux:dropdown>
+
+        </flux:menu>
+
+    </flux:dropdown>
+</div>

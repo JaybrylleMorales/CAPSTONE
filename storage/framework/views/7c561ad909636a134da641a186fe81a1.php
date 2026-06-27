@@ -1,5 +1,5 @@
-<?php # [BlazeFolded]:{flux::heading}:{C:\Users\admin\pathwise\vendor\livewire\flux\src/../stubs/resources/views/flux/heading.blade.php}:{1776985208} ?>
-<?php # [BlazeFolded]:{flux::subheading}:{C:\Users\admin\pathwise\vendor\livewire\flux\src/../stubs/resources/views/flux/subheading.blade.php}:{1776985208} ?>
+<?php # [BlazeFolded]:{flux::heading}:{C:\Users\admin\pathwise\resources\views/flux/heading.blade.php}:{1782477713} ?>
+<?php # [BlazeFolded]:{flux::subheading}:{C:\Users\admin\pathwise\resources\views/flux/subheading.blade.php}:{1782477713} ?>
 <?php $attributes ??= new \Illuminate\View\ComponentAttributeBag;
 
 $__newAttributes = [];

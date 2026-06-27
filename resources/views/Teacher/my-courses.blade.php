@@ -1,106 +1,145 @@
-<x-layouts::app :title="'My Courses'">
+<x-layouts::app :title="__('My Courses')">
+    <div class="space-y-6">
 
-<div class="space-y-6">
+        <div>
+            <h1 class="text-3xl font-bold text-white">My Courses</h1>
+            <p class="mt-1 text-sm text-zinc-400">
+                Manage your published, pending, and draft learning materials.
+            </p>
+        </div>
 
-    <div>
-        <h1 class="text-3xl font-bold">
-            My Courses
-        </h1>
+        @php
+            $totalCourses = $courses->count();
+            $publishedCourses = $courses->where('status', 'published')->count();
+            $pendingCourses = $courses->where('status', 'pending')->count();
+            $totalStudents = $courses->sum('enrollments_count');
+        @endphp
 
-        <p class="text-zinc-500">
-            Courses assigned to you.
-        </p>
-    </div>
+        <div class="grid gap-4 md:grid-cols-4">
+            <div class="rounded-2xl border border-zinc-800 bg-zinc-900/70 p-5">
+                <p class="text-sm text-zinc-400">Total Courses</p>
+                <h2 class="mt-2 text-3xl font-bold text-white">{{ $totalCourses }}</h2>
+            </div>
 
-    <div class="grid gap-6">
+            <div class="rounded-2xl border border-emerald-800/40 bg-emerald-950/30 p-5">
+                <p class="text-sm text-emerald-300">Published</p>
+                <h2 class="mt-2 text-3xl font-bold text-emerald-400">{{ $publishedCourses }}</h2>
+            </div>
 
-        @forelse($courses as $course)
+            <div class="rounded-2xl border border-yellow-800/40 bg-yellow-950/30 p-5">
+                <p class="text-sm text-yellow-300">Pending</p>
+                <h2 class="mt-2 text-3xl font-bold text-yellow-400">{{ $pendingCourses }}</h2>
+            </div>
 
-            <div class="border rounded-xl p-6">
+            <div class="rounded-2xl border border-purple-800/40 bg-purple-950/30 p-5">
+                <p class="text-sm text-purple-300">Total Students</p>
+                <h2 class="mt-2 text-3xl font-bold text-purple-400">{{ $totalStudents }}</h2>
+            </div>
+        </div>
 
-                <h2 class="text-xl font-bold">
-                    {{ $course->title }}
-                </h2>
+        @if(session('success'))
+            <div class="rounded-xl border border-emerald-700/40 bg-emerald-950/40 px-4 py-3 text-emerald-300">
+                {{ session('success') }}
+            </div>
+        @endif
 
-                <p class="text-sm text-zinc-500 mt-1">
-                    {{ $course->category->name ?? 'No Category' }}
-                </p>
+        <div class="grid gap-5 xl:grid-cols-2">
+            @forelse($courses as $course)
+                @php
+                    $status = strtolower($course->status);
+                    $statusClasses = match ($status) {
+                        'published' => 'bg-emerald-500/15 text-emerald-400 border-emerald-500/20',
+                        'pending' => 'bg-yellow-500/15 text-yellow-400 border-yellow-500/20',
+                        'rejected' => 'bg-red-500/15 text-red-400 border-red-500/20',
+                        'draft' => 'bg-zinc-500/15 text-zinc-300 border-zinc-500/20',
+                        default => 'bg-blue-500/15 text-blue-400 border-blue-500/20',
+                    };
+                @endphp
 
-                <p class="text-sm mt-2">
-                    Status:
-                    <span class="font-bold">
-                        {{ ucfirst($course->status) }}
-                    </span>
-                </p>
+                <div class="group rounded-2xl border border-zinc-800 bg-zinc-900/60 p-6 shadow-lg shadow-purple-950/10 transition hover:border-purple-700/50 hover:bg-zinc-900/80">
+                    <div class="flex items-start justify-between gap-4">
+                        <div class="flex gap-4">
+                            <div class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-purple-600/20 text-2xl">
+                                📚
+                            </div>
 
-                <div class="grid grid-cols-3 gap-4 mt-4">
+                            <div>
+                                <h2 class="text-xl font-bold text-white">
+                                    {{ $course->title }}
+                                </h2>
 
-                    <div>
-                        <p class="text-sm text-zinc-500">Lessons</p>
-                        <p class="text-2xl font-bold">
-                            {{ $course->lessons->count() }}
-                        </p>
-                    </div>
+                                <p class="mt-1 text-sm text-zinc-400">
+                                    {{ $course->category->name ?? 'No Category' }}
+                                </p>
+                            </div>
+                        </div>
 
-                    <div>
-                        <p class="text-sm text-zinc-500">Students</p>
-                        <p class="text-2xl font-bold">
-                            {{ $course->enrollments->count() }}
-                        </p>
-                    </div>
-
-                    <div>
-                        <p class="text-sm text-zinc-500">Price</p>
-                        <p class="text-2xl font-bold">
-                            ₱{{ number_format($course->price, 2) }}
-                        </p>
-                    </div>
-
-                </div>
-
-                <div class="mt-5 flex flex-wrap gap-2">
-
-                    <a href="{{ route('teacher.course.students', $course) }}"
-                       class="inline-block px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm">
-                        View Students
-                    </a>
-
-                    <a href="{{ route('teacher.lessons', $course) }}"
-                       class="inline-block px-3 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg text-sm">
-                        Manage Lessons
-                    </a>
-
-                    @if($course->status === 'draft' || $course->status === 'rejected')
-                        <form action="{{ route('teacher.courses.submit', $course) }}"
-                              method="POST"
-                              class="inline-block">
-                            @csrf
-
-                            <button type="submit"
-                                    class="px-3 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg text-sm">
-                                Submit for Approval
-                            </button>
-                        </form>
-                    @else
-                        <span class="inline-block px-3 py-2 bg-gray-700 text-white rounded-lg text-sm">
+                        <span class="rounded-full border px-3 py-1 text-xs font-semibold {{ $statusClasses }}">
                             {{ ucfirst($course->status) }}
                         </span>
-                    @endif
+                    </div>
 
+                    <div class="mt-6 grid grid-cols-3 gap-4">
+                        <div class="rounded-xl border border-zinc-800 bg-zinc-950/50 p-4">
+                            <p class="text-xs text-zinc-500">Lessons</p>
+                            <p class="mt-1 text-2xl font-bold text-white">
+                                {{ $course->lessons_count ?? $course->lessons->count() }}
+                            </p>
+                        </div>
+
+                        <div class="rounded-xl border border-zinc-800 bg-zinc-950/50 p-4">
+                            <p class="text-xs text-zinc-500">Students</p>
+                            <p class="mt-1 text-2xl font-bold text-white">
+                                {{ $course->enrollments_count ?? $course->enrollments->count() }}
+                            </p>
+                        </div>
+
+                        <div class="rounded-xl border border-zinc-800 bg-zinc-950/50 p-4">
+                            <p class="text-xs text-zinc-500">Price</p>
+                            <p class="mt-1 text-2xl font-bold text-white">
+                                ₱{{ number_format($course->price, 2) }}
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 flex flex-wrap items-center gap-2">
+                        <a href="{{ route('teacher.course.students', $course) }}"
+                           class="rounded-xl bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700">
+                            View Students
+                        </a>
+
+                        <a href="{{ route('teacher.lessons', $course) }}"
+                           class="rounded-xl bg-purple-600 px-4 py-2 text-sm font-semibold text-white hover:bg-purple-700">
+                            Manage Lessons
+                        </a>
+
+                        @if($course->status === 'draft' || $course->status === 'rejected')
+                            <form action="{{ route('teacher.courses.submit', $course) }}"
+                                  method="POST">
+                                @csrf
+
+                                <button type="submit"
+                                        class="rounded-xl bg-emerald-600 px-4 py-2 text-sm font-semibold text-white hover:bg-emerald-700">
+                                    Submit for Approval
+                                </button>
+                            </form>
+                        @endif
+                    </div>
                 </div>
+            @empty
+                <div class="rounded-2xl border border-zinc-800 bg-zinc-900/60 px-6 py-16 text-center xl:col-span-2">
+                    <div class="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-purple-600/20 text-2xl">
+                        📚
+                    </div>
 
-            </div>
+                    <h3 class="text-lg font-semibold text-white">No courses yet</h3>
 
-        @empty
-
-            <div class="border rounded-xl p-6">
-                No courses found.
-            </div>
-
-        @endforelse
+                    <p class="mt-1 text-sm text-zinc-400">
+                        Your assigned or created courses will appear here.
+                    </p>
+                </div>
+            @endforelse
+        </div>
 
     </div>
-
-</div>
-
 </x-layouts::app>

@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Quiz;
+use App\Models\Certificate;
 use App\Models\Course;
+use App\Models\Enrollment;
 use App\Models\Lesson;
+use App\Models\LessonProgress;
+use App\Models\Quiz;
 use App\Models\QuizResult;
+use App\Services\RecommendationService;
 use Illuminate\Http\Request;
 
 class QuizController extends Controller
@@ -97,48 +101,138 @@ class QuizController extends Controller
     }
 
     public function take(Quiz $quiz)
-{
-    $quiz->load(['course', 'questions']);
+    {
+        $quiz->load(['course', 'questions']);
 
-    return view('student.take-quiz', compact('quiz'));
-}
-
-public function submit(Request $request, Quiz $quiz)
-{
-    $quiz->load('questions');
-
-    $score = 0;
-    $totalItems = $quiz->questions->count();
-
-    foreach ($quiz->questions as $question) {
-        $answer = $request->input('question_' . $question->id);
-
-        if ($answer === $question->correct_answer) {
-            $score++;
-        }
+        return view('student.take-quiz', compact('quiz'));
     }
 
-    $percentage = $totalItems > 0
-        ? round(($score / $totalItems) * 100, 2)
-        : 0;
+    public function submit(Request $request, Quiz $quiz)
+    {
+        $quiz->load(['questions', 'course.category', 'course.lessons']);
 
-    $remarks = $percentage >= $quiz->passing_score
-        ? 'passed'
-        : 'failed';
+        $score = 0;
+        $totalItems = $quiz->questions->count();
 
-    QuizResult::create([
-        'student_id' => auth()->id(),
-        'quiz_id' => $quiz->id,
-        'score' => $score,
-        'total_items' => $totalItems,
-        'percentage' => $percentage,
-        'remarks' => $remarks,
-        'attempt_number' => 1,
-        'completed_at' => now(),
-    ]);
+        foreach ($quiz->questions as $question) {
+            $answer = $request->input('question_' . $question->id);
 
-    return redirect()
-        ->route('student.dashboard')
-        ->with('success', 'Quiz submitted. Your score is ' . $percentage . '%.');
-}
+            if ($answer === $question->correct_answer) {
+                $score++;
+            }
+        }
+
+        $percentage = $totalItems > 0
+            ? round(($score / $totalItems) * 100, 2)
+            : 0;
+
+        $remarks = $percentage >= $quiz->passing_score
+            ? 'passed'
+            : 'failed';
+
+        QuizResult::create([
+            'student_id' => auth()->id(),
+            'quiz_id' => $quiz->id,
+            'score' => $score,
+            'total_items' => $totalItems,
+            'percentage' => $percentage,
+            'remarks' => $remarks,
+            'attempt_number' => $this->getNextAttemptNumber($quiz),
+            'completed_at' => now(),
+        ]);
+
+        app(RecommendationService::class)->generate(
+            auth()->id(),
+            $quiz,
+            $percentage
+        );
+
+        if ($remarks === 'failed') {
+            $this->markCourseAsActiveAfterFailedQuiz($quiz);
+        }
+
+        if ($remarks === 'passed') {
+            $this->generateCertificateIfEligible($quiz);
+        }
+
+        return redirect()
+            ->route('student.learn.course', $quiz->course)
+            ->with(
+                'success',
+                'Quiz submitted. Your score is ' . $percentage . '%.'
+            );
+    }
+
+    private function getNextAttemptNumber(Quiz $quiz): int
+    {
+        return QuizResult::where('student_id', auth()->id())
+            ->where('quiz_id', $quiz->id)
+            ->count() + 1;
+    }
+
+    private function markCourseAsActiveAfterFailedQuiz(Quiz $quiz): void
+    {
+        $studentId = auth()->id();
+        $course = $quiz->course;
+
+        if (!$course) {
+            return;
+        }
+
+        Enrollment::where('student_id', $studentId)
+            ->where('course_id', $course->id)
+            ->update([
+                'status' => 'active',
+                'progress_percentage' => 100,
+            ]);
+    }
+
+    private function generateCertificateIfEligible(Quiz $quiz): void
+    {
+        $studentId = auth()->id();
+        $course = $quiz->course;
+
+        if (!$course || !$course->certificate_available) {
+            return;
+        }
+
+        $totalLessons = $course->lessons()->count();
+
+        $completedLessons = LessonProgress::where('student_id', $studentId)
+            ->whereHas('lesson', function ($query) use ($course) {
+                $query->where('course_id', $course->id);
+            })
+            ->where('status', 'completed')
+            ->count();
+
+        if ($totalLessons > 0 && $completedLessons < $totalLessons) {
+            return;
+        }
+
+        Enrollment::where('student_id', $studentId)
+            ->where('course_id', $course->id)
+            ->update([
+                'status' => 'completed',
+                'progress_percentage' => 100,
+            ]);
+
+        Certificate::firstOrCreate(
+            [
+                'student_id' => $studentId,
+                'course_id' => $course->id,
+            ],
+            [
+                'certificate_number' => $this->generateCertificateNumber(),
+                'issued_date' => now()->toDateString(),
+                'status' => 'issued',
+            ]
+        );
+    }
+
+    private function generateCertificateNumber(): string
+    {
+        $count = Certificate::count() + 1;
+
+        return 'PATH-' . now()->format('Y') . '-' . str_pad($count, 5, '0', STR_PAD_LEFT);
+    }
 }

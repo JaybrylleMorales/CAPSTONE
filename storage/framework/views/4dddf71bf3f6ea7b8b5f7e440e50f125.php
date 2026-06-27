@@ -1,64 +1,98 @@
-<?php # [BlazeFolded]:{flux::sidebar.collapse}:{C:\Users\admin\pathwise\vendor\livewire\flux\src/../stubs/resources/views/flux/sidebar/collapse.blade.php}:{1776985208} ?>
-<?php # [BlazeFolded]:{flux::sidebar.header}:{C:\Users\admin\pathwise\vendor\livewire\flux\src/../stubs/resources/views/flux/sidebar/header.blade.php}:{1776985208} ?>
-<?php # [BlazeFolded]:{flux::sidebar.nav}:{C:\Users\admin\pathwise\vendor\livewire\flux\src/../stubs/resources/views/flux/sidebar/nav.blade.php}:{1776985208} ?>
-<?php # [BlazeFolded]:{flux::spacer}:{C:\Users\admin\pathwise\vendor\livewire\flux\src/../stubs/resources/views/flux/spacer.blade.php}:{1776985208} ?>
-<?php # [BlazeFolded]:{flux::sidebar.nav}:{C:\Users\admin\pathwise\vendor\livewire\flux\src/../stubs/resources/views/flux/sidebar/nav.blade.php}:{1776985208} ?>
-<?php # [BlazeFolded]:{flux::sidebar}:{C:\Users\admin\pathwise\vendor\livewire\flux\src/../stubs/resources/views/flux/sidebar/index.blade.php}:{1776985208} ?>
-<?php # [BlazeFolded]:{flux::sidebar.toggle}:{C:\Users\admin\pathwise\vendor\livewire\flux\src/../stubs/resources/views/flux/sidebar/toggle.blade.php}:{1776985208} ?>
-<?php # [BlazeFolded]:{flux::spacer}:{C:\Users\admin\pathwise\vendor\livewire\flux\src/../stubs/resources/views/flux/spacer.blade.php}:{1776985208} ?>
-<?php # [BlazeFolded]:{flux::heading}:{C:\Users\admin\pathwise\vendor\livewire\flux\src/../stubs/resources/views/flux/heading.blade.php}:{1776985208} ?>
-<?php # [BlazeFolded]:{flux::text}:{C:\Users\admin\pathwise\vendor\livewire\flux\src/../stubs/resources/views/flux/text.blade.php}:{1776985208} ?>
-<?php # [BlazeFolded]:{flux::menu.radio.group}:{C:\Users\admin\pathwise\vendor\livewire\flux\src/../stubs/resources/views/flux/menu/radio/group.blade.php}:{1776985208} ?>
-<?php # [BlazeFolded]:{flux::menu.separator}:{C:\Users\admin\pathwise\vendor\livewire\flux\src/../stubs/resources/views/flux/menu/separator.blade.php}:{1776985208} ?>
-<?php # [BlazeFolded]:{flux::menu.item}:{C:\Users\admin\pathwise\vendor\livewire\flux\src/../stubs/resources/views/flux/menu/item.blade.php}:{1776985208} ?>
-<?php # [BlazeFolded]:{flux::menu.radio.group}:{C:\Users\admin\pathwise\vendor\livewire\flux\src/../stubs/resources/views/flux/menu/radio/group.blade.php}:{1776985208} ?>
-<?php # [BlazeFolded]:{flux::menu.separator}:{C:\Users\admin\pathwise\vendor\livewire\flux\src/../stubs/resources/views/flux/menu/separator.blade.php}:{1776985208} ?>
-<?php # [BlazeFolded]:{flux::menu.item}:{C:\Users\admin\pathwise\vendor\livewire\flux\src/../stubs/resources/views/flux/menu/item.blade.php}:{1776985208} ?>
-<?php # [BlazeFolded]:{flux::menu}:{C:\Users\admin\pathwise\vendor\livewire\flux\src/../stubs/resources/views/flux/menu/index.blade.php}:{1776985208} ?>
-<?php # [BlazeFolded]:{flux::dropdown}:{C:\Users\admin\pathwise\vendor\livewire\flux\src/../stubs/resources/views/flux/dropdown.blade.php}:{1776985208} ?>
-<?php # [BlazeFolded]:{flux::header}:{C:\Users\admin\pathwise\vendor\livewire\flux\src/../stubs/resources/views/flux/header.blade.php}:{1776985208} ?>
-<?php # [BlazeFolded]:{flux::toast}:{C:\Users\admin\pathwise\vendor\livewire\flux\src/../stubs/resources/views/flux/toast/index.blade.php}:{1776985208} ?>
-<?php # [BlazeFolded]:{flux::toast.group}:{C:\Users\admin\pathwise\vendor\livewire\flux\src/../stubs/resources/views/flux/toast/group.blade.php}:{1776985208} ?>
+<?php # [BlazeFolded]:{flux::sidebar.collapse}:{C:\Users\admin\pathwise\resources\views/flux/sidebar/collapse.blade.php}:{1782477721} ?>
+<?php # [BlazeFolded]:{flux::sidebar.header}:{C:\Users\admin\pathwise\resources\views/flux/sidebar/header.blade.php}:{1782477721} ?>
+<?php # [BlazeFolded]:{flux::sidebar.nav}:{C:\Users\admin\pathwise\resources\views/flux/sidebar/nav.blade.php}:{1782477721} ?>
+<?php # [BlazeFolded]:{flux::spacer}:{C:\Users\admin\pathwise\resources\views/flux/spacer.blade.php}:{1782477721} ?>
+<?php # [BlazeFolded]:{flux::sidebar.nav}:{C:\Users\admin\pathwise\resources\views/flux/sidebar/nav.blade.php}:{1782477721} ?>
+<?php # [BlazeFolded]:{flux::sidebar}:{C:\Users\admin\pathwise\resources\views/flux/sidebar/index.blade.php}:{1782477721} ?>
 <!DOCTYPE html>
 <html lang="<?php echo e(str_replace('_', '-', app()->getLocale())); ?>" class="dark">
-    <head>
-        <?php echo $__env->make('partials.head', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
-    </head>
-    <body class="min-h-screen bg-white dark:bg-zinc-800">
-        <?php ob_start(); ?><ui-sidebar-toggle class="z-20 fixed inset-0 bg-black/10 hidden data-flux-sidebar-on-mobile:not-data-flux-sidebar-collapsed-mobile:block" data-flux-sidebar-backdrop></ui-sidebar-toggle>
+<head>
+    <?php echo $__env->make('partials.head', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+
+    <style>
+        html.dark [data-flux-sidebar] [data-flux-sidebar-item],
+        html.dark ui-sidebar [data-flux-sidebar-item] {
+            border-radius: 12px !important;
+            transition: all 180ms ease !important;
+        }
+
+        html.dark [data-flux-sidebar] [data-flux-sidebar-item]:hover,
+        html.dark ui-sidebar [data-flux-sidebar-item]:hover {
+            background-color: rgb(168 85 247 / 0.10) !important;
+            color: rgb(216 180 254) !important;
+        }
+
+        html.dark [data-flux-sidebar] [data-flux-sidebar-item][data-current],
+        html.dark ui-sidebar [data-flux-sidebar-item][data-current] {
+            background-image: linear-gradient(90deg, rgb(168 85 247 / 0.35), rgb(99 102 241 / 0.18)) !important;
+            color: #ffffff !important;
+            box-shadow: inset 4px 0 0 rgb(168 85 247), 0 0 18px rgb(168 85 247 / 0.15) !important;
+        }
+
+        html.dark [data-flux-sidebar] [data-flux-sidebar-item][data-current] svg,
+        html.dark ui-sidebar [data-flux-sidebar-item][data-current] svg {
+            color: rgb(216 180 254) !important;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen bg-white dark:bg-neutral-950">
+    <div class="pointer-events-none fixed inset-0 z-0 hidden overflow-hidden dark:block">
+        <div class="absolute -top-40 left-1/4 h-96 w-96 rounded-full bg-purple-600/10 blur-3xl"></div>
+        <div class="absolute bottom-0 right-1/4 h-96 w-96 rounded-full bg-indigo-600/10 blur-3xl"></div>
+    </div>
+
+    <?php ob_start(); ?><?php $__blaze->pushData(['sticky' => true, 'collapsible' => 'mobile', 'class' => 'relative z-10 w-[290px] border-e border-zinc-200 bg-zinc-50 dark:border-neutral-800 dark:bg-neutral-950/90 dark:backdrop-blur']); $__env->pushConsumableComponentData(['sticky' => true, 'collapsible' => 'mobile', 'class' => 'relative z-10 w-[290px] border-e border-zinc-200 bg-zinc-50 dark:border-neutral-800 dark:bg-neutral-950/90 dark:backdrop-blur']); ?><ui-sidebar-toggle class="z-20 fixed inset-0 bg-black/10 hidden data-flux-sidebar-on-mobile:not-data-flux-sidebar-collapsed-mobile:block" data-flux-sidebar-backdrop></ui-sidebar-toggle>
 
 <ui-sidebar
-    class="[grid-area:sidebar] z-1 flex flex-col gap-4 [:where(&amp;)]:w-64 p-4 data-flux-sidebar-collapsed-desktop:w-14 data-flux-sidebar-collapsed-desktop:px-2 data-flux-sidebar-collapsed-desktop:cursor-e-resize rtl:data-flux-sidebar-collapsed-desktop:cursor-w-resize max-lg:data-flux-sidebar-cloak:hidden data-flux-sidebar-on-mobile:data-flux-sidebar-collapsed-mobile:-translate-x-full data-flux-sidebar-on-mobile:data-flux-sidebar-collapsed-mobile:rtl:translate-x-full z-20! data-flux-sidebar-on-mobile:start-0! data-flux-sidebar-on-mobile:fixed! data-flux-sidebar-on-mobile:top-0! data-flux-sidebar-on-mobile:min-h-dvh! data-flux-sidebar-on-mobile:max-h-dvh! max-h-dvh overflow-y-auto overscroll-contain border-e border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900" x-init="$el.classList.add(&#039;transition-transform&#039;)"
+    class="[grid-area:sidebar] z-1 flex flex-col gap-4 [:where(&amp;)]:w-64 p-4 data-flux-sidebar-collapsed-desktop:w-14 data-flux-sidebar-collapsed-desktop:px-2 data-flux-sidebar-collapsed-desktop:cursor-e-resize rtl:data-flux-sidebar-collapsed-desktop:cursor-w-resize max-lg:data-flux-sidebar-cloak:hidden data-flux-sidebar-on-mobile:data-flux-sidebar-collapsed-mobile:-translate-x-full data-flux-sidebar-on-mobile:data-flux-sidebar-collapsed-mobile:rtl:translate-x-full z-20! data-flux-sidebar-on-mobile:start-0! data-flux-sidebar-on-mobile:fixed! data-flux-sidebar-on-mobile:top-0! data-flux-sidebar-on-mobile:min-h-dvh! data-flux-sidebar-on-mobile:max-h-dvh! max-h-dvh overflow-y-auto overscroll-contain relative z-10 w-[290px] border-e border-zinc-200 bg-zinc-50 dark:border-neutral-800 dark:bg-neutral-950/90 dark:backdrop-blur" x-init="$el.classList.add(&#039;transition-transform&#039;)"
      collapsible="mobile"          sticky     x-data
     data-flux-sidebar-cloak
     data-flux-sidebar
 >
     <?php ob_start(); ?>
-            <?php ob_start(); ?><div class="flex items-center justify-between gap-2 min-h-10" data-flux-sidebar-header>
+<?php ob_start(); ?><div class="flex items-center justify-between gap-2 min-h-10" data-flux-sidebar-header>
     <?php ob_start(); ?>
-                <?php if (isset($component)) { $__componentOriginal7b17d80ff7900603fe9e5f0b453cc7c3 = $component; } ?>
-<?php if (isset($attributes)) { $__attributesOriginal7b17d80ff7900603fe9e5f0b453cc7c3 = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.app-logo','data' => ['sidebar' => true,'href' => ''.e(route('dashboard')).'','wire:navigate' => true]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
-<?php $component->withName('app-logo'); ?>
-<?php if ($component->shouldRender()): ?>
-<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
-<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
-<?php endif; ?>
-<?php $component->withAttributes(['sidebar' => true,'href' => ''.e(route('dashboard')).'','wire:navigate' => true]); ?>
-<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
 
-<?php echo $__env->renderComponent(); ?>
-<?php endif; ?>
-<?php if (isset($__attributesOriginal7b17d80ff7900603fe9e5f0b453cc7c3)): ?>
-<?php $attributes = $__attributesOriginal7b17d80ff7900603fe9e5f0b453cc7c3; ?>
-<?php unset($__attributesOriginal7b17d80ff7900603fe9e5f0b453cc7c3); ?>
-<?php endif; ?>
-<?php if (isset($__componentOriginal7b17d80ff7900603fe9e5f0b453cc7c3)): ?>
-<?php $component = $__componentOriginal7b17d80ff7900603fe9e5f0b453cc7c3; ?>
-<?php unset($__componentOriginal7b17d80ff7900603fe9e5f0b453cc7c3); ?>
-<?php endif; ?>
-                <?php ob_start(); ?><ui-sidebar-toggle class="w-10 h-8 flex items-center justify-center in-data-flux-sidebar-collapsed-desktop:opacity-0 in-data-flux-sidebar-collapsed-desktop:absolute in-data-flux-sidebar-collapsed-desktop:in-data-flux-sidebar-active:opacity-100  lg:hidden" data-flux-sidebar-collapse>
+    <a
+        href="<?php echo e(route('dashboard')); ?>"
+        class="flex items-center gap-4 px-5 py-6 transition hover:opacity-95"
+    >
+
+        <div
+            class="flex h-14 w-14 items-center justify-center rounded-2xl
+                   bg-gradient-to-br from-purple-600/20 to-indigo-600/20
+                   ring-1 ring-purple-500/20"
+        >
+            <img
+                src="<?php echo e(asset('images/pathwise-icon.png')); ?>"
+                alt="PATHWISE"
+                class="h-11 w-11 shrink-0
+                       drop-shadow-[0_0_18px_rgba(168,85,247,0.55)]"
+            >
+        </div>
+
+        <div class="min-w-0">
+            <div
+                class="text-xl font-black tracking-[0.18em]
+                       text-white"
+            >
+                PATHWISE
+            </div>
+
+            <div
+                class="mt-0.5 text-[10px]
+                       font-semibold uppercase
+                       tracking-[0.35em]
+                       text-purple-400"
+            >
+                AI LEARNING PLATFORM
+            </div>
+        </div>
+
+    </a>
+
+    <?php ob_start(); ?><ui-sidebar-toggle class="w-10 h-8 flex items-center justify-center in-data-flux-sidebar-collapsed-desktop:opacity-0 in-data-flux-sidebar-collapsed-desktop:absolute in-data-flux-sidebar-collapsed-desktop:in-data-flux-sidebar-active:opacity-100  lg:hidden" data-flux-sidebar-collapse>
     <ui-tooltip position="right center"  data-flux-tooltip >
         <button type="button" class="size-10 relative items-center font-medium justify-center gap-2 whitespace-nowrap disabled:opacity-75 dark:disabled:opacity-75 disabled:cursor-default disabled:pointer-events-none text-sm rounded-lg inline-flex  bg-transparent hover:bg-zinc-800/5 dark:hover:bg-white/15 text-zinc-500 hover:text-zinc-800 dark:text-zinc-400 dark:hover:text-white in-data-flux-sidebar-collapsed-desktop:cursor-e-resize rtl:in-data-flux-sidebar-collapsed-desktop:cursor-w-resize [&amp;[collapsible=&quot;mobile&quot;]]:in-data-flux-sidebar-on-desktop:hidden rtl:rotate-180">
             <svg class="text-zinc-500 dark:text-zinc-400" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -73,87 +107,427 @@
             </ui-tooltip>
 </ui-sidebar-toggle>
 <?php echo ltrim(ob_get_clean()); ?>
-            <?php echo trim(ob_get_clean()); ?>
+
+<?php echo trim(ob_get_clean()); ?>
 
 </div><?php echo ltrim(ob_get_clean()); ?>
 
-            <?php ob_start(); ?><nav class="flex flex-col overflow-visible min-h-auto" data-flux-sidebar-nav>
-    <?php ob_start(); ?>
-                <?php $__blaze->ensureRequired('C:\Users\admin\pathwise\vendor\livewire\flux\src/../stubs/resources/views/flux/sidebar/group.blade.php', $__blaze->compiledPath.'/86b4decb08234c4f1afc1dee5486edd0.php'); ?>
-<?php if (isset($__slots86b4decb08234c4f1afc1dee5486edd0)) { $__slotsStack86b4decb08234c4f1afc1dee5486edd0[] = $__slots86b4decb08234c4f1afc1dee5486edd0; } ?>
-<?php if (isset($__attrs86b4decb08234c4f1afc1dee5486edd0)) { $__attrsStack86b4decb08234c4f1afc1dee5486edd0[] = $__attrs86b4decb08234c4f1afc1dee5486edd0; } ?>
-<?php $__attrs86b4decb08234c4f1afc1dee5486edd0 = ['heading' => __('Platform'),'class' => 'grid']; ?>
-<?php $__slots86b4decb08234c4f1afc1dee5486edd0 = []; ?>
-<?php $__blaze->pushData($__attrs86b4decb08234c4f1afc1dee5486edd0); ?>
+<div class="mx-4 border-b border-zinc-800/80"></div>
+        <?php ob_start(); ?><nav class="flex flex-col overflow-visible min-h-auto" data-flux-sidebar-nav>
+    <?php ob_start(); ?> 
+            <?php $__blaze->ensureRequired('C:\Users\admin\pathwise\resources\views/flux/sidebar/group.blade.php', $__blaze->compiledPath.'/37018356addbef9f50edabdc8e57ddb1.php'); ?>
+<?php if (isset($__slots37018356addbef9f50edabdc8e57ddb1)) { $__slotsStack37018356addbef9f50edabdc8e57ddb1[] = $__slots37018356addbef9f50edabdc8e57ddb1; } ?>
+<?php if (isset($__attrs37018356addbef9f50edabdc8e57ddb1)) { $__attrsStack37018356addbef9f50edabdc8e57ddb1[] = $__attrs37018356addbef9f50edabdc8e57ddb1; } ?>
+<?php $__attrs37018356addbef9f50edabdc8e57ddb1 = ['heading' => __('Main'),'class' => 'mt-2 grid gap-1 px-2']; ?>
+<?php $__slots37018356addbef9f50edabdc8e57ddb1 = []; ?>
+<?php $__blaze->pushData($__attrs37018356addbef9f50edabdc8e57ddb1); ?>
 <?php ob_start(); ?>
-                    <?php $__blaze->ensureRequired('C:\Users\admin\pathwise\vendor\livewire\flux\src/../stubs/resources/views/flux/sidebar/item.blade.php', $__blaze->compiledPath.'/b956a63ed6ffe95e1a1b2b98b93c25b7.php'); ?>
-<?php if (isset($__slotsb956a63ed6ffe95e1a1b2b98b93c25b7)) { $__slotsStackb956a63ed6ffe95e1a1b2b98b93c25b7[] = $__slotsb956a63ed6ffe95e1a1b2b98b93c25b7; } ?>
-<?php if (isset($__attrsb956a63ed6ffe95e1a1b2b98b93c25b7)) { $__attrsStackb956a63ed6ffe95e1a1b2b98b93c25b7[] = $__attrsb956a63ed6ffe95e1a1b2b98b93c25b7; } ?>
-<?php $__attrsb956a63ed6ffe95e1a1b2b98b93c25b7 = ['icon' => 'home','href' => route('dashboard'),'current' => request()->routeIs('dashboard'),'wire:navigate' => true]; ?>
-<?php $__slotsb956a63ed6ffe95e1a1b2b98b93c25b7 = []; ?>
-<?php $__blaze->pushData($__attrsb956a63ed6ffe95e1a1b2b98b93c25b7); ?>
-<?php ob_start(); ?>
-                        <?php echo e(__('Dashboard')); ?>
 
-                    <?php $__slotsb956a63ed6ffe95e1a1b2b98b93c25b7['slot'] = new \Illuminate\View\ComponentSlot(trim(ob_get_clean()), []); ?>
-<?php $__blaze->pushSlots($__slotsb956a63ed6ffe95e1a1b2b98b93c25b7); ?>
-<?php _b956a63ed6ffe95e1a1b2b98b93c25b7($__blaze, $__attrsb956a63ed6ffe95e1a1b2b98b93c25b7, $__slotsb956a63ed6ffe95e1a1b2b98b93c25b7, ['href', 'current', 'wire:navigate'], [], $__this ?? (isset($this) ? $this : null)); ?>
-<?php if (! empty($__slotsStackb956a63ed6ffe95e1a1b2b98b93c25b7)) { $__slotsb956a63ed6ffe95e1a1b2b98b93c25b7 = array_pop($__slotsStackb956a63ed6ffe95e1a1b2b98b93c25b7); } ?>
-<?php if (! empty($__attrsStackb956a63ed6ffe95e1a1b2b98b93c25b7)) { $__attrsb956a63ed6ffe95e1a1b2b98b93c25b7 = array_pop($__attrsStackb956a63ed6ffe95e1a1b2b98b93c25b7); } ?>
+                <?php $__blaze->ensureRequired('C:\Users\admin\pathwise\resources\views/flux/sidebar/item.blade.php', $__blaze->compiledPath.'/78e4657e5ef7e8ddac92fd806d2fb04b.php'); ?>
+<?php if (isset($__slots78e4657e5ef7e8ddac92fd806d2fb04b)) { $__slotsStack78e4657e5ef7e8ddac92fd806d2fb04b[] = $__slots78e4657e5ef7e8ddac92fd806d2fb04b; } ?>
+<?php if (isset($__attrs78e4657e5ef7e8ddac92fd806d2fb04b)) { $__attrsStack78e4657e5ef7e8ddac92fd806d2fb04b[] = $__attrs78e4657e5ef7e8ddac92fd806d2fb04b; } ?>
+<?php $__attrs78e4657e5ef7e8ddac92fd806d2fb04b = ['icon' => 'home','href' => route('dashboard'),'current' => request()->routeIs('dashboard'),'wire:navigate' => true]; ?>
+<?php $__slots78e4657e5ef7e8ddac92fd806d2fb04b = []; ?>
+<?php $__blaze->pushData($__attrs78e4657e5ef7e8ddac92fd806d2fb04b); ?>
+<?php ob_start(); ?>
+                    <?php echo e(__('Dashboard')); ?>
+
+                <?php $__slots78e4657e5ef7e8ddac92fd806d2fb04b['slot'] = new \Illuminate\View\ComponentSlot(trim(ob_get_clean()), []); ?>
+<?php $__blaze->pushSlots($__slots78e4657e5ef7e8ddac92fd806d2fb04b); ?>
+<?php _78e4657e5ef7e8ddac92fd806d2fb04b($__blaze, $__attrs78e4657e5ef7e8ddac92fd806d2fb04b, $__slots78e4657e5ef7e8ddac92fd806d2fb04b, ['href', 'current', 'wire:navigate'], [], $__this ?? (isset($this) ? $this : null)); ?>
+<?php if (! empty($__slotsStack78e4657e5ef7e8ddac92fd806d2fb04b)) { $__slots78e4657e5ef7e8ddac92fd806d2fb04b = array_pop($__slotsStack78e4657e5ef7e8ddac92fd806d2fb04b); } ?>
+<?php if (! empty($__attrsStack78e4657e5ef7e8ddac92fd806d2fb04b)) { $__attrs78e4657e5ef7e8ddac92fd806d2fb04b = array_pop($__attrsStack78e4657e5ef7e8ddac92fd806d2fb04b); } ?>
 <?php $__blaze->popData(); ?>
-                <?php $__slots86b4decb08234c4f1afc1dee5486edd0['slot'] = new \Illuminate\View\ComponentSlot(trim(ob_get_clean()), []); ?>
-<?php $__blaze->pushSlots($__slots86b4decb08234c4f1afc1dee5486edd0); ?>
-<?php _86b4decb08234c4f1afc1dee5486edd0($__blaze, $__attrs86b4decb08234c4f1afc1dee5486edd0, $__slots86b4decb08234c4f1afc1dee5486edd0, ['heading'], [], $__this ?? (isset($this) ? $this : null)); ?>
-<?php if (! empty($__slotsStack86b4decb08234c4f1afc1dee5486edd0)) { $__slots86b4decb08234c4f1afc1dee5486edd0 = array_pop($__slotsStack86b4decb08234c4f1afc1dee5486edd0); } ?>
-<?php if (! empty($__attrsStack86b4decb08234c4f1afc1dee5486edd0)) { $__attrs86b4decb08234c4f1afc1dee5486edd0 = array_pop($__attrsStack86b4decb08234c4f1afc1dee5486edd0); } ?>
+
+                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(auth()->user()->hasRole('admin')): ?>
+
+                    <?php $__blaze->ensureRequired('C:\Users\admin\pathwise\resources\views/flux/sidebar/item.blade.php', $__blaze->compiledPath.'/78e4657e5ef7e8ddac92fd806d2fb04b.php'); ?>
+<?php if (isset($__slots78e4657e5ef7e8ddac92fd806d2fb04b)) { $__slotsStack78e4657e5ef7e8ddac92fd806d2fb04b[] = $__slots78e4657e5ef7e8ddac92fd806d2fb04b; } ?>
+<?php if (isset($__attrs78e4657e5ef7e8ddac92fd806d2fb04b)) { $__attrsStack78e4657e5ef7e8ddac92fd806d2fb04b[] = $__attrs78e4657e5ef7e8ddac92fd806d2fb04b; } ?>
+<?php $__attrs78e4657e5ef7e8ddac92fd806d2fb04b = ['icon' => 'users','href' => route('users.index'),'current' => request()->routeIs('users.*'),'wire:navigate' => true]; ?>
+<?php $__slots78e4657e5ef7e8ddac92fd806d2fb04b = []; ?>
+<?php $__blaze->pushData($__attrs78e4657e5ef7e8ddac92fd806d2fb04b); ?>
+<?php ob_start(); ?>
+                        <?php echo e(__('Users')); ?>
+
+                    <?php $__slots78e4657e5ef7e8ddac92fd806d2fb04b['slot'] = new \Illuminate\View\ComponentSlot(trim(ob_get_clean()), []); ?>
+<?php $__blaze->pushSlots($__slots78e4657e5ef7e8ddac92fd806d2fb04b); ?>
+<?php _78e4657e5ef7e8ddac92fd806d2fb04b($__blaze, $__attrs78e4657e5ef7e8ddac92fd806d2fb04b, $__slots78e4657e5ef7e8ddac92fd806d2fb04b, ['href', 'current', 'wire:navigate'], [], $__this ?? (isset($this) ? $this : null)); ?>
+<?php if (! empty($__slotsStack78e4657e5ef7e8ddac92fd806d2fb04b)) { $__slots78e4657e5ef7e8ddac92fd806d2fb04b = array_pop($__slotsStack78e4657e5ef7e8ddac92fd806d2fb04b); } ?>
+<?php if (! empty($__attrsStack78e4657e5ef7e8ddac92fd806d2fb04b)) { $__attrs78e4657e5ef7e8ddac92fd806d2fb04b = array_pop($__attrsStack78e4657e5ef7e8ddac92fd806d2fb04b); } ?>
 <?php $__blaze->popData(); ?>
-            <?php echo trim(ob_get_clean()); ?>
+
+                    <?php $__blaze->ensureRequired('C:\Users\admin\pathwise\resources\views/flux/sidebar/item.blade.php', $__blaze->compiledPath.'/78e4657e5ef7e8ddac92fd806d2fb04b.php'); ?>
+<?php if (isset($__slots78e4657e5ef7e8ddac92fd806d2fb04b)) { $__slotsStack78e4657e5ef7e8ddac92fd806d2fb04b[] = $__slots78e4657e5ef7e8ddac92fd806d2fb04b; } ?>
+<?php if (isset($__attrs78e4657e5ef7e8ddac92fd806d2fb04b)) { $__attrsStack78e4657e5ef7e8ddac92fd806d2fb04b[] = $__attrs78e4657e5ef7e8ddac92fd806d2fb04b; } ?>
+<?php $__attrs78e4657e5ef7e8ddac92fd806d2fb04b = ['icon' => 'book-open','href' => route('courses.index'),'current' => request()->routeIs('courses.*'),'wire:navigate' => true]; ?>
+<?php $__slots78e4657e5ef7e8ddac92fd806d2fb04b = []; ?>
+<?php $__blaze->pushData($__attrs78e4657e5ef7e8ddac92fd806d2fb04b); ?>
+<?php ob_start(); ?>
+                        <?php echo e(__('Courses')); ?>
+
+                    <?php $__slots78e4657e5ef7e8ddac92fd806d2fb04b['slot'] = new \Illuminate\View\ComponentSlot(trim(ob_get_clean()), []); ?>
+<?php $__blaze->pushSlots($__slots78e4657e5ef7e8ddac92fd806d2fb04b); ?>
+<?php _78e4657e5ef7e8ddac92fd806d2fb04b($__blaze, $__attrs78e4657e5ef7e8ddac92fd806d2fb04b, $__slots78e4657e5ef7e8ddac92fd806d2fb04b, ['href', 'current', 'wire:navigate'], [], $__this ?? (isset($this) ? $this : null)); ?>
+<?php if (! empty($__slotsStack78e4657e5ef7e8ddac92fd806d2fb04b)) { $__slots78e4657e5ef7e8ddac92fd806d2fb04b = array_pop($__slotsStack78e4657e5ef7e8ddac92fd806d2fb04b); } ?>
+<?php if (! empty($__attrsStack78e4657e5ef7e8ddac92fd806d2fb04b)) { $__attrs78e4657e5ef7e8ddac92fd806d2fb04b = array_pop($__attrsStack78e4657e5ef7e8ddac92fd806d2fb04b); } ?>
+<?php $__blaze->popData(); ?>
+
+                    <?php $__blaze->ensureRequired('C:\Users\admin\pathwise\resources\views/flux/sidebar/item.blade.php', $__blaze->compiledPath.'/78e4657e5ef7e8ddac92fd806d2fb04b.php'); ?>
+<?php if (isset($__slots78e4657e5ef7e8ddac92fd806d2fb04b)) { $__slotsStack78e4657e5ef7e8ddac92fd806d2fb04b[] = $__slots78e4657e5ef7e8ddac92fd806d2fb04b; } ?>
+<?php if (isset($__attrs78e4657e5ef7e8ddac92fd806d2fb04b)) { $__attrsStack78e4657e5ef7e8ddac92fd806d2fb04b[] = $__attrs78e4657e5ef7e8ddac92fd806d2fb04b; } ?>
+<?php $__attrs78e4657e5ef7e8ddac92fd806d2fb04b = ['icon' => 'folder','href' => route('course-categories.index'),'current' => request()->routeIs('course-categories.*'),'wire:navigate' => true]; ?>
+<?php $__slots78e4657e5ef7e8ddac92fd806d2fb04b = []; ?>
+<?php $__blaze->pushData($__attrs78e4657e5ef7e8ddac92fd806d2fb04b); ?>
+<?php ob_start(); ?>
+                        <?php echo e(__('Categories')); ?>
+
+                    <?php $__slots78e4657e5ef7e8ddac92fd806d2fb04b['slot'] = new \Illuminate\View\ComponentSlot(trim(ob_get_clean()), []); ?>
+<?php $__blaze->pushSlots($__slots78e4657e5ef7e8ddac92fd806d2fb04b); ?>
+<?php _78e4657e5ef7e8ddac92fd806d2fb04b($__blaze, $__attrs78e4657e5ef7e8ddac92fd806d2fb04b, $__slots78e4657e5ef7e8ddac92fd806d2fb04b, ['href', 'current', 'wire:navigate'], [], $__this ?? (isset($this) ? $this : null)); ?>
+<?php if (! empty($__slotsStack78e4657e5ef7e8ddac92fd806d2fb04b)) { $__slots78e4657e5ef7e8ddac92fd806d2fb04b = array_pop($__slotsStack78e4657e5ef7e8ddac92fd806d2fb04b); } ?>
+<?php if (! empty($__attrsStack78e4657e5ef7e8ddac92fd806d2fb04b)) { $__attrs78e4657e5ef7e8ddac92fd806d2fb04b = array_pop($__attrsStack78e4657e5ef7e8ddac92fd806d2fb04b); } ?>
+<?php $__blaze->popData(); ?>
+
+                    <?php $__blaze->ensureRequired('C:\Users\admin\pathwise\resources\views/flux/sidebar/item.blade.php', $__blaze->compiledPath.'/78e4657e5ef7e8ddac92fd806d2fb04b.php'); ?>
+<?php if (isset($__slots78e4657e5ef7e8ddac92fd806d2fb04b)) { $__slotsStack78e4657e5ef7e8ddac92fd806d2fb04b[] = $__slots78e4657e5ef7e8ddac92fd806d2fb04b; } ?>
+<?php if (isset($__attrs78e4657e5ef7e8ddac92fd806d2fb04b)) { $__attrsStack78e4657e5ef7e8ddac92fd806d2fb04b[] = $__attrs78e4657e5ef7e8ddac92fd806d2fb04b; } ?>
+<?php $__attrs78e4657e5ef7e8ddac92fd806d2fb04b = ['icon' => 'document','href' => route('lessons.index'),'current' => request()->routeIs('lessons.*'),'wire:navigate' => true]; ?>
+<?php $__slots78e4657e5ef7e8ddac92fd806d2fb04b = []; ?>
+<?php $__blaze->pushData($__attrs78e4657e5ef7e8ddac92fd806d2fb04b); ?>
+<?php ob_start(); ?>
+                        <?php echo e(__('Lessons')); ?>
+
+                    <?php $__slots78e4657e5ef7e8ddac92fd806d2fb04b['slot'] = new \Illuminate\View\ComponentSlot(trim(ob_get_clean()), []); ?>
+<?php $__blaze->pushSlots($__slots78e4657e5ef7e8ddac92fd806d2fb04b); ?>
+<?php _78e4657e5ef7e8ddac92fd806d2fb04b($__blaze, $__attrs78e4657e5ef7e8ddac92fd806d2fb04b, $__slots78e4657e5ef7e8ddac92fd806d2fb04b, ['href', 'current', 'wire:navigate'], [], $__this ?? (isset($this) ? $this : null)); ?>
+<?php if (! empty($__slotsStack78e4657e5ef7e8ddac92fd806d2fb04b)) { $__slots78e4657e5ef7e8ddac92fd806d2fb04b = array_pop($__slotsStack78e4657e5ef7e8ddac92fd806d2fb04b); } ?>
+<?php if (! empty($__attrsStack78e4657e5ef7e8ddac92fd806d2fb04b)) { $__attrs78e4657e5ef7e8ddac92fd806d2fb04b = array_pop($__attrsStack78e4657e5ef7e8ddac92fd806d2fb04b); } ?>
+<?php $__blaze->popData(); ?>
+
+                    <?php $__blaze->ensureRequired('C:\Users\admin\pathwise\resources\views/flux/sidebar/item.blade.php', $__blaze->compiledPath.'/78e4657e5ef7e8ddac92fd806d2fb04b.php'); ?>
+<?php if (isset($__slots78e4657e5ef7e8ddac92fd806d2fb04b)) { $__slotsStack78e4657e5ef7e8ddac92fd806d2fb04b[] = $__slots78e4657e5ef7e8ddac92fd806d2fb04b; } ?>
+<?php if (isset($__attrs78e4657e5ef7e8ddac92fd806d2fb04b)) { $__attrsStack78e4657e5ef7e8ddac92fd806d2fb04b[] = $__attrs78e4657e5ef7e8ddac92fd806d2fb04b; } ?>
+<?php $__attrs78e4657e5ef7e8ddac92fd806d2fb04b = ['icon' => 'clipboard','href' => route('quizzes.index'),'current' => request()->routeIs('quizzes.*'),'wire:navigate' => true]; ?>
+<?php $__slots78e4657e5ef7e8ddac92fd806d2fb04b = []; ?>
+<?php $__blaze->pushData($__attrs78e4657e5ef7e8ddac92fd806d2fb04b); ?>
+<?php ob_start(); ?>
+                        <?php echo e(__('Quizzes')); ?>
+
+                    <?php $__slots78e4657e5ef7e8ddac92fd806d2fb04b['slot'] = new \Illuminate\View\ComponentSlot(trim(ob_get_clean()), []); ?>
+<?php $__blaze->pushSlots($__slots78e4657e5ef7e8ddac92fd806d2fb04b); ?>
+<?php _78e4657e5ef7e8ddac92fd806d2fb04b($__blaze, $__attrs78e4657e5ef7e8ddac92fd806d2fb04b, $__slots78e4657e5ef7e8ddac92fd806d2fb04b, ['href', 'current', 'wire:navigate'], [], $__this ?? (isset($this) ? $this : null)); ?>
+<?php if (! empty($__slotsStack78e4657e5ef7e8ddac92fd806d2fb04b)) { $__slots78e4657e5ef7e8ddac92fd806d2fb04b = array_pop($__slotsStack78e4657e5ef7e8ddac92fd806d2fb04b); } ?>
+<?php if (! empty($__attrsStack78e4657e5ef7e8ddac92fd806d2fb04b)) { $__attrs78e4657e5ef7e8ddac92fd806d2fb04b = array_pop($__attrsStack78e4657e5ef7e8ddac92fd806d2fb04b); } ?>
+<?php $__blaze->popData(); ?>
+
+                    <?php $__blaze->ensureRequired('C:\Users\admin\pathwise\resources\views/flux/sidebar/item.blade.php', $__blaze->compiledPath.'/78e4657e5ef7e8ddac92fd806d2fb04b.php'); ?>
+<?php if (isset($__slots78e4657e5ef7e8ddac92fd806d2fb04b)) { $__slotsStack78e4657e5ef7e8ddac92fd806d2fb04b[] = $__slots78e4657e5ef7e8ddac92fd806d2fb04b; } ?>
+<?php if (isset($__attrs78e4657e5ef7e8ddac92fd806d2fb04b)) { $__attrsStack78e4657e5ef7e8ddac92fd806d2fb04b[] = $__attrs78e4657e5ef7e8ddac92fd806d2fb04b; } ?>
+<?php $__attrs78e4657e5ef7e8ddac92fd806d2fb04b = ['icon' => 'credit-card','href' => route('admin.transactions.index'),'current' => request()->routeIs('admin.transactions.*'),'wire:navigate' => true]; ?>
+<?php $__slots78e4657e5ef7e8ddac92fd806d2fb04b = []; ?>
+<?php $__blaze->pushData($__attrs78e4657e5ef7e8ddac92fd806d2fb04b); ?>
+<?php ob_start(); ?>
+                        <?php echo e(__('Transactions')); ?>
+
+                    <?php $__slots78e4657e5ef7e8ddac92fd806d2fb04b['slot'] = new \Illuminate\View\ComponentSlot(trim(ob_get_clean()), []); ?>
+<?php $__blaze->pushSlots($__slots78e4657e5ef7e8ddac92fd806d2fb04b); ?>
+<?php _78e4657e5ef7e8ddac92fd806d2fb04b($__blaze, $__attrs78e4657e5ef7e8ddac92fd806d2fb04b, $__slots78e4657e5ef7e8ddac92fd806d2fb04b, ['href', 'current', 'wire:navigate'], [], $__this ?? (isset($this) ? $this : null)); ?>
+<?php if (! empty($__slotsStack78e4657e5ef7e8ddac92fd806d2fb04b)) { $__slots78e4657e5ef7e8ddac92fd806d2fb04b = array_pop($__slotsStack78e4657e5ef7e8ddac92fd806d2fb04b); } ?>
+<?php if (! empty($__attrsStack78e4657e5ef7e8ddac92fd806d2fb04b)) { $__attrs78e4657e5ef7e8ddac92fd806d2fb04b = array_pop($__attrsStack78e4657e5ef7e8ddac92fd806d2fb04b); } ?>
+<?php $__blaze->popData(); ?>
+
+                    <?php $__blaze->ensureRequired('C:\Users\admin\pathwise\resources\views/flux/sidebar/item.blade.php', $__blaze->compiledPath.'/78e4657e5ef7e8ddac92fd806d2fb04b.php'); ?>
+<?php if (isset($__slots78e4657e5ef7e8ddac92fd806d2fb04b)) { $__slotsStack78e4657e5ef7e8ddac92fd806d2fb04b[] = $__slots78e4657e5ef7e8ddac92fd806d2fb04b; } ?>
+<?php if (isset($__attrs78e4657e5ef7e8ddac92fd806d2fb04b)) { $__attrsStack78e4657e5ef7e8ddac92fd806d2fb04b[] = $__attrs78e4657e5ef7e8ddac92fd806d2fb04b; } ?>
+<?php $__attrs78e4657e5ef7e8ddac92fd806d2fb04b = ['icon' => 'academic-cap','href' => route('certificate-management.index'),'current' => request()->routeIs('certificate-management.*'),'wire:navigate' => true]; ?>
+<?php $__slots78e4657e5ef7e8ddac92fd806d2fb04b = []; ?>
+<?php $__blaze->pushData($__attrs78e4657e5ef7e8ddac92fd806d2fb04b); ?>
+<?php ob_start(); ?>
+                        <?php echo e(__('Certificates')); ?>
+
+                    <?php $__slots78e4657e5ef7e8ddac92fd806d2fb04b['slot'] = new \Illuminate\View\ComponentSlot(trim(ob_get_clean()), []); ?>
+<?php $__blaze->pushSlots($__slots78e4657e5ef7e8ddac92fd806d2fb04b); ?>
+<?php _78e4657e5ef7e8ddac92fd806d2fb04b($__blaze, $__attrs78e4657e5ef7e8ddac92fd806d2fb04b, $__slots78e4657e5ef7e8ddac92fd806d2fb04b, ['href', 'current', 'wire:navigate'], [], $__this ?? (isset($this) ? $this : null)); ?>
+<?php if (! empty($__slotsStack78e4657e5ef7e8ddac92fd806d2fb04b)) { $__slots78e4657e5ef7e8ddac92fd806d2fb04b = array_pop($__slotsStack78e4657e5ef7e8ddac92fd806d2fb04b); } ?>
+<?php if (! empty($__attrsStack78e4657e5ef7e8ddac92fd806d2fb04b)) { $__attrs78e4657e5ef7e8ddac92fd806d2fb04b = array_pop($__attrsStack78e4657e5ef7e8ddac92fd806d2fb04b); } ?>
+<?php $__blaze->popData(); ?>
+
+                    <?php $__blaze->ensureRequired('C:\Users\admin\pathwise\resources\views/flux/sidebar/item.blade.php', $__blaze->compiledPath.'/78e4657e5ef7e8ddac92fd806d2fb04b.php'); ?>
+<?php if (isset($__slots78e4657e5ef7e8ddac92fd806d2fb04b)) { $__slotsStack78e4657e5ef7e8ddac92fd806d2fb04b[] = $__slots78e4657e5ef7e8ddac92fd806d2fb04b; } ?>
+<?php if (isset($__attrs78e4657e5ef7e8ddac92fd806d2fb04b)) { $__attrsStack78e4657e5ef7e8ddac92fd806d2fb04b[] = $__attrs78e4657e5ef7e8ddac92fd806d2fb04b; } ?>
+<?php $__attrs78e4657e5ef7e8ddac92fd806d2fb04b = ['icon' => 'sparkles','href' => route('ai-recommendations.index'),'current' => request()->routeIs('ai-recommendations.*'),'wire:navigate' => true]; ?>
+<?php $__slots78e4657e5ef7e8ddac92fd806d2fb04b = []; ?>
+<?php $__blaze->pushData($__attrs78e4657e5ef7e8ddac92fd806d2fb04b); ?>
+<?php ob_start(); ?>
+                        <?php echo e(__('AI Recommendations')); ?>
+
+                    <?php $__slots78e4657e5ef7e8ddac92fd806d2fb04b['slot'] = new \Illuminate\View\ComponentSlot(trim(ob_get_clean()), []); ?>
+<?php $__blaze->pushSlots($__slots78e4657e5ef7e8ddac92fd806d2fb04b); ?>
+<?php _78e4657e5ef7e8ddac92fd806d2fb04b($__blaze, $__attrs78e4657e5ef7e8ddac92fd806d2fb04b, $__slots78e4657e5ef7e8ddac92fd806d2fb04b, ['href', 'current', 'wire:navigate'], [], $__this ?? (isset($this) ? $this : null)); ?>
+<?php if (! empty($__slotsStack78e4657e5ef7e8ddac92fd806d2fb04b)) { $__slots78e4657e5ef7e8ddac92fd806d2fb04b = array_pop($__slotsStack78e4657e5ef7e8ddac92fd806d2fb04b); } ?>
+<?php if (! empty($__attrsStack78e4657e5ef7e8ddac92fd806d2fb04b)) { $__attrs78e4657e5ef7e8ddac92fd806d2fb04b = array_pop($__attrsStack78e4657e5ef7e8ddac92fd806d2fb04b); } ?>
+<?php $__blaze->popData(); ?>
+
+                    <?php $__blaze->ensureRequired('C:\Users\admin\pathwise\resources\views/flux/sidebar/item.blade.php', $__blaze->compiledPath.'/78e4657e5ef7e8ddac92fd806d2fb04b.php'); ?>
+<?php if (isset($__slots78e4657e5ef7e8ddac92fd806d2fb04b)) { $__slotsStack78e4657e5ef7e8ddac92fd806d2fb04b[] = $__slots78e4657e5ef7e8ddac92fd806d2fb04b; } ?>
+<?php if (isset($__attrs78e4657e5ef7e8ddac92fd806d2fb04b)) { $__attrsStack78e4657e5ef7e8ddac92fd806d2fb04b[] = $__attrs78e4657e5ef7e8ddac92fd806d2fb04b; } ?>
+<?php $__attrs78e4657e5ef7e8ddac92fd806d2fb04b = ['icon' => 'chart-bar','href' => route('reports.index'),'current' => request()->routeIs('reports.*'),'wire:navigate' => true]; ?>
+<?php $__slots78e4657e5ef7e8ddac92fd806d2fb04b = []; ?>
+<?php $__blaze->pushData($__attrs78e4657e5ef7e8ddac92fd806d2fb04b); ?>
+<?php ob_start(); ?>
+                        <?php echo e(__('Reports')); ?>
+
+                    <?php $__slots78e4657e5ef7e8ddac92fd806d2fb04b['slot'] = new \Illuminate\View\ComponentSlot(trim(ob_get_clean()), []); ?>
+<?php $__blaze->pushSlots($__slots78e4657e5ef7e8ddac92fd806d2fb04b); ?>
+<?php _78e4657e5ef7e8ddac92fd806d2fb04b($__blaze, $__attrs78e4657e5ef7e8ddac92fd806d2fb04b, $__slots78e4657e5ef7e8ddac92fd806d2fb04b, ['href', 'current', 'wire:navigate'], [], $__this ?? (isset($this) ? $this : null)); ?>
+<?php if (! empty($__slotsStack78e4657e5ef7e8ddac92fd806d2fb04b)) { $__slots78e4657e5ef7e8ddac92fd806d2fb04b = array_pop($__slotsStack78e4657e5ef7e8ddac92fd806d2fb04b); } ?>
+<?php if (! empty($__attrsStack78e4657e5ef7e8ddac92fd806d2fb04b)) { $__attrs78e4657e5ef7e8ddac92fd806d2fb04b = array_pop($__attrsStack78e4657e5ef7e8ddac92fd806d2fb04b); } ?>
+<?php $__blaze->popData(); ?>
+
+                <?php elseif(auth()->user()->hasRole('teacher')): ?>
+
+                    <?php
+                        $teacherCoursesCount = \App\Models\Course::where('teacher_id', auth()->id())->count();
+                        $teacherStudentsCount = \App\Models\Enrollment::whereHas('course', function ($query) {
+                            $query->where('teacher_id', auth()->id());
+                        })->count();
+                    ?>
+
+                    <div class="mx-3 mb-5 rounded-2xl border border-zinc-800 bg-zinc-900/80 p-4 shadow-lg shadow-purple-950/20">
+                        <p class="text-[11px] font-semibold uppercase tracking-widest text-zinc-500">
+                            My Stats
+                        </p>
+
+                        <div class="mt-3 space-y-3 text-sm">
+                            <div class="flex items-center justify-between">
+                                <span class="text-zinc-400">📚 Courses</span>
+                                <span class="font-bold text-white"><?php echo e($teacherCoursesCount); ?></span>
+                            </div>
+
+                            <div class="flex items-center justify-between">
+                                <span class="text-zinc-400">👥 Students</span>
+                                <span class="font-bold text-white"><?php echo e($teacherStudentsCount); ?></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <?php $__blaze->ensureRequired('C:\Users\admin\pathwise\resources\views/flux/sidebar/item.blade.php', $__blaze->compiledPath.'/78e4657e5ef7e8ddac92fd806d2fb04b.php'); ?>
+<?php if (isset($__slots78e4657e5ef7e8ddac92fd806d2fb04b)) { $__slotsStack78e4657e5ef7e8ddac92fd806d2fb04b[] = $__slots78e4657e5ef7e8ddac92fd806d2fb04b; } ?>
+<?php if (isset($__attrs78e4657e5ef7e8ddac92fd806d2fb04b)) { $__attrsStack78e4657e5ef7e8ddac92fd806d2fb04b[] = $__attrs78e4657e5ef7e8ddac92fd806d2fb04b; } ?>
+<?php $__attrs78e4657e5ef7e8ddac92fd806d2fb04b = ['icon' => 'book-open','href' => route('teacher.my-courses'),'current' => request()->routeIs('teacher.my-courses'),'wire:navigate' => true]; ?>
+<?php $__slots78e4657e5ef7e8ddac92fd806d2fb04b = []; ?>
+<?php $__blaze->pushData($__attrs78e4657e5ef7e8ddac92fd806d2fb04b); ?>
+<?php ob_start(); ?>
+                        <?php echo e(__('My Courses')); ?>
+
+                    <?php $__slots78e4657e5ef7e8ddac92fd806d2fb04b['slot'] = new \Illuminate\View\ComponentSlot(trim(ob_get_clean()), []); ?>
+<?php $__blaze->pushSlots($__slots78e4657e5ef7e8ddac92fd806d2fb04b); ?>
+<?php _78e4657e5ef7e8ddac92fd806d2fb04b($__blaze, $__attrs78e4657e5ef7e8ddac92fd806d2fb04b, $__slots78e4657e5ef7e8ddac92fd806d2fb04b, ['href', 'current', 'wire:navigate'], [], $__this ?? (isset($this) ? $this : null)); ?>
+<?php if (! empty($__slotsStack78e4657e5ef7e8ddac92fd806d2fb04b)) { $__slots78e4657e5ef7e8ddac92fd806d2fb04b = array_pop($__slotsStack78e4657e5ef7e8ddac92fd806d2fb04b); } ?>
+<?php if (! empty($__attrsStack78e4657e5ef7e8ddac92fd806d2fb04b)) { $__attrs78e4657e5ef7e8ddac92fd806d2fb04b = array_pop($__attrsStack78e4657e5ef7e8ddac92fd806d2fb04b); } ?>
+<?php $__blaze->popData(); ?>
+
+                    <?php $__blaze->ensureRequired('C:\Users\admin\pathwise\resources\views/flux/sidebar/item.blade.php', $__blaze->compiledPath.'/78e4657e5ef7e8ddac92fd806d2fb04b.php'); ?>
+<?php if (isset($__slots78e4657e5ef7e8ddac92fd806d2fb04b)) { $__slotsStack78e4657e5ef7e8ddac92fd806d2fb04b[] = $__slots78e4657e5ef7e8ddac92fd806d2fb04b; } ?>
+<?php if (isset($__attrs78e4657e5ef7e8ddac92fd806d2fb04b)) { $__attrsStack78e4657e5ef7e8ddac92fd806d2fb04b[] = $__attrs78e4657e5ef7e8ddac92fd806d2fb04b; } ?>
+<?php $__attrs78e4657e5ef7e8ddac92fd806d2fb04b = ['icon' => 'document','href' => route('teacher.lessons.index'),'current' => request()->routeIs('teacher.lessons.*'),'wire:navigate' => true]; ?>
+<?php $__slots78e4657e5ef7e8ddac92fd806d2fb04b = []; ?>
+<?php $__blaze->pushData($__attrs78e4657e5ef7e8ddac92fd806d2fb04b); ?>
+<?php ob_start(); ?>
+                        <?php echo e(__('Lessons')); ?>
+
+                    <?php $__slots78e4657e5ef7e8ddac92fd806d2fb04b['slot'] = new \Illuminate\View\ComponentSlot(trim(ob_get_clean()), []); ?>
+<?php $__blaze->pushSlots($__slots78e4657e5ef7e8ddac92fd806d2fb04b); ?>
+<?php _78e4657e5ef7e8ddac92fd806d2fb04b($__blaze, $__attrs78e4657e5ef7e8ddac92fd806d2fb04b, $__slots78e4657e5ef7e8ddac92fd806d2fb04b, ['href', 'current', 'wire:navigate'], [], $__this ?? (isset($this) ? $this : null)); ?>
+<?php if (! empty($__slotsStack78e4657e5ef7e8ddac92fd806d2fb04b)) { $__slots78e4657e5ef7e8ddac92fd806d2fb04b = array_pop($__slotsStack78e4657e5ef7e8ddac92fd806d2fb04b); } ?>
+<?php if (! empty($__attrsStack78e4657e5ef7e8ddac92fd806d2fb04b)) { $__attrs78e4657e5ef7e8ddac92fd806d2fb04b = array_pop($__attrsStack78e4657e5ef7e8ddac92fd806d2fb04b); } ?>
+<?php $__blaze->popData(); ?>
+
+                    <?php $__blaze->ensureRequired('C:\Users\admin\pathwise\resources\views/flux/sidebar/item.blade.php', $__blaze->compiledPath.'/78e4657e5ef7e8ddac92fd806d2fb04b.php'); ?>
+<?php if (isset($__slots78e4657e5ef7e8ddac92fd806d2fb04b)) { $__slotsStack78e4657e5ef7e8ddac92fd806d2fb04b[] = $__slots78e4657e5ef7e8ddac92fd806d2fb04b; } ?>
+<?php if (isset($__attrs78e4657e5ef7e8ddac92fd806d2fb04b)) { $__attrsStack78e4657e5ef7e8ddac92fd806d2fb04b[] = $__attrs78e4657e5ef7e8ddac92fd806d2fb04b; } ?>
+<?php $__attrs78e4657e5ef7e8ddac92fd806d2fb04b = ['icon' => 'clipboard','href' => route('teacher.quiz-results.index'),'current' => request()->routeIs('teacher.quiz-results.*'),'wire:navigate' => true]; ?>
+<?php $__slots78e4657e5ef7e8ddac92fd806d2fb04b = []; ?>
+<?php $__blaze->pushData($__attrs78e4657e5ef7e8ddac92fd806d2fb04b); ?>
+<?php ob_start(); ?>
+                        <?php echo e(__('Quiz Results')); ?>
+
+                    <?php $__slots78e4657e5ef7e8ddac92fd806d2fb04b['slot'] = new \Illuminate\View\ComponentSlot(trim(ob_get_clean()), []); ?>
+<?php $__blaze->pushSlots($__slots78e4657e5ef7e8ddac92fd806d2fb04b); ?>
+<?php _78e4657e5ef7e8ddac92fd806d2fb04b($__blaze, $__attrs78e4657e5ef7e8ddac92fd806d2fb04b, $__slots78e4657e5ef7e8ddac92fd806d2fb04b, ['href', 'current', 'wire:navigate'], [], $__this ?? (isset($this) ? $this : null)); ?>
+<?php if (! empty($__slotsStack78e4657e5ef7e8ddac92fd806d2fb04b)) { $__slots78e4657e5ef7e8ddac92fd806d2fb04b = array_pop($__slotsStack78e4657e5ef7e8ddac92fd806d2fb04b); } ?>
+<?php if (! empty($__attrsStack78e4657e5ef7e8ddac92fd806d2fb04b)) { $__attrs78e4657e5ef7e8ddac92fd806d2fb04b = array_pop($__attrsStack78e4657e5ef7e8ddac92fd806d2fb04b); } ?>
+<?php $__blaze->popData(); ?>
+
+                    <?php $__blaze->ensureRequired('C:\Users\admin\pathwise\resources\views/flux/sidebar/item.blade.php', $__blaze->compiledPath.'/78e4657e5ef7e8ddac92fd806d2fb04b.php'); ?>
+<?php if (isset($__slots78e4657e5ef7e8ddac92fd806d2fb04b)) { $__slotsStack78e4657e5ef7e8ddac92fd806d2fb04b[] = $__slots78e4657e5ef7e8ddac92fd806d2fb04b; } ?>
+<?php if (isset($__attrs78e4657e5ef7e8ddac92fd806d2fb04b)) { $__attrsStack78e4657e5ef7e8ddac92fd806d2fb04b[] = $__attrs78e4657e5ef7e8ddac92fd806d2fb04b; } ?>
+<?php $__attrs78e4657e5ef7e8ddac92fd806d2fb04b = ['icon' => 'users','href' => route('teacher.student-progress.index'),'current' => request()->routeIs('teacher.student-progress.*'),'wire:navigate' => true]; ?>
+<?php $__slots78e4657e5ef7e8ddac92fd806d2fb04b = []; ?>
+<?php $__blaze->pushData($__attrs78e4657e5ef7e8ddac92fd806d2fb04b); ?>
+<?php ob_start(); ?>
+                        <?php echo e(__('Student Progress')); ?>
+
+                    <?php $__slots78e4657e5ef7e8ddac92fd806d2fb04b['slot'] = new \Illuminate\View\ComponentSlot(trim(ob_get_clean()), []); ?>
+<?php $__blaze->pushSlots($__slots78e4657e5ef7e8ddac92fd806d2fb04b); ?>
+<?php _78e4657e5ef7e8ddac92fd806d2fb04b($__blaze, $__attrs78e4657e5ef7e8ddac92fd806d2fb04b, $__slots78e4657e5ef7e8ddac92fd806d2fb04b, ['href', 'current', 'wire:navigate'], [], $__this ?? (isset($this) ? $this : null)); ?>
+<?php if (! empty($__slotsStack78e4657e5ef7e8ddac92fd806d2fb04b)) { $__slots78e4657e5ef7e8ddac92fd806d2fb04b = array_pop($__slotsStack78e4657e5ef7e8ddac92fd806d2fb04b); } ?>
+<?php if (! empty($__attrsStack78e4657e5ef7e8ddac92fd806d2fb04b)) { $__attrs78e4657e5ef7e8ddac92fd806d2fb04b = array_pop($__attrsStack78e4657e5ef7e8ddac92fd806d2fb04b); } ?>
+<?php $__blaze->popData(); ?>
+
+                <?php elseif(auth()->user()->hasRole('student')): ?>
+
+                    <?php $__blaze->ensureRequired('C:\Users\admin\pathwise\resources\views/flux/sidebar/item.blade.php', $__blaze->compiledPath.'/78e4657e5ef7e8ddac92fd806d2fb04b.php'); ?>
+<?php if (isset($__slots78e4657e5ef7e8ddac92fd806d2fb04b)) { $__slotsStack78e4657e5ef7e8ddac92fd806d2fb04b[] = $__slots78e4657e5ef7e8ddac92fd806d2fb04b; } ?>
+<?php if (isset($__attrs78e4657e5ef7e8ddac92fd806d2fb04b)) { $__attrsStack78e4657e5ef7e8ddac92fd806d2fb04b[] = $__attrs78e4657e5ef7e8ddac92fd806d2fb04b; } ?>
+<?php $__attrs78e4657e5ef7e8ddac92fd806d2fb04b = ['icon' => 'shopping-bag','href' => route('student.marketplace'),'current' => request()->routeIs('student.marketplace'),'wire:navigate' => true]; ?>
+<?php $__slots78e4657e5ef7e8ddac92fd806d2fb04b = []; ?>
+<?php $__blaze->pushData($__attrs78e4657e5ef7e8ddac92fd806d2fb04b); ?>
+<?php ob_start(); ?>
+                        <?php echo e(__('Marketplace')); ?>
+
+                    <?php $__slots78e4657e5ef7e8ddac92fd806d2fb04b['slot'] = new \Illuminate\View\ComponentSlot(trim(ob_get_clean()), []); ?>
+<?php $__blaze->pushSlots($__slots78e4657e5ef7e8ddac92fd806d2fb04b); ?>
+<?php _78e4657e5ef7e8ddac92fd806d2fb04b($__blaze, $__attrs78e4657e5ef7e8ddac92fd806d2fb04b, $__slots78e4657e5ef7e8ddac92fd806d2fb04b, ['href', 'current', 'wire:navigate'], [], $__this ?? (isset($this) ? $this : null)); ?>
+<?php if (! empty($__slotsStack78e4657e5ef7e8ddac92fd806d2fb04b)) { $__slots78e4657e5ef7e8ddac92fd806d2fb04b = array_pop($__slotsStack78e4657e5ef7e8ddac92fd806d2fb04b); } ?>
+<?php if (! empty($__attrsStack78e4657e5ef7e8ddac92fd806d2fb04b)) { $__attrs78e4657e5ef7e8ddac92fd806d2fb04b = array_pop($__attrsStack78e4657e5ef7e8ddac92fd806d2fb04b); } ?>
+<?php $__blaze->popData(); ?>
+
+                    <?php $__blaze->ensureRequired('C:\Users\admin\pathwise\resources\views/flux/sidebar/item.blade.php', $__blaze->compiledPath.'/78e4657e5ef7e8ddac92fd806d2fb04b.php'); ?>
+<?php if (isset($__slots78e4657e5ef7e8ddac92fd806d2fb04b)) { $__slotsStack78e4657e5ef7e8ddac92fd806d2fb04b[] = $__slots78e4657e5ef7e8ddac92fd806d2fb04b; } ?>
+<?php if (isset($__attrs78e4657e5ef7e8ddac92fd806d2fb04b)) { $__attrsStack78e4657e5ef7e8ddac92fd806d2fb04b[] = $__attrs78e4657e5ef7e8ddac92fd806d2fb04b; } ?>
+<?php $__attrs78e4657e5ef7e8ddac92fd806d2fb04b = ['icon' => 'book-open','href' => route('student.my-courses'),'current' => request()->routeIs('student.my-courses'),'wire:navigate' => true]; ?>
+<?php $__slots78e4657e5ef7e8ddac92fd806d2fb04b = []; ?>
+<?php $__blaze->pushData($__attrs78e4657e5ef7e8ddac92fd806d2fb04b); ?>
+<?php ob_start(); ?>
+                        <?php echo e(__('My Courses')); ?>
+
+                    <?php $__slots78e4657e5ef7e8ddac92fd806d2fb04b['slot'] = new \Illuminate\View\ComponentSlot(trim(ob_get_clean()), []); ?>
+<?php $__blaze->pushSlots($__slots78e4657e5ef7e8ddac92fd806d2fb04b); ?>
+<?php _78e4657e5ef7e8ddac92fd806d2fb04b($__blaze, $__attrs78e4657e5ef7e8ddac92fd806d2fb04b, $__slots78e4657e5ef7e8ddac92fd806d2fb04b, ['href', 'current', 'wire:navigate'], [], $__this ?? (isset($this) ? $this : null)); ?>
+<?php if (! empty($__slotsStack78e4657e5ef7e8ddac92fd806d2fb04b)) { $__slots78e4657e5ef7e8ddac92fd806d2fb04b = array_pop($__slotsStack78e4657e5ef7e8ddac92fd806d2fb04b); } ?>
+<?php if (! empty($__attrsStack78e4657e5ef7e8ddac92fd806d2fb04b)) { $__attrs78e4657e5ef7e8ddac92fd806d2fb04b = array_pop($__attrsStack78e4657e5ef7e8ddac92fd806d2fb04b); } ?>
+<?php $__blaze->popData(); ?>
+
+                    <?php $__blaze->ensureRequired('C:\Users\admin\pathwise\resources\views/flux/sidebar/item.blade.php', $__blaze->compiledPath.'/78e4657e5ef7e8ddac92fd806d2fb04b.php'); ?>
+<?php if (isset($__slots78e4657e5ef7e8ddac92fd806d2fb04b)) { $__slotsStack78e4657e5ef7e8ddac92fd806d2fb04b[] = $__slots78e4657e5ef7e8ddac92fd806d2fb04b; } ?>
+<?php if (isset($__attrs78e4657e5ef7e8ddac92fd806d2fb04b)) { $__attrsStack78e4657e5ef7e8ddac92fd806d2fb04b[] = $__attrs78e4657e5ef7e8ddac92fd806d2fb04b; } ?>
+<?php $__attrs78e4657e5ef7e8ddac92fd806d2fb04b = ['icon' => 'map','href' => route('student.learning-paths'),'current' => request()->routeIs('student.learning-paths*'),'wire:navigate' => true]; ?>
+<?php $__slots78e4657e5ef7e8ddac92fd806d2fb04b = []; ?>
+<?php $__blaze->pushData($__attrs78e4657e5ef7e8ddac92fd806d2fb04b); ?>
+<?php ob_start(); ?>
+                        <?php echo e(__('Learning Paths')); ?>
+
+                    <?php $__slots78e4657e5ef7e8ddac92fd806d2fb04b['slot'] = new \Illuminate\View\ComponentSlot(trim(ob_get_clean()), []); ?>
+<?php $__blaze->pushSlots($__slots78e4657e5ef7e8ddac92fd806d2fb04b); ?>
+<?php _78e4657e5ef7e8ddac92fd806d2fb04b($__blaze, $__attrs78e4657e5ef7e8ddac92fd806d2fb04b, $__slots78e4657e5ef7e8ddac92fd806d2fb04b, ['href', 'current', 'wire:navigate'], [], $__this ?? (isset($this) ? $this : null)); ?>
+<?php if (! empty($__slotsStack78e4657e5ef7e8ddac92fd806d2fb04b)) { $__slots78e4657e5ef7e8ddac92fd806d2fb04b = array_pop($__slotsStack78e4657e5ef7e8ddac92fd806d2fb04b); } ?>
+<?php if (! empty($__attrsStack78e4657e5ef7e8ddac92fd806d2fb04b)) { $__attrs78e4657e5ef7e8ddac92fd806d2fb04b = array_pop($__attrsStack78e4657e5ef7e8ddac92fd806d2fb04b); } ?>
+<?php $__blaze->popData(); ?>
+
+                    <?php $__blaze->ensureRequired('C:\Users\admin\pathwise\resources\views/flux/sidebar/item.blade.php', $__blaze->compiledPath.'/78e4657e5ef7e8ddac92fd806d2fb04b.php'); ?>
+<?php if (isset($__slots78e4657e5ef7e8ddac92fd806d2fb04b)) { $__slotsStack78e4657e5ef7e8ddac92fd806d2fb04b[] = $__slots78e4657e5ef7e8ddac92fd806d2fb04b; } ?>
+<?php if (isset($__attrs78e4657e5ef7e8ddac92fd806d2fb04b)) { $__attrsStack78e4657e5ef7e8ddac92fd806d2fb04b[] = $__attrs78e4657e5ef7e8ddac92fd806d2fb04b; } ?>
+<?php $__attrs78e4657e5ef7e8ddac92fd806d2fb04b = ['icon' => 'sparkles','href' => route('student.recommendations'),'current' => request()->routeIs('student.recommendations'),'wire:navigate' => true]; ?>
+<?php $__slots78e4657e5ef7e8ddac92fd806d2fb04b = []; ?>
+<?php $__blaze->pushData($__attrs78e4657e5ef7e8ddac92fd806d2fb04b); ?>
+<?php ob_start(); ?>
+                        <?php echo e(__('AI Recommendations')); ?>
+
+                    <?php $__slots78e4657e5ef7e8ddac92fd806d2fb04b['slot'] = new \Illuminate\View\ComponentSlot(trim(ob_get_clean()), []); ?>
+<?php $__blaze->pushSlots($__slots78e4657e5ef7e8ddac92fd806d2fb04b); ?>
+<?php _78e4657e5ef7e8ddac92fd806d2fb04b($__blaze, $__attrs78e4657e5ef7e8ddac92fd806d2fb04b, $__slots78e4657e5ef7e8ddac92fd806d2fb04b, ['href', 'current', 'wire:navigate'], [], $__this ?? (isset($this) ? $this : null)); ?>
+<?php if (! empty($__slotsStack78e4657e5ef7e8ddac92fd806d2fb04b)) { $__slots78e4657e5ef7e8ddac92fd806d2fb04b = array_pop($__slotsStack78e4657e5ef7e8ddac92fd806d2fb04b); } ?>
+<?php if (! empty($__attrsStack78e4657e5ef7e8ddac92fd806d2fb04b)) { $__attrs78e4657e5ef7e8ddac92fd806d2fb04b = array_pop($__attrsStack78e4657e5ef7e8ddac92fd806d2fb04b); } ?>
+<?php $__blaze->popData(); ?>
+
+                    <?php $__blaze->ensureRequired('C:\Users\admin\pathwise\resources\views/flux/sidebar/item.blade.php', $__blaze->compiledPath.'/78e4657e5ef7e8ddac92fd806d2fb04b.php'); ?>
+<?php if (isset($__slots78e4657e5ef7e8ddac92fd806d2fb04b)) { $__slotsStack78e4657e5ef7e8ddac92fd806d2fb04b[] = $__slots78e4657e5ef7e8ddac92fd806d2fb04b; } ?>
+<?php if (isset($__attrs78e4657e5ef7e8ddac92fd806d2fb04b)) { $__attrsStack78e4657e5ef7e8ddac92fd806d2fb04b[] = $__attrs78e4657e5ef7e8ddac92fd806d2fb04b; } ?>
+<?php $__attrs78e4657e5ef7e8ddac92fd806d2fb04b = ['icon' => 'credit-card','href' => route('student.transactions'),'current' => request()->routeIs('student.transactions*'),'wire:navigate' => true]; ?>
+<?php $__slots78e4657e5ef7e8ddac92fd806d2fb04b = []; ?>
+<?php $__blaze->pushData($__attrs78e4657e5ef7e8ddac92fd806d2fb04b); ?>
+<?php ob_start(); ?>
+                        <?php echo e(__('Transactions')); ?>
+
+                    <?php $__slots78e4657e5ef7e8ddac92fd806d2fb04b['slot'] = new \Illuminate\View\ComponentSlot(trim(ob_get_clean()), []); ?>
+<?php $__blaze->pushSlots($__slots78e4657e5ef7e8ddac92fd806d2fb04b); ?>
+<?php _78e4657e5ef7e8ddac92fd806d2fb04b($__blaze, $__attrs78e4657e5ef7e8ddac92fd806d2fb04b, $__slots78e4657e5ef7e8ddac92fd806d2fb04b, ['href', 'current', 'wire:navigate'], [], $__this ?? (isset($this) ? $this : null)); ?>
+<?php if (! empty($__slotsStack78e4657e5ef7e8ddac92fd806d2fb04b)) { $__slots78e4657e5ef7e8ddac92fd806d2fb04b = array_pop($__slotsStack78e4657e5ef7e8ddac92fd806d2fb04b); } ?>
+<?php if (! empty($__attrsStack78e4657e5ef7e8ddac92fd806d2fb04b)) { $__attrs78e4657e5ef7e8ddac92fd806d2fb04b = array_pop($__attrsStack78e4657e5ef7e8ddac92fd806d2fb04b); } ?>
+<?php $__blaze->popData(); ?>
+
+                    <?php $__blaze->ensureRequired('C:\Users\admin\pathwise\resources\views/flux/sidebar/item.blade.php', $__blaze->compiledPath.'/78e4657e5ef7e8ddac92fd806d2fb04b.php'); ?>
+<?php if (isset($__slots78e4657e5ef7e8ddac92fd806d2fb04b)) { $__slotsStack78e4657e5ef7e8ddac92fd806d2fb04b[] = $__slots78e4657e5ef7e8ddac92fd806d2fb04b; } ?>
+<?php if (isset($__attrs78e4657e5ef7e8ddac92fd806d2fb04b)) { $__attrsStack78e4657e5ef7e8ddac92fd806d2fb04b[] = $__attrs78e4657e5ef7e8ddac92fd806d2fb04b; } ?>
+<?php $__attrs78e4657e5ef7e8ddac92fd806d2fb04b = ['icon' => 'academic-cap','href' => route('student.certificates'),'current' => request()->routeIs('student.certificates'),'wire:navigate' => true]; ?>
+<?php $__slots78e4657e5ef7e8ddac92fd806d2fb04b = []; ?>
+<?php $__blaze->pushData($__attrs78e4657e5ef7e8ddac92fd806d2fb04b); ?>
+<?php ob_start(); ?>
+                        <?php echo e(__('Certificates')); ?>
+
+                    <?php $__slots78e4657e5ef7e8ddac92fd806d2fb04b['slot'] = new \Illuminate\View\ComponentSlot(trim(ob_get_clean()), []); ?>
+<?php $__blaze->pushSlots($__slots78e4657e5ef7e8ddac92fd806d2fb04b); ?>
+<?php _78e4657e5ef7e8ddac92fd806d2fb04b($__blaze, $__attrs78e4657e5ef7e8ddac92fd806d2fb04b, $__slots78e4657e5ef7e8ddac92fd806d2fb04b, ['href', 'current', 'wire:navigate'], [], $__this ?? (isset($this) ? $this : null)); ?>
+<?php if (! empty($__slotsStack78e4657e5ef7e8ddac92fd806d2fb04b)) { $__slots78e4657e5ef7e8ddac92fd806d2fb04b = array_pop($__slotsStack78e4657e5ef7e8ddac92fd806d2fb04b); } ?>
+<?php if (! empty($__attrsStack78e4657e5ef7e8ddac92fd806d2fb04b)) { $__attrs78e4657e5ef7e8ddac92fd806d2fb04b = array_pop($__attrsStack78e4657e5ef7e8ddac92fd806d2fb04b); } ?>
+<?php $__blaze->popData(); ?>
+
+                <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+
+            <?php $__slots37018356addbef9f50edabdc8e57ddb1['slot'] = new \Illuminate\View\ComponentSlot(trim(ob_get_clean()), []); ?>
+<?php $__blaze->pushSlots($__slots37018356addbef9f50edabdc8e57ddb1); ?>
+<?php _37018356addbef9f50edabdc8e57ddb1($__blaze, $__attrs37018356addbef9f50edabdc8e57ddb1, $__slots37018356addbef9f50edabdc8e57ddb1, ['heading'], [], $__this ?? (isset($this) ? $this : null)); ?>
+<?php if (! empty($__slotsStack37018356addbef9f50edabdc8e57ddb1)) { $__slots37018356addbef9f50edabdc8e57ddb1 = array_pop($__slotsStack37018356addbef9f50edabdc8e57ddb1); } ?>
+<?php if (! empty($__attrsStack37018356addbef9f50edabdc8e57ddb1)) { $__attrs37018356addbef9f50edabdc8e57ddb1 = array_pop($__attrsStack37018356addbef9f50edabdc8e57ddb1); } ?>
+<?php $__blaze->popData(); ?>
+        <?php echo trim(ob_get_clean()); ?>
 
 </nav>
 <?php echo ltrim(ob_get_clean()); ?>
 
-            <?php ob_start(); ?><div class="flex-1" data-flux-spacer></div>
+        <?php ob_start(); ?><div class="flex-1" data-flux-spacer></div>
 <?php echo ltrim(ob_get_clean()); ?>
 
-            <?php ob_start(); ?><nav class="flex flex-col overflow-visible min-h-auto" data-flux-sidebar-nav>
+        <div class="mx-3 mb-3 border-t border-zinc-800"></div>
+
+        <?php ob_start(); ?><?php $__blaze->pushData(['class' => 'pt-3']); $__env->pushConsumableComponentData(['class' => 'pt-3']); ?><nav class="flex flex-col overflow-visible min-h-auto pt-3" data-flux-sidebar-nav>
     <?php ob_start(); ?>
-                <?php $__blaze->ensureRequired('C:\Users\admin\pathwise\vendor\livewire\flux\src/../stubs/resources/views/flux/sidebar/item.blade.php', $__blaze->compiledPath.'/b956a63ed6ffe95e1a1b2b98b93c25b7.php'); ?>
-<?php if (isset($__slotsb956a63ed6ffe95e1a1b2b98b93c25b7)) { $__slotsStackb956a63ed6ffe95e1a1b2b98b93c25b7[] = $__slotsb956a63ed6ffe95e1a1b2b98b93c25b7; } ?>
-<?php if (isset($__attrsb956a63ed6ffe95e1a1b2b98b93c25b7)) { $__attrsStackb956a63ed6ffe95e1a1b2b98b93c25b7[] = $__attrsb956a63ed6ffe95e1a1b2b98b93c25b7; } ?>
-<?php $__attrsb956a63ed6ffe95e1a1b2b98b93c25b7 = ['icon' => 'folder-git-2','href' => 'https://github.com/laravel/livewire-starter-kit','target' => '_blank']; ?>
-<?php $__slotsb956a63ed6ffe95e1a1b2b98b93c25b7 = []; ?>
-<?php $__blaze->pushData($__attrsb956a63ed6ffe95e1a1b2b98b93c25b7); ?>
+            <?php $__blaze->ensureRequired('C:\Users\admin\pathwise\resources\views/flux/sidebar/group.blade.php', $__blaze->compiledPath.'/37018356addbef9f50edabdc8e57ddb1.php'); ?>
+<?php if (isset($__slots37018356addbef9f50edabdc8e57ddb1)) { $__slotsStack37018356addbef9f50edabdc8e57ddb1[] = $__slots37018356addbef9f50edabdc8e57ddb1; } ?>
+<?php if (isset($__attrs37018356addbef9f50edabdc8e57ddb1)) { $__attrsStack37018356addbef9f50edabdc8e57ddb1[] = $__attrs37018356addbef9f50edabdc8e57ddb1; } ?>
+<?php $__attrs37018356addbef9f50edabdc8e57ddb1 = ['heading' => __('Account'),'class' => 'grid gap-1 px-2']; ?>
+<?php $__slots37018356addbef9f50edabdc8e57ddb1 = []; ?>
+<?php $__blaze->pushData($__attrs37018356addbef9f50edabdc8e57ddb1); ?>
 <?php ob_start(); ?>
-                    <?php echo e(__('Repository')); ?>
-
-                <?php $__slotsb956a63ed6ffe95e1a1b2b98b93c25b7['slot'] = new \Illuminate\View\ComponentSlot(trim(ob_get_clean()), []); ?>
-<?php $__blaze->pushSlots($__slotsb956a63ed6ffe95e1a1b2b98b93c25b7); ?>
-<?php _b956a63ed6ffe95e1a1b2b98b93c25b7($__blaze, $__attrsb956a63ed6ffe95e1a1b2b98b93c25b7, $__slotsb956a63ed6ffe95e1a1b2b98b93c25b7, [], [], $__this ?? (isset($this) ? $this : null)); ?>
-<?php if (! empty($__slotsStackb956a63ed6ffe95e1a1b2b98b93c25b7)) { $__slotsb956a63ed6ffe95e1a1b2b98b93c25b7 = array_pop($__slotsStackb956a63ed6ffe95e1a1b2b98b93c25b7); } ?>
-<?php if (! empty($__attrsStackb956a63ed6ffe95e1a1b2b98b93c25b7)) { $__attrsb956a63ed6ffe95e1a1b2b98b93c25b7 = array_pop($__attrsStackb956a63ed6ffe95e1a1b2b98b93c25b7); } ?>
-<?php $__blaze->popData(); ?>
-
-                <?php $__blaze->ensureRequired('C:\Users\admin\pathwise\vendor\livewire\flux\src/../stubs/resources/views/flux/sidebar/item.blade.php', $__blaze->compiledPath.'/b956a63ed6ffe95e1a1b2b98b93c25b7.php'); ?>
-<?php if (isset($__slotsb956a63ed6ffe95e1a1b2b98b93c25b7)) { $__slotsStackb956a63ed6ffe95e1a1b2b98b93c25b7[] = $__slotsb956a63ed6ffe95e1a1b2b98b93c25b7; } ?>
-<?php if (isset($__attrsb956a63ed6ffe95e1a1b2b98b93c25b7)) { $__attrsStackb956a63ed6ffe95e1a1b2b98b93c25b7[] = $__attrsb956a63ed6ffe95e1a1b2b98b93c25b7; } ?>
-<?php $__attrsb956a63ed6ffe95e1a1b2b98b93c25b7 = ['icon' => 'book-open-text','href' => 'https://laravel.com/docs/starter-kits#livewire','target' => '_blank']; ?>
-<?php $__slotsb956a63ed6ffe95e1a1b2b98b93c25b7 = []; ?>
-<?php $__blaze->pushData($__attrsb956a63ed6ffe95e1a1b2b98b93c25b7); ?>
+                <?php $__blaze->ensureRequired('C:\Users\admin\pathwise\resources\views/flux/sidebar/item.blade.php', $__blaze->compiledPath.'/78e4657e5ef7e8ddac92fd806d2fb04b.php'); ?>
+<?php if (isset($__slots78e4657e5ef7e8ddac92fd806d2fb04b)) { $__slotsStack78e4657e5ef7e8ddac92fd806d2fb04b[] = $__slots78e4657e5ef7e8ddac92fd806d2fb04b; } ?>
+<?php if (isset($__attrs78e4657e5ef7e8ddac92fd806d2fb04b)) { $__attrsStack78e4657e5ef7e8ddac92fd806d2fb04b[] = $__attrs78e4657e5ef7e8ddac92fd806d2fb04b; } ?>
+<?php $__attrs78e4657e5ef7e8ddac92fd806d2fb04b = ['icon' => 'cog','href' => route('profile.edit'),'current' => request()->routeIs('profile.edit'),'wire:navigate' => true]; ?>
+<?php $__slots78e4657e5ef7e8ddac92fd806d2fb04b = []; ?>
+<?php $__blaze->pushData($__attrs78e4657e5ef7e8ddac92fd806d2fb04b); ?>
 <?php ob_start(); ?>
-                    <?php echo e(__('Documentation')); ?>
+                    <?php echo e(__('Settings')); ?>
 
-                <?php $__slotsb956a63ed6ffe95e1a1b2b98b93c25b7['slot'] = new \Illuminate\View\ComponentSlot(trim(ob_get_clean()), []); ?>
-<?php $__blaze->pushSlots($__slotsb956a63ed6ffe95e1a1b2b98b93c25b7); ?>
-<?php _b956a63ed6ffe95e1a1b2b98b93c25b7($__blaze, $__attrsb956a63ed6ffe95e1a1b2b98b93c25b7, $__slotsb956a63ed6ffe95e1a1b2b98b93c25b7, [], [], $__this ?? (isset($this) ? $this : null)); ?>
-<?php if (! empty($__slotsStackb956a63ed6ffe95e1a1b2b98b93c25b7)) { $__slotsb956a63ed6ffe95e1a1b2b98b93c25b7 = array_pop($__slotsStackb956a63ed6ffe95e1a1b2b98b93c25b7); } ?>
-<?php if (! empty($__attrsStackb956a63ed6ffe95e1a1b2b98b93c25b7)) { $__attrsb956a63ed6ffe95e1a1b2b98b93c25b7 = array_pop($__attrsStackb956a63ed6ffe95e1a1b2b98b93c25b7); } ?>
+                <?php $__slots78e4657e5ef7e8ddac92fd806d2fb04b['slot'] = new \Illuminate\View\ComponentSlot(trim(ob_get_clean()), []); ?>
+<?php $__blaze->pushSlots($__slots78e4657e5ef7e8ddac92fd806d2fb04b); ?>
+<?php _78e4657e5ef7e8ddac92fd806d2fb04b($__blaze, $__attrs78e4657e5ef7e8ddac92fd806d2fb04b, $__slots78e4657e5ef7e8ddac92fd806d2fb04b, ['href', 'current', 'wire:navigate'], [], $__this ?? (isset($this) ? $this : null)); ?>
+<?php if (! empty($__slotsStack78e4657e5ef7e8ddac92fd806d2fb04b)) { $__slots78e4657e5ef7e8ddac92fd806d2fb04b = array_pop($__slotsStack78e4657e5ef7e8ddac92fd806d2fb04b); } ?>
+<?php if (! empty($__attrsStack78e4657e5ef7e8ddac92fd806d2fb04b)) { $__attrs78e4657e5ef7e8ddac92fd806d2fb04b = array_pop($__attrsStack78e4657e5ef7e8ddac92fd806d2fb04b); } ?>
 <?php $__blaze->popData(); ?>
-            <?php echo trim(ob_get_clean()); ?>
+            <?php $__slots37018356addbef9f50edabdc8e57ddb1['slot'] = new \Illuminate\View\ComponentSlot(trim(ob_get_clean()), []); ?>
+<?php $__blaze->pushSlots($__slots37018356addbef9f50edabdc8e57ddb1); ?>
+<?php _37018356addbef9f50edabdc8e57ddb1($__blaze, $__attrs37018356addbef9f50edabdc8e57ddb1, $__slots37018356addbef9f50edabdc8e57ddb1, ['heading'], [], $__this ?? (isset($this) ? $this : null)); ?>
+<?php if (! empty($__slotsStack37018356addbef9f50edabdc8e57ddb1)) { $__slots37018356addbef9f50edabdc8e57ddb1 = array_pop($__slotsStack37018356addbef9f50edabdc8e57ddb1); } ?>
+<?php if (! empty($__attrsStack37018356addbef9f50edabdc8e57ddb1)) { $__attrs37018356addbef9f50edabdc8e57ddb1 = array_pop($__attrsStack37018356addbef9f50edabdc8e57ddb1); } ?>
+<?php $__blaze->popData(); ?>
+        <?php echo trim(ob_get_clean()); ?>
 
 </nav>
-<?php echo ltrim(ob_get_clean()); ?>
+<?php $__blaze->popData(); $__env->popConsumableComponentData(); ?><?php echo ltrim(ob_get_clean()); ?>
 
-            <?php if (isset($component)) { $__componentOriginalca54afb14f8d43d7f1acc5dbe6164a0a = $component; } ?>
+        <?php if (isset($component)) { $__componentOriginalca54afb14f8d43d7f1acc5dbe6164a0a = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginalca54afb14f8d43d7f1acc5dbe6164a0a = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.desktop-user-menu','data' => ['class' => 'hidden lg:block','name' => auth()->user()->name]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('desktop-user-menu'); ?>
@@ -175,185 +549,16 @@
 <?php $component = $__componentOriginalca54afb14f8d43d7f1acc5dbe6164a0a; ?>
 <?php unset($__componentOriginalca54afb14f8d43d7f1acc5dbe6164a0a); ?>
 <?php endif; ?>
-        <?php echo trim(ob_get_clean()); ?>
+    <?php echo trim(ob_get_clean()); ?>
 
 </ui-sidebar>
-<?php echo ltrim(ob_get_clean()); ?>
+<?php $__blaze->popData(); $__env->popConsumableComponentData(); ?><?php echo ltrim(ob_get_clean()); ?>
 
-        <!-- Mobile User Menu -->
-        <?php ob_start(); ?><header class="[grid-area:header] z-10 min-h-14 flex items-center px-6 lg:px-8 lg:hidden" data-flux-header>
-            <?php ob_start(); ?>
-            <?php ob_start(); ?><button type="button" class="relative items-center font-medium justify-center gap-2 whitespace-nowrap disabled:opacity-75 dark:disabled:opacity-75 disabled:cursor-default disabled:pointer-events-none justify-center h-10 text-sm rounded-lg w-10 inline-flex -ms-2.5 bg-transparent hover:bg-zinc-800/5 dark:hover:bg-white/15 text-zinc-500 hover:text-zinc-800 dark:text-zinc-400 dark:hover:text-white      shrink-0 lg:hidden" data-flux-button="data-flux-button" x-data="" x-on:click="$dispatch('flux-sidebar-toggle')" aria-label="Toggle sidebar" data-flux-sidebar-toggle="data-flux-sidebar-toggle">
-        <svg class="shrink-0 [:where(&amp;)]:size-5" data-flux-icon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
-  <path fill-rule="evenodd" d="M2 6.75A.75.75 0 0 1 2.75 6h14.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 6.75Zm0 6.5a.75.75 0 0 1 .75-.75h14.5a.75.75 0 0 1 0 1.5H2.75a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd"/>
-</svg>
-    </button>
-<?php echo ltrim(ob_get_clean()); ?>
-
-            <?php ob_start(); ?><div class="flex-1" data-flux-spacer></div>
-<?php echo ltrim(ob_get_clean()); ?>
-
-            <?php ob_start(); ?><ui-dropdown position="top end"  data-flux-dropdown>
-    <?php ob_start(); ?>
-                <?php $__blaze->ensureRequired('C:\Users\admin\pathwise\vendor\livewire\flux\src/../stubs/resources/views/flux/profile.blade.php', $__blaze->compiledPath.'/fda84cd5d53cc5cba52e8088c50c6bb9.php'); ?>
-<?php $__blaze->pushData(['initials' => auth()->user()->initials(),'iconTrailing' => 'chevron-down']); ?>
-<?php _fda84cd5d53cc5cba52e8088c50c6bb9($__blaze, ['initials' => auth()->user()->initials(),'iconTrailing' => 'chevron-down'], [], ['initials'], ['iconTrailing' => 'icon-trailing'], $__this ?? (isset($this) ? $this : null)); ?>
-<?php $__blaze->popData(); ?>
-
-                <?php ob_start(); ?><ui-menu
-    class="[:where(&amp;)]:min-w-48 p-[.3125rem] rounded-lg shadow-xs border border-zinc-200 dark:border-zinc-600 bg-white dark:bg-zinc-700 focus:outline-hidden"
-    popover="manual"
-    data-flux-menu
->
-    <?php ob_start(); ?>
-                    <?php ob_start(); ?><ui-menu-radio-group  data-flux-menu-radio-group>
-    <?php ob_start(); ?>
-                        <div class="p-0 text-sm font-normal">
-                            <div class="flex items-center gap-2 px-1 py-1.5 text-start text-sm">
-                                <?php $blaze_memoized_key = \Livewire\Blaze\Memoizer\Memo::key("flux::avatar", ['name' => auth()->user()->name, 'initials' => auth()->user()->initials()]); ?><?php if ($blaze_memoized_key !== null && \Livewire\Blaze\Memoizer\Memo::has($blaze_memoized_key)) : ?><?php echo \Livewire\Blaze\Memoizer\Memo::get($blaze_memoized_key); ?><?php else : ?><?php ob_start(); ?><?php $__blaze->ensureRequired('C:\Users\admin\pathwise\vendor\livewire\flux\src/../stubs/resources/views/flux/avatar/index.blade.php', $__blaze->compiledPath.'/73484f6410569c9b3454f27212965908.php'); ?>
-<?php $__blaze->pushData(['name' => auth()->user()->name,'initials' => auth()->user()->initials()]); ?>
-<?php _73484f6410569c9b3454f27212965908($__blaze, ['name' => auth()->user()->name,'initials' => auth()->user()->initials()], [], ['name', 'initials'], [], $__this ?? (isset($this) ? $this : null)); ?>
-<?php $__blaze->popData(); ?><?php $blaze_memoized_html = ob_get_clean(); ?><?php if ($blaze_memoized_key !== null) { \Livewire\Blaze\Memoizer\Memo::put($blaze_memoized_key, $blaze_memoized_html); } ?><?php echo $blaze_memoized_html; ?><?php endif; ?>
-
-                                <div class="grid flex-1 text-start text-sm leading-tight">
-                                    <?php ob_start(); ?><div class="font-medium [:where(&amp;)]:text-zinc-800 [:where(&amp;)]:dark:text-white text-sm [&amp;:has(+[data-flux-subheading])]:mb-2 [[data-flux-subheading]+&amp;]:mt-2 truncate" data-flux-heading><?php ob_start(); ?><?php echo e(auth()->user()->name); ?><?php echo trim(ob_get_clean()); ?></div>
-<?php echo ltrim(ob_get_clean()); ?>
-                                    <?php ob_start(); ?><p class="[:where(&amp;)]:font-normal [:where(&amp;)]:text-sm [:where(&amp;)]:text-zinc-500 [:where(&amp;)]:dark:text-white/70 truncate" data-flux-text ><?php ob_start(); ?><?php echo e(auth()->user()->email); ?><?php echo trim(ob_get_clean()); ?></p><?php echo ltrim(ob_get_clean()); ?>
-                                </div>
-                            </div>
-                        </div>
-                    <?php echo trim(ob_get_clean()); ?>
-
-</ui-menu-radio-group>
-<?php echo ltrim(ob_get_clean()); ?>
-
-                    <?php ob_start(); ?><div class="-mx-[.3125rem] my-[.3125rem] h-px"  data-flux-menu-separator>
-    <div data-orientation="horizontal" role="none" class="border-0 [print-color-adjust:exact] bg-zinc-800/15 dark:bg-white/20 h-px w-full dark:bg-zinc-600!" data-flux-separator></div>
-</div>
-<?php echo ltrim(ob_get_clean()); ?>
-
-                    <?php ob_start(); ?><ui-menu-radio-group  data-flux-menu-radio-group>
-    <?php ob_start(); ?>
-                        <?php ob_start(); ?><a href="<?php echo e(route('profile.edit')); ?>" data-flux-menu-item="data-flux-menu-item" data-flux-menu-item-has-icon="data-flux-menu-item-has-icon" class="flex items-center px-2 py-1.5 w-full focus:outline-hidden rounded-md text-start text-sm font-medium [&amp;[disabled]]:opacity-50 text-zinc-800 data-active:bg-zinc-50 dark:text-white dark:data-active:bg-zinc-600 **:data-flux-menu-item-icon:text-zinc-400 dark:**:data-flux-menu-item-icon:text-white/60 [&amp;[data-active]_[data-flux-menu-item-icon]]:text-current" wire:navigate="">
-        <svg class="shrink-0 [:where(&amp;)]:size-5 me-2" data-flux-menu-item-icon="data-flux-menu-item-icon" data-flux-icon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
-  <path d="M13.024 9.25c.47 0 .827-.433.637-.863a4 4 0 0 0-4.094-2.364c-.468.05-.665.576-.43.984l1.08 1.868a.75.75 0 0 0 .649.375h2.158ZM7.84 7.758c-.236-.408-.79-.5-1.068-.12A3.982 3.982 0 0 0 6 10c0 .884.287 1.7.772 2.363.278.38.832.287 1.068-.12l1.078-1.868a.75.75 0 0 0 0-.75L7.839 7.758ZM9.138 12.993c-.235.408-.039.934.43.984a4 4 0 0 0 4.094-2.364c.19-.43-.168-.863-.638-.863h-2.158a.75.75 0 0 0-.65.375l-1.078 1.868Z"/>
-  <path fill-rule="evenodd" d="m14.13 4.347.644-1.117a.75.75 0 0 0-1.299-.75l-.644 1.116a6.954 6.954 0 0 0-2.081-.556V1.75a.75.75 0 0 0-1.5 0v1.29a6.954 6.954 0 0 0-2.081.556L6.525 2.48a.75.75 0 1 0-1.3.75l.645 1.117A7.04 7.04 0 0 0 4.347 5.87L3.23 5.225a.75.75 0 1 0-.75 1.3l1.116.644A6.954 6.954 0 0 0 3.04 9.25H1.75a.75.75 0 0 0 0 1.5h1.29c.078.733.27 1.433.556 2.081l-1.116.645a.75.75 0 1 0 .75 1.298l1.117-.644a7.04 7.04 0 0 0 1.523 1.523l-.645 1.117a.75.75 0 1 0 1.3.75l.644-1.116a6.954 6.954 0 0 0 2.081.556v1.29a.75.75 0 0 0 1.5 0v-1.29a6.954 6.954 0 0 0 2.081-.556l.645 1.116a.75.75 0 0 0 1.299-.75l-.645-1.117a7.042 7.042 0 0 0 1.523-1.523l1.117.644a.75.75 0 0 0 .75-1.298l-1.116-.645a6.954 6.954 0 0 0 .556-2.081h1.29a.75.75 0 0 0 0-1.5h-1.29a6.954 6.954 0 0 0-.556-2.081l1.116-.644a.75.75 0 0 0-.75-1.3l-1.117.645a7.04 7.04 0 0 0-1.524-1.523ZM10 4.5a5.475 5.475 0 0 0-2.781.754A5.527 5.527 0 0 0 5.22 7.277 5.475 5.475 0 0 0 4.5 10a5.475 5.475 0 0 0 .752 2.777 5.527 5.527 0 0 0 2.028 2.004c.802.458 1.73.719 2.72.719a5.474 5.474 0 0 0 2.78-.753 5.527 5.527 0 0 0 2.001-2.027c.458-.802.719-1.73.719-2.72a5.475 5.475 0 0 0-.753-2.78 5.528 5.528 0 0 0-2.028-2.002A5.475 5.475 0 0 0 10 4.5Z" clip-rule="evenodd"/>
-</svg>
-
-            
-    <?php ob_start(); ?>
-                            <?php echo e(__('Settings')); ?>
-
-                        <?php echo trim(ob_get_clean()); ?>
-
-    </a>
-<?php echo ltrim(ob_get_clean()); ?>
-                    <?php echo trim(ob_get_clean()); ?>
-
-</ui-menu-radio-group>
-<?php echo ltrim(ob_get_clean()); ?>
-
-                    <?php ob_start(); ?><div class="-mx-[.3125rem] my-[.3125rem] h-px"  data-flux-menu-separator>
-    <div data-orientation="horizontal" role="none" class="border-0 [print-color-adjust:exact] bg-zinc-800/15 dark:bg-white/20 h-px w-full dark:bg-zinc-600!" data-flux-separator></div>
-</div>
-<?php echo ltrim(ob_get_clean()); ?>
-
-                    <form method="POST" action="<?php echo e(route('logout')); ?>" class="w-full">
-                        <?php echo csrf_field(); ?>
-                        <?php ob_start(); ?><button type="submit" class="flex items-center px-2 py-1.5 w-full focus:outline-hidden rounded-md text-start text-sm font-medium [&amp;[disabled]]:opacity-50 text-zinc-800 data-active:bg-zinc-50 dark:text-white dark:data-active:bg-zinc-600 **:data-flux-menu-item-icon:text-zinc-400 dark:**:data-flux-menu-item-icon:text-white/60 [&amp;[data-active]_[data-flux-menu-item-icon]]:text-current w-full cursor-pointer" data-flux-menu-item="data-flux-menu-item" data-flux-menu-item-has-icon="data-flux-menu-item-has-icon" data-test="logout-button">
-        <svg class="shrink-0 [:where(&amp;)]:size-5 me-2" data-flux-menu-item-icon="data-flux-menu-item-icon" data-flux-icon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
-  <path fill-rule="evenodd" d="M3 4.25A2.25 2.25 0 0 1 5.25 2h5.5A2.25 2.25 0 0 1 13 4.25v2a.75.75 0 0 1-1.5 0v-2a.75.75 0 0 0-.75-.75h-5.5a.75.75 0 0 0-.75.75v11.5c0 .414.336.75.75.75h5.5a.75.75 0 0 0 .75-.75v-2a.75.75 0 0 1 1.5 0v2A2.25 2.25 0 0 1 10.75 18h-5.5A2.25 2.25 0 0 1 3 15.75V4.25Z" clip-rule="evenodd"/>
-  <path fill-rule="evenodd" d="M6 10a.75.75 0 0 1 .75-.75h9.546l-1.048-.943a.75.75 0 1 1 1.004-1.114l2.5 2.25a.75.75 0 0 1 0 1.114l-2.5 2.25a.75.75 0 1 1-1.004-1.114l1.048-.943H6.75A.75.75 0 0 1 6 10Z" clip-rule="evenodd"/>
-</svg>
-
-            
-    <?php ob_start(); ?>
-                            <?php echo e(__('Log out')); ?>
-
-                        <?php echo trim(ob_get_clean()); ?>
-
-    </button>
-<?php echo ltrim(ob_get_clean()); ?>
-                    </form>
-                <?php echo trim(ob_get_clean()); ?>
-
-</ui-menu>
-<?php echo ltrim(ob_get_clean()); ?>
-            <?php echo trim(ob_get_clean()); ?>
-
-</ui-dropdown>
-<?php echo ltrim(ob_get_clean()); ?>
-        <?php echo trim(ob_get_clean()); ?>
-
-    </header>
-<?php echo ltrim(ob_get_clean()); ?>
-
-        <?php echo e($slot); ?>
+    <?php echo e($slot); ?>
 
 
-        <?php app("livewire")->forceAssetInjection(); ?><div x-persist="<?php echo e('toast'); ?>">
-            <?php ob_start(); ?><ui-toast-group x-data x-on:toast-show.document="$el.showToast($event.detail)" popover="manual" position="bottom end"  wire:ignore>
-    <?php ob_start(); ?>
-                <?php ob_start(); ?><ui-toast x-data x-on:toast-show.document="! $el.closest('ui-toast-group') && $el.showToast($event.detail)" popover="manual" position="bottom end" wire:ignore>
-    <template>
-        <div class="max-w-sm in-[ui-toast-group]:max-w-auto in-[ui-toast-group]:w-xs sm:in-[ui-toast-group]:w-sm" data-variant="" data-flux-toast-dialog>
-            <div class="p-2 flex rounded-xl shadow-lg bg-white border border-zinc-200 border-b-zinc-300/80 dark:bg-zinc-700 dark:border-zinc-600">
-                <div class="flex-1 flex items-start gap-4 overflow-hidden">
-                    <div class="flex-1 py-1.5 ps-2.5 flex gap-2">
-                        
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="hidden [[data-flux-toast-dialog][data-variant=success]_&]:block shrink-0 mt-0.5 size-4 text-lime-600 dark:text-lime-400">
-                            <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14Zm3.844-8.791a.75.75 0 0 0-1.188-.918l-3.7 4.79-1.649-1.833a.75.75 0 1 0-1.114 1.004l2.25 2.5a.75.75 0 0 0 1.15-.043l4.25-5.5Z" clip-rule="evenodd" />
-                        </svg>
-
-                        
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="hidden [[data-flux-toast-dialog][data-variant=warning]_&]:block shrink-0 mt-0.5 size-4 text-amber-500 dark:text-amber-400">
-                            <path fill-rule="evenodd" d="M6.701 2.25c.577-1 2.02-1 2.598 0l5.196 9a1.5 1.5 0 0 1-1.299 2.25H2.804a1.5 1.5 0 0 1-1.3-2.25l5.197-9ZM8 4a.75.75 0 0 1 .75.75v3a.75.75 0 1 1-1.5 0v-3A.75.75 0 0 1 8 4Zm0 8a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" clip-rule="evenodd" />
-                        </svg>
-
-                        
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="hidden [[data-flux-toast-dialog][data-variant=info]_&]:block shrink-0 mt-0.5 size-4 text-cyan-500 dark:text-cyan-400">
-                            <path fill-rule="evenodd" d="M15 8A7 7 0 1 1 1 8a7 7 0 0 1 14 0ZM9 5a1 1 0 1 1-2 0 1 1 0 0 1 2 0ZM6.75 8a.75.75 0 0 0 0 1.5h.75v1.75a.75.75 0 0 0 1.5 0v-2.5A.75.75 0 0 0 8.25 8h-1.5Z" clip-rule="evenodd" />
-                        </svg>
-                        
-                        
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="hidden [[data-flux-toast-dialog][data-variant=danger]_&]:block shrink-0 mt-0.5 size-4 text-rose-500 dark:text-rose-400">
-                            <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14ZM8 4a.75.75 0 0 1 .75.75v3a.75.75 0 0 1-1.5 0v-3A.75.75 0 0 1 8 4Zm0 8a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" clip-rule="evenodd" />
-                        </svg>
-
-                        <div>
-                            
-                            <div class="font-medium text-sm text-zinc-800 dark:text-white [&:not(:empty)+div]:font-normal [&:not(:empty)+div]:text-zinc-500 [&:not(:empty)+div]:dark:text-zinc-300 [&:not(:empty)]:pb-2"><slot name="heading"></slot></div>
-
-                            
-                            <div class="font-medium text-sm text-zinc-800 dark:text-white"><slot name="text"></slot></div>
-                        </div>
-                    </div>
-
-                    
-                    <ui-close class="flex items-center">
-                        <button type="button" class="inline-flex items-center font-medium justify-center gap-2 truncate disabled:opacity-50 dark:disabled:opacity-75 disabled:cursor-default h-8 text-sm rounded-md w-8 bg-transparent hover:bg-zinc-800/5 dark:hover:bg-white/15 text-zinc-400 hover:text-zinc-800 dark:text-zinc-400 dark:hover:text-white" as="button">
-                            <div>
-                                <svg class="[:where(&)]:size-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
-                                    <path d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z"></path>
-                                </svg>
-                            </div>
-                        </button>
-                    </ui-close>
-                </div>
-            </div>
-        </div>
-    </template>
-</ui-toast>
-<?php echo ltrim(ob_get_clean()); ?>
-            <?php echo trim(ob_get_clean()); ?>
-
-</ui-toast-group>
-<?php echo ltrim(ob_get_clean()); ?>
-        </div>
-
-        <?php app('livewire')->forceAssetInjection(); ?>
+    <?php app('livewire')->forceAssetInjection(); ?>
 <?php echo app('flux')->scripts(); ?>
 
-    </body>
-</html>
-<?php /**PATH C:\Users\admin\pathwise\resources\views/layouts/app/sidebar.blade.php ENDPATH**/ ?>
+</body>
+</html><?php /**PATH C:\Users\admin\pathwise\resources\views/layouts/app/sidebar.blade.php ENDPATH**/ ?>

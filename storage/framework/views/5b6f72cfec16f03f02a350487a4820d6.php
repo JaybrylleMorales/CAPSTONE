@@ -1,43 +1,31 @@
-<?php # [BlazeFolded]:{flux::toast}:{C:\Users\admin\pathwise\vendor\livewire\flux\src/../stubs/resources/views/flux/toast/index.blade.php}:{1776985208} ?>
-<?php # [BlazeFolded]:{flux::toast.group}:{C:\Users\admin\pathwise\vendor\livewire\flux\src/../stubs/resources/views/flux/toast/group.blade.php}:{1776985208} ?>
+<?php # [BlazeFolded]:{flux::toast}:{C:\Users\admin\pathwise\resources\views/flux/toast/index.blade.php}:{1782477722} ?>
+<?php # [BlazeFolded]:{flux::toast.group}:{C:\Users\admin\pathwise\resources\views/flux/toast/group.blade.php}:{1782477722} ?>
 <!DOCTYPE html>
 <html lang="<?php echo e(str_replace('_', '-', app()->getLocale())); ?>" class="dark">
     <head>
         <?php echo $__env->make('partials.head', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
     </head>
-    <body class="min-h-screen bg-white antialiased dark:bg-linear-to-b dark:from-neutral-950 dark:to-neutral-900">
-        <div class="bg-background flex min-h-svh flex-col items-center justify-center gap-6 p-6 md:p-10">
-            <div class="flex w-full max-w-sm flex-col gap-2">
+    <body class="min-h-screen bg-neutral-950 antialiased">
+        
+        <div class="pointer-events-none fixed inset-0 overflow-hidden">
+            <div class="absolute -top-40 -left-40 h-96 w-96 rounded-full bg-purple-600/20 blur-3xl"></div>
+            <div class="absolute -bottom-40 -right-40 h-96 w-96 rounded-full bg-indigo-600/20 blur-3xl"></div>
+        </div>
+
+        <div class="relative z-10 flex min-h-svh flex-col items-center justify-center gap-6 p-6 md:p-10">
+            <div class="flex w-full max-w-sm flex-col gap-6">
+                
                 <a href="<?php echo e(route('home')); ?>" class="flex flex-col items-center gap-2 font-medium" wire:navigate>
-                    <span class="flex h-9 w-9 mb-1 items-center justify-center rounded-md">
-                        <?php if (isset($component)) { $__componentOriginal159d6670770cb479b1921cea6416c26c = $component; } ?>
-<?php if (isset($attributes)) { $__attributesOriginal159d6670770cb479b1921cea6416c26c = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.app-logo-icon','data' => ['class' => 'size-9 fill-current text-black dark:text-white']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
-<?php $component->withName('app-logo-icon'); ?>
-<?php if ($component->shouldRender()): ?>
-<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
-<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
-<?php endif; ?>
-<?php $component->withAttributes(['class' => 'size-9 fill-current text-black dark:text-white']); ?>
-<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
-
-<?php echo $__env->renderComponent(); ?>
-<?php endif; ?>
-<?php if (isset($__attributesOriginal159d6670770cb479b1921cea6416c26c)): ?>
-<?php $attributes = $__attributesOriginal159d6670770cb479b1921cea6416c26c; ?>
-<?php unset($__attributesOriginal159d6670770cb479b1921cea6416c26c); ?>
-<?php endif; ?>
-<?php if (isset($__componentOriginal159d6670770cb479b1921cea6416c26c)): ?>
-<?php $component = $__componentOriginal159d6670770cb479b1921cea6416c26c; ?>
-<?php unset($__componentOriginal159d6670770cb479b1921cea6416c26c); ?>
-<?php endif; ?>
-                    </span>
-                    <span class="sr-only"><?php echo e(config('app.name', 'Laravel')); ?></span>
+                    <img src="<?php echo e(asset('images/pathwise-logo-full.png')); ?>" alt="PATHWISE" class="h-12 w-auto" />
+                    <span class="sr-only"><?php echo e(config('app.name', 'PATHWISE')); ?></span>
                 </a>
-                <div class="flex flex-col gap-6">
-                    <?php echo e($slot); ?>
 
+                
+                <div class="rounded-2xl border border-neutral-800 bg-neutral-900/60 p-8 shadow-xl backdrop-blur">
+                    <div class="flex flex-col gap-6">
+                        <?php echo e($slot); ?>
+
+                    </div>
                 </div>
             </div>
         </div>
@@ -106,5 +94,4 @@
 <?php echo app('flux')->scripts(); ?>
 
     </body>
-</html>
-<?php /**PATH C:\Users\admin\pathwise\resources\views/layouts/auth/simple.blade.php ENDPATH**/ ?>
+</html><?php /**PATH C:\Users\admin\pathwise\resources\views/layouts/auth/simple.blade.php ENDPATH**/ ?>

@@ -11,112 +11,490 @@
 <?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
 
 
-<div class="space-y-6">
+<?php
+    $scoreStatus = 'No Data';
+    $scoreBadgeClass = 'bg-gray-100 text-gray-700';
+    $scoreTextClass = 'text-gray-400';
 
-    <div>
-        <h1 class="text-2xl font-bold text-gray-900 dark:text-white">
-            Welcome back, <?php echo e(auth()->user()->name); ?>
+    if ($averageScore >= 90) {
+        $scoreStatus = '🏆 Mastery';
+        $scoreBadgeClass = 'bg-yellow-100 text-yellow-700';
+        $scoreTextClass = 'text-yellow-400';
+    } elseif ($averageScore >= 75) {
+        $scoreStatus = '🟢 Proficient';
+        $scoreBadgeClass = 'bg-green-100 text-green-700';
+        $scoreTextClass = 'text-green-400';
+    } elseif ($averageScore >= 60) {
+        $scoreStatus = '🟡 Developing';
+        $scoreBadgeClass = 'bg-yellow-100 text-yellow-700';
+        $scoreTextClass = 'text-yellow-400';
+    } elseif ($averageScore > 0) {
+        $scoreStatus = '🔴 Needs Reinforcement';
+        $scoreBadgeClass = 'bg-red-100 text-red-700';
+        $scoreTextClass = 'text-red-400';
+    }
 
-        </h1>
-        <p class="text-sm text-gray-600 dark:text-gray-400">
-            Continue your learning journey with PathWise.
-        </p>
-    </div>
+    $latestEnrollments = $enrollments->take(3);
+    $latestQuizResults = $quizResults->take(3);
+?>
 
-    <div class="flex gap-3">
-        <a href="<?php echo e(route('student.marketplace')); ?>"
-           class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded">
-            Browse Courses
-        </a>
+<div class="space-y-5">
 
-        <a href="<?php echo e(route('student.my-courses')); ?>"
-           class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">
-            My Courses
-        </a>
-    </div>
-
-    <div class="grid gap-4 md:grid-cols-3">
-        <div class="rounded-xl border bg-white p-5 shadow-sm dark:bg-neutral-900 dark:border-neutral-700">
-            <p class="text-sm text-gray-500">Courses Enrolled</p>
-            <h2 class="mt-2 text-3xl font-bold"><?php echo e($enrollments->count()); ?></h2>
-        </div>
-
-        <div class="rounded-xl border bg-white p-5 shadow-sm dark:bg-neutral-900 dark:border-neutral-700">
-            <p class="text-sm text-gray-500">Quizzes Taken</p>
-            <h2 class="mt-2 text-3xl font-bold"><?php echo e($quizzesTaken); ?></h2>
-        </div>
-
-        <div class="rounded-xl border bg-white p-5 shadow-sm dark:bg-neutral-900 dark:border-neutral-700">
-            <p class="text-sm text-gray-500">Certificates Earned</p>
-            <h2 class="mt-2 text-3xl font-bold"><?php echo e($certificatesEarned); ?></h2>
-        </div>
-    </div>
-
-    <div class="rounded-xl border bg-white p-5 shadow-sm dark:bg-neutral-900 dark:border-neutral-700">
-        <h3 class="text-lg font-semibold mb-4">
-            AI Recommended For You
-        </h3>
-
-        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__empty_1 = true; $__currentLoopData = $recommendedCourses; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $recommendation): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
-            <div class="rounded-lg bg-neutral-100 p-4 mb-3 dark:bg-neutral-800">
-                <h4 class="font-semibold">
-                    <?php echo e($recommendation->course->title ?? 'Course unavailable'); ?>
-
-                </h4>
-
-                <p class="text-sm mt-1">
-                    Confidence Score: <?php echo e($recommendation->recommendation_score); ?>%
+    <div class="rounded-2xl border border-purple-500/30 bg-gradient-to-r from-purple-900/40 via-neutral-900 to-neutral-900 p-6">
+        <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+            <div>
+                <p class="text-sm font-semibold text-purple-300">
+                    PathWise Student Learning Portal
                 </p>
 
-                <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">
-                    <?php echo e($recommendation->reason); ?>
+                <h1 class="mt-2 text-3xl font-bold text-white">
+                    Welcome back, <?php echo e(auth()->user()->name); ?>
 
+                </h1>
+
+                <p class="mt-2 max-w-2xl text-sm text-gray-400">
+                    Track your learning progress, quiz performance, certificates, and AI-powered recommendations.
                 </p>
             </div>
-        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
-            <p class="text-sm text-gray-500">
-                No AI recommendations yet.
-            </p>
-        <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+
+            <div class="flex flex-wrap gap-2">
+                <a href="<?php echo e(route('student.marketplace')); ?>"
+                   class="rounded-xl bg-green-600 px-4 py-2 text-sm font-semibold text-white hover:bg-green-700">
+                    Browse Courses
+                </a>
+
+                <a href="<?php echo e(route('student.learning-paths')); ?>"
+                   class="rounded-xl bg-purple-600 px-4 py-2 text-sm font-semibold text-white hover:bg-purple-700">
+                    Learning Paths
+                </a>
+
+                <a href="<?php echo e(route('student.my-courses')); ?>"
+                   class="rounded-xl border border-neutral-700 bg-neutral-900/60 px-4 py-2 text-sm font-semibold text-white transition hover:border-neutral-500 hover:bg-neutral-800">
+                    My Courses
+                </a>
+
+                <a href="<?php echo e(route('student.recommendations')); ?>"
+                   class="rounded-xl border border-neutral-700 bg-neutral-900/60 px-4 py-2 text-sm font-semibold text-white transition hover:border-neutral-500 hover:bg-neutral-800">
+                    AI Recommendations
+                </a>
+            </div>
+        </div>
     </div>
 
-    <div class="rounded-xl border bg-white p-5 shadow-sm dark:bg-neutral-900 dark:border-neutral-700">
-        <h3 class="text-lg font-semibold mb-4">
-            Continue Learning
-        </h3>
+    <div class="grid gap-4 md:grid-cols-4">
 
-        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__empty_1 = true; $__currentLoopData = $enrollments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $enrollment): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
-            <div class="rounded-lg bg-neutral-100 p-4 mb-3 dark:bg-neutral-800">
-                <div class="flex justify-between">
-                    <h4 class="font-semibold">
-                        <?php echo e($enrollment->course->title ?? 'Course unavailable'); ?>
+        <div class="rounded-2xl border border-neutral-700 bg-neutral-900 p-5">
+            <p class="text-sm text-gray-400">Courses Enrolled</p>
+            <h2 class="mt-2 text-3xl font-bold text-white"><?php echo e($enrollments->count()); ?></h2>
+            <p class="mt-1 text-xs text-gray-500">Total courses joined</p>
+        </div>
 
-                    </h4>
+        <div class="rounded-2xl border border-neutral-700 bg-neutral-900 p-5">
+            <p class="text-sm text-gray-400">Quizzes Taken</p>
+            <h2 class="mt-2 text-3xl font-bold text-white"><?php echo e($quizzesTaken); ?></h2>
+            <p class="mt-1 text-xs text-gray-500">Assessment attempts</p>
+        </div>
 
-                    <span class="text-sm">
-                        <?php echo e($enrollment->progress_percentage); ?>%
-                    </span>
+        <div class="rounded-2xl border border-green-500/40 bg-green-500/10 p-5">
+            <p class="text-sm text-green-400">Certificates Earned</p>
+            <h2 class="mt-2 text-3xl font-bold text-green-400"><?php echo e($certificatesEarned); ?></h2>
+            <p class="mt-1 text-xs text-gray-500">Completed achievements</p>
+        </div>
+
+        <div class="rounded-2xl border border-neutral-700 bg-neutral-900 p-5">
+            <div class="flex items-center justify-between gap-2">
+                <p class="text-sm text-gray-400">Average Score</p>
+                <span class="rounded-full px-2 py-1 text-xs font-semibold <?php echo e($scoreBadgeClass); ?>">
+                    <?php echo e($scoreStatus); ?>
+
+                </span>
+            </div>
+
+            <h2 class="mt-2 text-3xl font-bold text-white"><?php echo e($averageScore); ?>%</h2>
+
+            <div class="mt-3 h-2 w-full rounded-full bg-neutral-800">
+                <div class="h-2 rounded-full bg-gradient-to-r from-purple-600 to-blue-500"
+                     style="width: <?php echo e(min($averageScore, 100)); ?>%">
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="grid items-start gap-4 lg:grid-cols-3">
+
+        <div class="rounded-2xl border border-purple-500/20 bg-gradient-to-br from-purple-900/25 to-neutral-900/80 p-6 backdrop-blur lg:col-span-2">
+
+            <div class="mb-4 flex items-center justify-between">
+                <div>
+                    <h3 class="text-xl font-bold text-purple-300">
+                        🎯 Recommended Next Course
+                    </h3>
+
+                    <p class="text-sm text-gray-400">
+                        Personalized recommendation based on your latest quiz performance.
+                    </p>
                 </div>
 
-                <div class="mt-3 h-2 w-full rounded bg-gray-300">
-                    <div class="h-2 rounded bg-blue-600"
-                         style="width: <?php echo e($enrollment->progress_percentage); ?>%">
+                <a href="<?php echo e(route('student.recommendations')); ?>"
+                   class="text-sm font-semibold text-purple-300 hover:text-purple-200">
+                    View All
+                </a>
+            </div>
+
+            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($recommendedCourse && $recommendedCourse->course): ?>
+
+                <div class="rounded-2xl bg-black/20 p-5">
+                    <div class="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
+
+                        <div class="flex-1">
+                            <div class="flex flex-wrap items-center gap-2">
+                                <p class="text-xs font-semibold uppercase tracking-wide text-purple-400">
+                                    Next Learning Path
+                                </p>
+
+                                <span class="rounded-full border border-purple-500/30 bg-purple-500/10 px-2 py-1 text-[11px] font-semibold text-purple-300">
+                                    AI Generated
+                                </span>
+                            </div>
+
+                            <h4 class="mt-2 text-2xl font-bold text-white">
+                                <?php echo e($recommendedCourse->course->title); ?>
+
+                            </h4>
+
+                            <p class="mt-2 line-clamp-3 text-sm leading-relaxed text-gray-300">
+                                <?php echo e($recommendedCourse->reason); ?>
+
+                            </p>
+
+                            <a href="<?php echo e(route('student.course.show', $recommendedCourse->course)); ?>"
+                               class="mt-4 inline-flex rounded-xl bg-gradient-to-r from-purple-500 to-indigo-600 px-5 py-2 text-sm font-semibold text-white transition hover:opacity-90">
+                                Start Learning →
+                            </a>
+                        </div>
+
+                        <div class="w-full rounded-xl border border-purple-500/20 bg-neutral-900/70 p-4 lg:w-64">
+                            <p class="text-sm text-gray-400">Confidence Score</p>
+
+                            <h5 class="mt-2 text-3xl font-bold text-purple-300">
+                                <?php echo e($recommendedCourse->recommendation_score); ?>%
+                            </h5>
+
+                            <div class="mt-4 h-3 w-full overflow-hidden rounded-full bg-neutral-800">
+                                <div class="h-3 rounded-full bg-gradient-to-r from-purple-500 to-indigo-400"
+                                     style="width: <?php echo e(min($recommendedCourse->recommendation_score, 100)); ?>%">
+                                </div>
+                            </div>
+
+                            <p class="mt-3 text-xs text-gray-500">
+                                Based on your latest assessment result.
+                            </p>
+                        </div>
+
                     </div>
                 </div>
 
-                <p class="text-sm text-gray-500 mt-2">
-                    Status: <?php echo e(ucfirst($enrollment->status)); ?>
+            <?php else: ?>
+                <div class="flex flex-col items-center justify-center rounded-xl border border-dashed border-purple-500/20 bg-black/20 px-6 py-10 text-center">
+                    <div class="mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-purple-500/10 text-2xl">
+                        🎯
+                    </div>
+                    <p class="text-sm font-semibold text-gray-300">
+                        No AI recommendation yet
+                    </p>
+                    <p class="mt-1 max-w-sm text-xs text-gray-500">
+                        Complete a quiz to let PathWise AI analyze your performance and recommend your next course.
+                    </p>
+                    <a href="<?php echo e(route('student.my-courses')); ?>"
+                       class="mt-4 inline-flex rounded-xl bg-gradient-to-r from-purple-500 to-indigo-600 px-4 py-2 text-sm font-semibold text-white transition hover:opacity-90">
+                        Go to My Courses
+                    </a>
+                </div>
+            <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
 
+        </div>
+
+        <div class="rounded-2xl border border-purple-500/30 bg-purple-500/10 p-6">
+            <h3 class="text-lg font-semibold text-white">
+                🧠 AI Learning Analysis
+            </h3>
+
+            <div class="mt-4 space-y-3">
+
+                <div class="rounded-xl bg-neutral-900/70 p-4">
+                    <p class="text-xs uppercase tracking-wide text-gray-500">
+                        Learning Status
+                    </p>
+                    <p class="mt-1 font-bold <?php echo e($scoreTextClass); ?>">
+                        <?php echo e($scoreStatus); ?>
+
+                    </p>
+                </div>
+
+                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($strongestCategory): ?>
+                    <div class="rounded-xl border border-green-500/30 bg-green-500/10 p-4">
+                        <p class="text-xs font-semibold uppercase tracking-wide text-green-400">
+                            Strength
+                        </p>
+
+                        <p class="mt-1 font-bold text-green-300">
+                            <?php echo e($strongestCategory->category_name); ?>
+
+                        </p>
+
+                        <p class="mt-1 text-xs text-gray-400">
+                            Average Score: <?php echo e($strongestCategory->average_score); ?>%
+                        </p>
+                    </div>
+                <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+
+                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($weakestCategory): ?>
+                    <div class="rounded-xl border border-red-500/30 bg-red-500/10 p-4">
+                        <p class="text-xs font-semibold uppercase tracking-wide text-red-400">
+                            Needs Improvement
+                        </p>
+
+                        <p class="mt-1 font-bold text-red-300">
+                            <?php echo e($weakestCategory->category_name); ?>
+
+                        </p>
+
+                        <p class="mt-1 text-xs text-gray-400">
+                            Average Score: <?php echo e($weakestCategory->average_score); ?>%
+                        </p>
+                    </div>
+                <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+
+                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(!$strongestCategory && !$weakestCategory): ?>
+                    <p class="rounded-xl bg-neutral-900/70 p-4 text-sm text-gray-400">
+                        Take quizzes to generate personalized learning insights.
+                    </p>
+                <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="grid gap-4 lg:grid-cols-2">
+
+        <div class="rounded-2xl border border-neutral-800 bg-neutral-900/50 p-6 backdrop-blur">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h3 class="text-lg font-semibold text-white">
+                        Continue Learning
+                    </h3>
+
+                    <p class="mt-1 text-sm text-gray-400">
+                        Your latest active or completed courses.
+                    </p>
+                </div>
+
+                <a href="<?php echo e(route('student.my-courses')); ?>"
+                   class="text-sm font-semibold text-purple-300 hover:text-purple-200">
+                    View All
+                </a>
+            </div>
+
+            <div class="mt-5 space-y-3">
+                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__empty_1 = true; $__currentLoopData = $latestEnrollments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $enrollment): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
+
+                    <div class="rounded-xl border border-neutral-800 bg-neutral-900/60 p-4">
+
+                        <div class="flex justify-between gap-4">
+                            <h4 class="font-semibold text-white">
+                                <?php echo e($enrollment->course->title ?? 'Course unavailable'); ?>
+
+                            </h4>
+
+                            <span class="text-sm text-gray-300">
+                                <?php echo e($enrollment->progress_percentage); ?>%
+                            </span>
+                        </div>
+
+                        <div class="mt-3 h-2 w-full rounded bg-neutral-800">
+                            <div class="h-2 rounded bg-gradient-to-r from-purple-500 to-indigo-500"
+                                 style="width: <?php echo e($enrollment->progress_percentage); ?>%">
+                            </div>
+                        </div>
+
+                        <div class="mt-3 flex items-center justify-between gap-3">
+                            <p class="text-sm text-gray-400">
+                                Status: <?php echo e(ucfirst($enrollment->status)); ?>
+
+                            </p>
+
+                            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($enrollment->status === 'completed'): ?>
+                                <a href="<?php echo e(route('student.certificates')); ?>"
+                                   class="rounded-lg bg-green-600 px-3 py-2 text-xs font-semibold text-white hover:bg-green-700">
+                                    Certificate
+                                </a>
+                            <?php else: ?>
+                                <a href="<?php echo e(route('student.learn.course', $enrollment->course)); ?>"
+                                   class="rounded-lg bg-gradient-to-r from-purple-500 to-indigo-600 px-3 py-2 text-xs font-semibold text-white transition hover:opacity-90">
+                                    Continue
+                                </a>
+                            <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+                        </div>
+
+                    </div>
+
+                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
+                    <p class="rounded-xl border border-neutral-800 bg-neutral-900/60 p-4 text-sm text-gray-400">
+                        You have not enrolled in any courses yet.
+                    </p>
+                <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+            </div>
+        </div>
+
+        <div class="rounded-2xl border border-neutral-800 bg-neutral-900/50 p-6 backdrop-blur">
+            <div class="mb-4 flex items-center justify-between">
+                <div>
+                    <h3 class="text-lg font-semibold text-white">
+                        Quiz Performance Trend
+                    </h3>
+
+                    <p class="text-sm text-gray-400">
+                        Latest quiz attempts summary.
+                    </p>
+                </div>
+
+                <p class="text-sm text-gray-500">
+                    <?php echo e(count($chartScores)); ?> attempts
                 </p>
             </div>
-        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
-            <p class="text-sm text-gray-500">
-                You are not enrolled in any courses yet.
-            </p>
-        <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+
+            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(count($chartScores) > 0): ?>
+                <div class="h-56">
+                    <canvas id="quizTrendChart"></canvas>
+                </div>
+            <?php else: ?>
+                <div class="rounded-xl border border-neutral-800 bg-neutral-900/60 p-6 text-center text-sm text-gray-400">
+                    No quiz attempts yet.
+                </div>
+            <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+        </div>
+
+    </div>
+
+    <div class="rounded-2xl border border-neutral-800 bg-neutral-900/50 p-6 backdrop-blur">
+
+        <div class="flex items-center justify-between">
+            <div>
+                <h3 class="text-lg font-semibold text-white">
+                    Recent Quiz History
+                </h3>
+
+                <p class="mt-1 text-sm text-gray-400">
+                    Latest assessment results.
+                </p>
+            </div>
+        </div>
+
+        <div class="mt-5 grid gap-3 md:grid-cols-3">
+            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__empty_1 = true; $__currentLoopData = $latestQuizResults; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $result): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
+
+                <div class="rounded-xl border border-neutral-800 bg-neutral-900/60 p-4">
+                    <p class="font-semibold text-white">
+                        <?php echo e($result->quiz->title ?? 'Quiz'); ?>
+
+                    </p>
+
+                    <p class="mt-1 text-sm text-gray-400">
+                        <?php echo e($result->quiz->course->title ?? 'Course unavailable'); ?>
+
+                    </p>
+
+                    <div class="mt-4 flex items-end justify-between">
+                        <div>
+                            <p class="text-2xl font-bold text-white">
+                                <?php echo e($result->percentage); ?>%
+                            </p>
+
+                            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($result->remarks === 'passed'): ?>
+                                <span class="text-sm font-semibold text-green-400">Passed</span>
+                            <?php else: ?>
+                                <span class="text-sm font-semibold text-red-400">Failed</span>
+                            <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+                        </div>
+
+                        <p class="text-xs text-gray-500">
+                            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($result->completed_at): ?>
+                                <?php echo e(\Carbon\Carbon::parse($result->completed_at)->format('M d, Y')); ?>
+
+                            <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+                        </p>
+                    </div>
+                </div>
+
+            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
+                <p class="rounded-xl border border-neutral-800 bg-neutral-900/60 p-4 text-sm text-gray-400 md:col-span-3">
+                    No quiz attempts yet.
+                </p>
+            <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+        </div>
+
     </div>
 
 </div>
+
+<?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(count($chartScores) > 0): ?>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        const quizTrendCtx = document.getElementById('quizTrendChart');
+
+        new Chart(quizTrendCtx, {
+            type: 'line',
+            data: {
+                labels: <?php echo json_encode($chartLabels, 15, 512) ?>,
+                datasets: [{
+                    label: 'Quiz Score',
+                    data: <?php echo json_encode($chartScores, 15, 512) ?>,
+                    borderColor: 'rgba(147, 51, 234, 1)',
+                    backgroundColor: 'rgba(147, 51, 234, 0.25)',
+                    borderWidth: 3,
+                    tension: 0.4,
+                    fill: true,
+                    pointRadius: 4,
+                    pointHoverRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: '#d1d5db'
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        ticks: {
+                            color: '#9ca3af'
+                        },
+                        grid: {
+                            color: 'rgba(156, 163, 175, 0.2)'
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            color: '#9ca3af'
+                        },
+                        grid: {
+                            color: 'rgba(156, 163, 175, 0.1)'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+<?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
 
  <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>

@@ -1,80 +1,145 @@
 <x-layouts::app :title="__('Create Course')">
 
-<h1 class="text-2xl font-bold mb-6">
-    Create Course
-</h1>
+<div class="space-y-6">
 
-<form action="{{ route('courses.store') }}"
-      method="POST"
-      class="space-y-4">
+    <div>
+        <h1 class="text-2xl font-bold">
+            Create Course
+        </h1>
 
-    @csrf
+        <p class="text-sm text-gray-500">
+            Add a new course to PathWise. Courses will contain lessons, quizzes, and certificates.
+        </p>
+    </div>
 
-    <input
-        type="text"
-        name="title"
-        placeholder="Course Title"
-        class="w-full border p-3 rounded">
+    <div class="rounded-xl border bg-white p-6 shadow-sm dark:bg-neutral-900 dark:border-neutral-700">
 
-    <textarea
-        name="description"
-        placeholder="Description"
-        class="w-full border p-3 rounded"></textarea>
+        <form action="{{ route('courses.store') }}"
+              method="POST"
+              class="space-y-5">
 
-    <select
-        name="category_id"
-        class="w-full rounded-lg border border-neutral-300 bg-white text-black dark:bg-neutral-800 dark:text-white"
->
+            @csrf
 
-        <option value="">
-            Select Category
-        </option>
+            <div>
+                <label class="block mb-1 text-sm font-medium">Course Title</label>
 
-        @foreach($categories as $category)
+                <input type="text"
+                       name="title"
+                       value="{{ old('title') }}"
+                       placeholder="Example: Entrepreneurship Essentials"
+                       class="w-full rounded border border-neutral-700 bg-neutral-900 text-white p-3"
+                       required>
+            </div>
 
-            <option value="{{ $category->id }}">
-                {{ $category->name }}
-            </option>
+            <div>
+                <label class="block mb-1 text-sm font-medium">Description</label>
 
-        @endforeach
+                <textarea name="description"
+                          rows="5"
+                          placeholder="Example: Learn the fundamentals of entrepreneurship including business planning, market research, financial management, and growth strategies."
+                          class="w-full rounded border border-neutral-700 bg-neutral-900 text-white p-3">{{ old('description') }}</textarea>
+            </div>
 
-    </select>
+            <div>
+                <label class="block mb-1 text-sm font-medium">Category</label>
 
-    <input
-        type="number"
-        step="0.01"
-        name="price"
-        placeholder="Price"
-        class="w-full border p-3 rounded">
+                <select name="category_id"
+                        class="w-full rounded border border-neutral-700 bg-neutral-900 text-white p-3"
+                        required>
+                    <option value="">Select Category</option>
 
-    <select
-        name="difficulty_level"
-        class="w-full border p-3 rounded">
+                    @foreach($categories as $category)
+                        <option value="{{ $category->id }}" @selected(old('category_id') == $category->id)>
+                            {{ $category->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
 
-        <option value="beginner">Beginner</option>
-        <option value="intermediate">Intermediate</option>
-        <option value="advanced">Advanced</option>
+            <div class="grid gap-4 md:grid-cols-2">
+                <div>
+                    <label class="block mb-1 text-sm font-medium">Price</label>
 
-    </select>
+                    <input type="number"
+                           step="0.01"
+                           name="price"
+                           value="{{ old('price', 0) }}"
+                           placeholder="Example: 0.00"
+                           class="w-full rounded border border-neutral-700 bg-neutral-900 text-white p-3"
+                           required>
+                </div>
 
-    <select
-        name="status"
-        class="w-full border p-3 rounded">
+                <div>
+                    <label class="block mb-1 text-sm font-medium">Estimated Hours</label>
 
-        <option value="draft">Draft</option>
-        <option value="pending">Pending</option>
-        <option value="approved">Approved</option>
-        <option value="published">Published</option>
+                    <input type="number"
+                           name="estimated_hours"
+                           value="{{ old('estimated_hours') }}"
+                           placeholder="Example: 5"
+                           class="w-full rounded border border-neutral-700 bg-neutral-900 text-white p-3">
+                </div>
+            </div>
 
-    </select>
+            <div class="grid gap-4 md:grid-cols-2">
+                <div>
+                    <label class="block mb-1 text-sm font-medium">Difficulty Level</label>
 
-    <button
-        class="px-4 py-2 bg-blue-600 text-white rounded">
+                    <select name="difficulty_level"
+                            class="w-full rounded border border-neutral-700 bg-neutral-900 text-white p-3"
+                            required>
+                        <option value="beginner" @selected(old('difficulty_level') == 'beginner')>Beginner</option>
+                        <option value="intermediate" @selected(old('difficulty_level', 'intermediate') == 'intermediate')>Intermediate</option>
+                        <option value="advanced" @selected(old('difficulty_level') == 'advanced')>Advanced</option>
+                    </select>
+                </div>
 
-        Save Course
+                <div>
+                    <label class="block mb-1 text-sm font-medium">Course Status</label>
 
-    </button>
+                    <select name="status"
+                            class="w-full rounded border border-neutral-700 bg-neutral-900 text-white p-3"
+                            required>
+                        <option value="draft" @selected(old('status') == 'draft')>Draft</option>
+                        <option value="pending" @selected(old('status') == 'pending')>Pending</option>
+                        <option value="approved" @selected(old('status') == 'approved')>Approved</option>
+                        <option value="published" @selected(old('status', 'published') == 'published')>Published</option>
+                    </select>
+                </div>
+            </div>
 
-</form>
+            <div class="space-y-3 rounded-lg border p-4 dark:border-neutral-700">
+                <label class="flex items-start gap-2">
+                    <input type="checkbox"
+                           name="certificate_available"
+                           value="1"
+                           class="mt-1"
+                           @checked(old('certificate_available', true))>
+
+                    <span>
+                        <span class="block font-medium">Certificate Available</span>
+                        <span class="text-sm text-gray-500">
+                            Allow students to earn a certificate after completing this course.
+                        </span>
+                    </span>
+                </label>
+            </div>
+
+            <div class="flex gap-2">
+                <button type="submit"
+                        class="rounded bg-blue-600 hover:bg-blue-700 px-4 py-2 text-white">
+                    Save Course
+                </button>
+
+                <a href="{{ route('courses.index') }}"
+                   class="rounded bg-gray-600 hover:bg-gray-700 px-4 py-2 text-white">
+                    Cancel
+                </a>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
 
 </x-layouts::app>

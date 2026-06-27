@@ -9,22 +9,20 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('learning_paths', function (Blueprint $table) {
-
             $table->string('name')->after('id');
 
             $table->text('description')
-                  ->nullable()
-                  ->after('name');
+                ->nullable()
+                ->after('name');
         });
     }
 
     public function down(): void
     {
         Schema::table('learning_paths', function (Blueprint $table) {
-
             $table->dropColumn([
                 'name',
-                'description'
+                'description',
             ]);
         });
     }
