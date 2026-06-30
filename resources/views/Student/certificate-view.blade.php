@@ -19,7 +19,7 @@
         <x-back-button :href="route('student.certificates')" label="Back to Certificates" />
 
         <a href="{{ route('student.certificate.download', $certificate) }}"
-           class="inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-purple-500 to-indigo-600 px-5 py-2 text-white shadow-lg shadow-purple-500/20 transition hover:opacity-90">
+           class="inline-flex items-center gap-2 rounded-lg bg-linear-to-r from-purple-500 to-indigo-600 px-5 py-2 text-white shadow-lg shadow-purple-500/20 transition hover:opacity-90">
             <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v12m0 0 4-4m-4 4-4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" />
             </svg>
@@ -29,10 +29,10 @@
 
     <div class="flex justify-center">
 
-        <div class="relative w-full max-w-[1400px] overflow-hidden rounded-3xl border-[10px] border-purple-700 bg-white shadow-2xl">
+        <div class="relative w-full max-w-1400 overflow-hidden rounded-3xl border-10 border-purple-700 bg-white shadow-2xl">
 
             <!-- A4 Landscape Ratio -->
-            <div class="relative aspect-[297/210] w-full p-10 text-center text-black lg:p-16">
+            <div class="relative aspect-297/210 w-full p-10 text-center text-black lg:p-16">
 
                 <!-- Soft corner glows for a premium feel -->
                 <div class="pointer-events-none absolute -left-24 -top-24 h-64 w-64 rounded-full bg-purple-300/30 blur-3xl"></div>

@@ -1,8 +1,8 @@
 <x-layouts::app :title="__('Lessons')">
     <div class="space-y-6">
         <div>
-            <h1 class="text-3xl font-bold text-white">Lessons</h1>
-            <p class="mt-1 text-sm text-zinc-400">
+            <h1 class="text-3xl font-bold text-dark">Lessons</h1>
+            <p class="mt-1 text-sm text-dark">
                 Manage lessons by selecting a course below.
             </p>
         </div>
@@ -21,7 +21,7 @@
                     </a>
                 </div>
             @empty
-                <div class="rounded-2xl border border-zinc-800 bg-zinc-900/60 p-6 text-zinc-400">
+                <div class="rounded-2xl border border-zinc-800 bg-zinc-900/60 p-6 text-white">
                     No courses found.
                 </div>
             @endforelse

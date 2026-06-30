@@ -7,7 +7,7 @@
             Certificates Management
         </h1>
 
-        <p class="text-gray-500">
+        <p class="text-gray-00">
             View all issued student certificates.
         </p>
     </div>

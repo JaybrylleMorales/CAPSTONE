@@ -3,11 +3,11 @@
 <div class="space-y-6">
 
     <div>
-        <h1 class="text-3xl font-bold text-white">
+        <h1 class="text-3xl font-bold text-black">
             My Certificates
         </h1>
 
-        <p class="text-gray-400">
+        <p class="text-dark-400">
             Certificates earned from completed courses.
         </p>
     </div>

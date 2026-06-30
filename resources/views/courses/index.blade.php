@@ -3,8 +3,8 @@
 
         <div class="flex items-center justify-between">
             <div>
-                <h1 class="text-3xl font-bold text-white">Courses</h1>
-                <p class="mt-1 text-sm text-zinc-400">
+                <h1 class="text-3xl font-bold text-black">Courses</h1>
+                <p class="mt-1 text-sm text-zinc-900">
                     Manage course content, pricing, teachers, and publishing status.
                 </p>
             </div>
@@ -23,24 +23,24 @@
         @endphp
 
         <div class="grid gap-4 md:grid-cols-4">
-            <div class="rounded-2xl border border-zinc-800 bg-zinc-900/70 p-5">
-                <p class="text-sm text-zinc-400">Total Courses</p>
-                <h2 class="mt-2 text-3xl font-bold text-white">{{ $totalCourses }}</h2>
+            <div class="rounded-2xl border border-zinc-800 bg-zinc-600/70 p-5">
+                <p class="text-sm text-black">Total Courses</p>
+                <h2 class="mt-2 text-3xl font-bold text-black">{{ $totalCourses }}</h2>
             </div>
 
             <div class="rounded-2xl border border-emerald-800/40 bg-emerald-950/30 p-5">
-                <p class="text-sm text-emerald-300">Published</p>
-                <h2 class="mt-2 text-3xl font-bold text-emerald-400">{{ $publishedCourses }}</h2>
+                <p class="text-sm text-black">Published</p>
+                <h2 class="mt-2 text-3xl font-bold text-black">{{ $publishedCourses }}</h2>
             </div>
 
             <div class="rounded-2xl border border-yellow-800/40 bg-yellow-950/30 p-5">
-                <p class="text-sm text-yellow-300">Pending</p>
-                <h2 class="mt-2 text-3xl font-bold text-yellow-400">{{ $pendingCourses }}</h2>
+                <p class="text-sm text-black">Pending</p>
+                <h2 class="mt-2 text-3xl font-bold text-black">{{ $pendingCourses }}</h2>
             </div>
 
-            <div class="rounded-2xl border border-zinc-700 bg-zinc-900/70 p-5">
-                <p class="text-sm text-zinc-400">Drafts</p>
-                <h2 class="mt-2 text-3xl font-bold text-white">{{ $draftCourses }}</h2>
+            <div class="rounded-2xl border border-zinc-700 bg-zinc-600/70 p-5">
+                <p class="text-sm text-black">Drafts</p>
+                <h2 class="mt-2 text-3xl font-bold text-black">{{ $draftCourses }}</h2>
             </div>
         </div>
 
@@ -50,15 +50,15 @@
             </div>
         @endif
 
-        <div class="rounded-2xl border border-zinc-800 bg-zinc-900/60 shadow-lg shadow-purple-950/10">
+        <div class="rounded-2xl border border-zinc-800 bg-zinc-600/60 shadow-lg shadow-purple-950/10">
             <div class="border-b border-zinc-800 px-6 py-4">
-                <h2 class="text-lg font-semibold text-white">Course Directory</h2>
-                <p class="text-sm text-zinc-400">All courses created in PathWise.</p>
+                <h2 class="text-lg font-semibold text-black">Course Directory</h2>
+                <p class="text-sm text-zinc-900">All courses created in PathWise.</p>
             </div>
 
             <div class="overflow-x-auto">
                 <table class="w-full text-left text-sm">
-                    <thead class="bg-zinc-950/70 text-xs uppercase tracking-wider text-zinc-400">
+                    <thead class="bg-zinc-950/70 text-xs uppercase tracking-wider text-white">
                         <tr>
                             <th class="px-6 py-4">Course</th>
                             <th class="px-6 py-4">Category</th>
@@ -75,7 +75,7 @@
                                 $status = strtolower($course->status);
 
                                 $statusClass = match ($status) {
-                                    'published' => 'bg-emerald-500/15 text-emerald-400',
+                                    'published' => 'bg-black text-emerald-400',
                                     'pending' => 'bg-yellow-500/15 text-yellow-400',
                                     'rejected' => 'bg-red-500/15 text-red-400',
                                     'draft' => 'bg-zinc-500/15 text-zinc-300',
@@ -83,7 +83,7 @@
                                 };
                             @endphp
 
-                            <tr class="hover:bg-white/[0.03]">
+                            <tr class="hover:bg-white/3">
                                 <td class="px-6 py-4">
                                     <div class="flex items-center gap-3">
                                         <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-purple-600/20 text-lg">
@@ -91,21 +91,21 @@
                                         </div>
 
                                         <div>
-                                            <p class="font-semibold text-white">{{ $course->title }}</p>
-                                            <p class="text-xs text-zinc-500">Course</p>
+                                            <p class="font-semibold text-black">{{ $course->title }}</p>
+                                            <p class="text-xs text-black">Course</p>
                                         </div>
                                     </div>
                                 </td>
 
-                                <td class="px-6 py-4 text-zinc-300">
+                                <td class="px-6 py-4 text-black0">
                                     {{ $course->category->name ?? 'No Category' }}
                                 </td>
 
-                                <td class="px-6 py-4 text-zinc-300">
+                                <td class="px-6 py-4 text-black">
                                     {{ $course->teacher->name ?? 'No Teacher' }}
                                 </td>
 
-                                <td class="px-6 py-4 font-semibold text-zinc-200">
+                                <td class="px-6 py-4 font-semibold text-black">
                                     ₱{{ number_format($course->price, 2) }}
                                 </td>
 

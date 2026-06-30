@@ -3,8 +3,8 @@
 
         <div class="flex items-center justify-between">
             <div>
-                <h1 class="text-3xl font-bold text-white">Quizzes</h1>
-                <p class="mt-1 text-sm text-zinc-400">
+                <h1 class="text-3xl font-bold text-black">Quizzes</h1>
+                <p class="mt-1 text-sm text-zinc-900">
                     Manage course assessments, passing scores, and question coverage.
                 </p>
             </div>
@@ -23,24 +23,24 @@
         @endphp
 
         <div class="grid gap-4 md:grid-cols-4">
-            <div class="rounded-2xl border border-zinc-800 bg-zinc-900/70 p-5">
-                <p class="text-sm text-zinc-400">Total Quizzes</p>
-                <h2 class="mt-2 text-3xl font-bold text-white">{{ $totalQuizzes }}</h2>
+            <div class="rounded-2xl border border-zinc-800 bg-zinc-400 p-5">
+                <p class="text-sm text-black">Total Quizzes</p>
+                <h2 class="mt-2 text-3xl font-bold text-black">{{ $totalQuizzes }}</h2>
             </div>
 
             <div class="rounded-2xl border border-emerald-800/40 bg-emerald-950/30 p-5">
-                <p class="text-sm text-emerald-300">Published</p>
-                <h2 class="mt-2 text-3xl font-bold text-emerald-400">{{ $publishedQuizzes }}</h2>
+                <p class="text-sm text-black">Published</p>
+                <h2 class="mt-2 text-3xl font-bold text-black">{{ $publishedQuizzes }}</h2>
             </div>
 
             <div class="rounded-2xl border border-purple-800/40 bg-purple-950/30 p-5">
-                <p class="text-sm text-purple-300">Question Bank</p>
-                <h2 class="mt-2 text-3xl font-bold text-purple-400">{{ $totalQuestions }}</h2>
+                <p class="text-sm text-black">Question Bank</p>
+                <h2 class="mt-2 text-3xl font-bold text-black">{{ $totalQuestions }}</h2>
             </div>
 
             <div class="rounded-2xl border border-blue-800/40 bg-blue-950/30 p-5">
-                <p class="text-sm text-blue-300">Avg. Passing Score</p>
-                <h2 class="mt-2 text-3xl font-bold text-blue-400">{{ $averagePassingScore }}%</h2>
+                <p class="text-sm text-black">Avg. Passing Score</p>
+                <h2 class="mt-2 text-3xl font-bold text-black">{{ $averagePassingScore }}%</h2>
             </div>
         </div>
 
@@ -50,23 +50,23 @@
             </div>
         @endif
 
-        <div class="rounded-2xl border border-zinc-800 bg-zinc-900/60 shadow-lg shadow-purple-950/10">
+        <div class="rounded-2xl border border-zinc-800 bg-zinc-600/60 shadow-lg shadow-purple-950/10">
             <div class="flex flex-col gap-3 border-b border-zinc-800 px-6 py-4 md:flex-row md:items-center md:justify-between">
                 <div>
-                    <h2 class="text-lg font-semibold text-white">Assessment Directory</h2>
-                    <p class="text-sm text-zinc-400">
+                    <h2 class="text-lg font-semibold text-black">Assessment Directory</h2>
+                    <p class="text-sm text-zinc-900">
                         All quizzes connected to PathWise courses.
                     </p>
                 </div>
 
-                <div class="rounded-xl border border-purple-500/30 bg-purple-500/10 px-4 py-2 text-sm font-semibold text-purple-300">
+                <div class="rounded-xl border border-purple-500/30 bg-black px-4 py-2 text-sm font-semibold text-white">
                     {{ $totalQuestions }} total questions
                 </div>
             </div>
 
             <div class="overflow-x-auto">
                 <table class="w-full text-left text-sm">
-                    <thead class="bg-zinc-950/70 text-xs uppercase tracking-wider text-zinc-400">
+                    <thead class="bg-zinc-950/70 text-xs uppercase tracking-wider text-white">
                         <tr>
                             <th class="px-6 py-4">Course</th>
                             <th class="px-6 py-4">Quiz</th>
@@ -83,18 +83,18 @@
                                 $questionCount = $quiz->questions->count();
                             @endphp
 
-                            <tr class="hover:bg-white/[0.03]">
+                            <tr class="hover:bg-white/3">
                                 <td class="px-6 py-4">
                                     <div class="flex items-center gap-3">
-                                        <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-purple-600 to-indigo-600 text-sm font-bold text-white">
+                                        <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-linear-to-br from-purple-600 to-indigo-600 text-sm font-bold text-white">
                                             {{ strtoupper(substr($quiz->course->title ?? 'C', 0, 1)) }}
                                         </div>
 
                                         <div>
-                                            <p class="font-semibold text-white">
+                                            <p class="font-semibold text-black">
                                                 {{ $quiz->course->title ?? 'No Course' }}
                                             </p>
-                                            <p class="text-xs text-zinc-500">
+                                            <p class="text-xs text-zinc-900">
                                                 Course assessment
                                             </p>
                                         </div>
@@ -102,12 +102,12 @@
                                 </td>
 
                                 <td class="px-6 py-4">
-                                    <p class="font-semibold text-white">
+                                    <p class="font-semibold text-black">
                                         {{ $quiz->title }}
                                     </p>
 
                                     @if($quiz->description)
-                                        <p class="mt-1 max-w-md truncate text-xs text-zinc-500">
+                                        <p class="mt-1 max-w-md truncate text-xs text-zinc-900">
                                             {{ $quiz->description }}
                                         </p>
                                     @else
@@ -118,7 +118,7 @@
                                 </td>
 
                                 <td class="px-6 py-4">
-                                    <span class="rounded-full bg-purple-500/15 px-3 py-1 text-xs font-semibold text-purple-400">
+                                    <span class="rounded-full bg-black px-3 py-1 text-xs font-semibold text-purple-400">
                                         {{ $questionCount }} question{{ $questionCount !== 1 ? 's' : '' }}
                                     </span>
                                 </td>
@@ -131,7 +131,7 @@
                                             </div>
                                         </div>
 
-                                        <span class="font-semibold text-zinc-300">
+                                        <span class="font-semibold text-white">
                                             {{ $quiz->passing_score }}%
                                         </span>
                                     </div>
@@ -139,7 +139,7 @@
 
                                 <td class="px-6 py-4">
                                     @if($quiz->is_published)
-                                        <span class="rounded-full bg-emerald-500/15 px-3 py-1 text-xs font-semibold text-emerald-400">
+                                        <span class="rounded-full bg-black px-3 py-1 text-xs font-semibold text-emerald-400">
                                             Published
                                         </span>
                                     @else

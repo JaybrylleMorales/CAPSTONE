@@ -3,7 +3,8 @@
     <head>
         @include('partials.head')
     </head>
-    <body class="min-h-screen bg-neutral-950 antialiased">
+
+    <body class="min-h-screen bg-neutral-950 text-white antialiased">
         {{-- Background glow to match the landing page --}}
         <div class="pointer-events-none fixed inset-0 overflow-hidden">
             <div class="absolute -top-40 -left-40 h-96 w-96 rounded-full bg-purple-600/20 blur-3xl"></div>
@@ -19,8 +20,17 @@
                 </a>
 
                 {{-- Auth card --}}
-                <div class="rounded-2xl border border-neutral-800 bg-neutral-900/60 p-8 shadow-xl backdrop-blur">
-                    <div class="flex flex-col gap-6">
+                <div class="rounded-2xl border border-neutral-800 bg-neutral-900/70 p-8 text-white shadow-xl backdrop-blur">
+                    <div class="flex flex-col gap-6 text-white
+                        [&_h1]:text-white
+                        [&_h2]:text-white
+                        [&_p]:text-zinc-400
+                        [&_label]:text-zinc-300
+                        [&_span]:text-zinc-400
+                        [&_input]:text-white
+                        [&_input]:placeholder:text-zinc-500
+                        [&_a]:text-purple-400
+                        [&_a:hover]:text-purple-300">
                         {{ $slot }}
                     </div>
                 </div>

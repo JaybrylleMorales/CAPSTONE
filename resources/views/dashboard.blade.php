@@ -31,7 +31,7 @@
 
 <div class="space-y-6">
 
-    <div class="rounded-2xl border border-purple-500/30 bg-gradient-to-r from-purple-900/40 via-neutral-900 to-neutral-900 p-8 shadow-lg">
+    <div class="rounded-2xl border border-purple-500/30 bg-linear-to-r from-purple-900/40 via-neutral-900 to-neutral-900 p-8 shadow-lg">
         <div class="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
             <div>
                 <p class="text-sm font-medium text-purple-300">
@@ -42,11 +42,11 @@
                     {{ $greeting }}, System Administrator 👋
                 </h1>
 
-                <p class="mt-2 text-sm text-purple-200">
+                <p class="mt-2 text-sm text-white">
                     {{ $currentDate }}
                 </p>
 
-                <p class="mt-4 max-w-2xl text-gray-400">
+                <p class="mt-4 max-w-2xl text-white">
                     Manage the PathWise ecosystem, monitor transactions, oversee users,
                     and track platform performance.
                 </p>

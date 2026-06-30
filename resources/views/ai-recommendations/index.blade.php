@@ -3,8 +3,8 @@
 
         <div class="flex items-center justify-between">
             <div>
-                <h1 class="text-3xl font-bold text-white">AI Recommendations</h1>
-                <p class="mt-1 text-sm text-zinc-400">
+                <h1 class="text-3xl font-bold text-black">AI Recommendations</h1>
+                <p class="mt-1 text-sm text-zinc-900">
                     Review personalized course recommendations generated from student quiz performance.
                 </p>
             </div>
@@ -25,24 +25,24 @@
         @endphp
 
         <div class="grid gap-4 md:grid-cols-4">
-            <div class="rounded-2xl border border-zinc-800 bg-zinc-900/70 p-5">
-                <p class="text-sm text-zinc-400">Total Recommendations</p>
-                <h2 class="mt-2 text-3xl font-bold text-white">{{ $totalRecommendations }}</h2>
+            <div class="rounded-2xl border border-zinc-800 bg-zinc-500/70 p-5">
+                <p class="text-sm text-black">Total Recommendations</p>
+                <h2 class="mt-2 text-3xl font-bold text-balck">{{ $totalRecommendations }}</h2>
             </div>
 
-            <div class="rounded-2xl border border-purple-800/40 bg-purple-950/30 p-5">
-                <p class="text-sm text-purple-300">Average AI Score</p>
-                <h2 class="mt-2 text-3xl font-bold text-purple-400">{{ $averageScore }}%</h2>
+            <div class="rounded-2xl border border-purple-800/40 bg-purple-800/30 p-5">
+                <p class="text-sm text-black">Average AI Score</p>
+                <h2 class="mt-2 text-3xl font-bold text-emerald-500">{{ $averageScore }}%</h2>
             </div>
 
-            <div class="rounded-2xl border border-emerald-800/40 bg-emerald-950/30 p-5">
-                <p class="text-sm text-emerald-300">Viewed</p>
-                <h2 class="mt-2 text-3xl font-bold text-emerald-400">{{ $viewedRecommendations }}</h2>
+            <div class="rounded-2xl border border-emerald-800/40 bg-emerald-600/30 p-5">
+                <p class="text-sm text-black">Viewed</p>
+                <h2 class="mt-2 text-3xl font-bold text-black">{{ $viewedRecommendations }}</h2>
             </div>
 
             <div class="rounded-2xl border border-yellow-800/40 bg-yellow-950/30 p-5">
-                <p class="text-sm text-yellow-300">Not Viewed</p>
-                <h2 class="mt-2 text-3xl font-bold text-yellow-400">{{ $unviewedRecommendations }}</h2>
+                <p class="text-sm text-black">Not Viewed</p>
+                <h2 class="mt-2 text-3xl font-bold text-black">{{ $unviewedRecommendations }}</h2>
             </div>
         </div>
 
@@ -58,23 +58,23 @@
             </div>
         @endif
 
-        <div class="rounded-2xl border border-zinc-800 bg-zinc-900/60 shadow-lg shadow-purple-950/10">
+        <div class="rounded-2xl border border-zinc-800 bg-zinc-600/60 shadow-lg shadow-purple-950/10">
             <div class="flex flex-col gap-3 border-b border-zinc-800 px-6 py-4 md:flex-row md:items-center md:justify-between">
                 <div>
-                    <h2 class="text-lg font-semibold text-white">Recommendation Records</h2>
-                    <p class="text-sm text-zinc-400">
+                    <h2 class="text-lg font-semibold text-black">Recommendation Records</h2>
+                    <p class="text-sm text-zinc-900">
                         AI-generated learning suggestions for students.
                     </p>
                 </div>
 
-                <div class="rounded-xl border border-purple-500/30 bg-purple-500/10 px-4 py-2 text-sm font-semibold text-purple-300">
+                <div class="rounded-xl border border-purple-500/30 bg-black px-4 py-2 text-sm font-semibold text-white">
                     AI Engine Active
                 </div>
             </div>
 
             <div class="overflow-x-auto">
                 <table class="w-full text-left text-sm">
-                    <thead class="bg-zinc-950/70 text-xs uppercase tracking-wider text-zinc-400">
+                    <thead class="bg-zinc-950/70 text-xs uppercase tracking-wider text-white">
                         <tr>
                             <th class="px-6 py-4">Student</th>
                             <th class="px-6 py-4">Recommended Course</th>
@@ -95,7 +95,7 @@
                                     : ($score >= 70 ? 'bg-yellow-500' : 'bg-red-500');
                             @endphp
 
-                            <tr class="hover:bg-white/[0.03]">
+                            <tr class="hover:bg-white/3">
                                 <td class="px-6 py-4">
                                     <div class="flex items-center gap-3">
                                         <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-purple-600/20 text-sm font-bold text-purple-300">
@@ -170,11 +170,11 @@
                                             ✨
                                         </div>
 
-                                        <h3 class="text-lg font-semibold text-white">
+                                        <h3 class="text-lg font-semibold text-black">
                                             No recommendations found
                                         </h3>
 
-                                        <p class="mt-1 text-sm text-zinc-400">
+                                        <p class="mt-1 text-sm text-black">
                                             Generate recommendations after students have quiz results.
                                         </p>
                                     </div>

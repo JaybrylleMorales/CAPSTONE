@@ -9,7 +9,7 @@
 
 <div class="space-y-6">
 
-    <div class="rounded-2xl border border-purple-500/30 bg-gradient-to-r from-purple-900/40 via-neutral-900 to-neutral-900 p-8">
+    <div class="rounded-2xl border border-purple-500/30 bg-linear-to-r from-purple-900 via-neutral-900 to-neutral-900 p-6">
         <h1 class="text-3xl font-bold text-white">
             My Transactions
         </h1>
@@ -27,18 +27,18 @@
         </div>
 
         <div class="rounded-2xl border border-green-500/40 bg-green-500/10 p-5">
-            <p class="text-sm text-green-400">Approved</p>
-            <h2 class="mt-2 text-3xl font-bold text-green-400">{{ $approvedTransactions }}</h2>
+            <p class="text-sm text-black">Approved</p>
+            <h2 class="mt-2 text-3xl font-bold text-black">{{ $approvedTransactions }}</h2>
         </div>
 
         <div class="rounded-2xl border border-yellow-500/40 bg-yellow-500/10 p-5">
-            <p class="text-sm text-yellow-400">Pending</p>
-            <h2 class="mt-2 text-3xl font-bold text-yellow-400">{{ $pendingTransactions }}</h2>
+            <p class="text-sm text-black">Pending</p>
+            <h2 class="mt-2 text-3xl font-bold text-black">{{ $pendingTransactions }}</h2>
         </div>
 
         <div class="rounded-2xl border border-red-500/40 bg-red-500/10 p-5">
-            <p class="text-sm text-red-400">Rejected</p>
-            <h2 class="mt-2 text-3xl font-bold text-red-400">{{ $rejectedTransactions }}</h2>
+            <p class="text-sm text-black">Rejected</p>
+            <h2 class="mt-2 text-3xl font-bold text-black">{{ $rejectedTransactions }}</h2>
         </div>
 
     </div>

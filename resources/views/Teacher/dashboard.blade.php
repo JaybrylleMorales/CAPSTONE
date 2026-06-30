@@ -33,7 +33,7 @@
 
 <div class="space-y-6">
 
-    <div class="rounded-2xl border border-purple-500/30 bg-gradient-to-r from-purple-900/40 via-neutral-900 to-neutral-900 p-8 shadow-lg">
+    <div class="rounded-2xl border border-purple-500/30 bg-linear-to-r from-purple-900 via-neutral-900 to-neutral-900 p-6">
         <div class="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
             <div>
              <p class="text-sm font-medium text-purple-300">
@@ -89,9 +89,9 @@
         </div>
 
         <div class="rounded-2xl border border-green-500/40 bg-green-500/10 p-5">
-            <p class="text-sm text-green-400">Average Quiz Score</p>
-            <h2 class="mt-2 text-3xl font-bold text-green-400">{{ $averageScore }}%</h2>
-            <p class="mt-1 text-xs text-gray-500">Based on student attempts</p>
+            <p class="text-sm text-black">Average Quiz Score</p>
+            <h2 class="mt-2 text-3xl font-bold text-black">{{ $averageScore }}%</h2>
+            <p class="mt-1 text-xs text-black">Based on student attempts</p>
         </div>
 
     </div>

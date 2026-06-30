@@ -2,8 +2,8 @@
     <div class="space-y-6">
 
         <div>
-            <h1 class="text-3xl font-bold text-white">My Courses</h1>
-            <p class="mt-1 text-sm text-zinc-400">
+            <h1 class="text-3xl font-bold text-dark">My Courses</h1>
+            <p class="mt-1 text-sm text-dark">
                 Manage your published, pending, and draft learning materials.
             </p>
         </div>
@@ -16,22 +16,22 @@
         @endphp
 
         <div class="grid gap-4 md:grid-cols-4">
-            <div class="rounded-2xl border border-zinc-800 bg-zinc-900/70 p-5">
+            <div class="rounded-2xl border border-zinc-800 bg-zinc-900 p-5">
                 <p class="text-sm text-zinc-400">Total Courses</p>
                 <h2 class="mt-2 text-3xl font-bold text-white">{{ $totalCourses }}</h2>
             </div>
 
-            <div class="rounded-2xl border border-emerald-800/40 bg-emerald-950/30 p-5">
+            <div class="rounded-2xl border border-emerald-800/40 bg-emerald-950 p-5">
                 <p class="text-sm text-emerald-300">Published</p>
                 <h2 class="mt-2 text-3xl font-bold text-emerald-400">{{ $publishedCourses }}</h2>
             </div>
 
-            <div class="rounded-2xl border border-yellow-800/40 bg-yellow-950/30 p-5">
+            <div class="rounded-2xl border border-yellow-800/40 bg-yellow-950 p-5">
                 <p class="text-sm text-yellow-300">Pending</p>
                 <h2 class="mt-2 text-3xl font-bold text-yellow-400">{{ $pendingCourses }}</h2>
             </div>
 
-            <div class="rounded-2xl border border-purple-800/40 bg-purple-950/30 p-5">
+            <div class="rounded-2xl border border-purple-800/40 bg-purple-950 p-5">
                 <p class="text-sm text-purple-300">Total Students</p>
                 <h2 class="mt-2 text-3xl font-bold text-purple-400">{{ $totalStudents }}</h2>
             </div>
@@ -56,7 +56,7 @@
                     };
                 @endphp
 
-                <div class="group rounded-2xl border border-zinc-800 bg-zinc-900/60 p-6 shadow-lg shadow-purple-950/10 transition hover:border-purple-700/50 hover:bg-zinc-900/80">
+                <div class="group rounded-2xl border border-zinc-800 bg-zinc-900 p-6 shadow-lg shadow-purple-950/10 transition hover:border-purple-700/50 hover:bg-zinc-800">
                     <div class="flex items-start justify-between gap-4">
                         <div class="flex gap-4">
                             <div class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-purple-600/20 text-2xl">
@@ -68,7 +68,7 @@
                                     {{ $course->title }}
                                 </h2>
 
-                                <p class="mt-1 text-sm text-zinc-400">
+                                <p class="mt-1 text-sm text-zinc-300">
                                     {{ $course->category->name ?? 'No Category' }}
                                 </p>
                             </div>
@@ -80,22 +80,22 @@
                     </div>
 
                     <div class="mt-6 grid grid-cols-3 gap-4">
-                        <div class="rounded-xl border border-zinc-800 bg-zinc-950/50 p-4">
-                            <p class="text-xs text-zinc-500">Lessons</p>
+                        <div class="rounded-xl border border-zinc-800 bg-zinc-950 p-4">
+                            <p class="text-xs text-zinc-400">Lessons</p>
                             <p class="mt-1 text-2xl font-bold text-white">
                                 {{ $course->lessons_count ?? $course->lessons->count() }}
                             </p>
                         </div>
 
-                        <div class="rounded-xl border border-zinc-800 bg-zinc-950/50 p-4">
-                            <p class="text-xs text-zinc-500">Students</p>
+                        <div class="rounded-xl border border-zinc-800 bg-zinc-950 p-4">
+                            <p class="text-xs text-zinc-400">Students</p>
                             <p class="mt-1 text-2xl font-bold text-white">
                                 {{ $course->enrollments_count ?? $course->enrollments->count() }}
                             </p>
                         </div>
 
-                        <div class="rounded-xl border border-zinc-800 bg-zinc-950/50 p-4">
-                            <p class="text-xs text-zinc-500">Price</p>
+                        <div class="rounded-xl border border-zinc-800 bg-zinc-950 p-4">
+                            <p class="text-xs text-zinc-400">Price</p>
                             <p class="mt-1 text-2xl font-bold text-white">
                                 ₱{{ number_format($course->price, 2) }}
                             </p>
@@ -127,14 +127,14 @@
                     </div>
                 </div>
             @empty
-                <div class="rounded-2xl border border-zinc-800 bg-zinc-900/60 px-6 py-16 text-center xl:col-span-2">
+                <div class="rounded-2xl border border-zinc-800 bg-zinc-900 px-6 py-16 text-center xl:col-span-2">
                     <div class="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-purple-600/20 text-2xl">
                         📚
                     </div>
 
                     <h3 class="text-lg font-semibold text-white">No courses yet</h3>
 
-                    <p class="mt-1 text-sm text-zinc-400">
+                    <p class="mt-1 text-sm text-zinc-300">
                         Your assigned or created courses will appear here.
                     </p>
                 </div>
